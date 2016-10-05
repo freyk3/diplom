@@ -1,0 +1,20 @@
+{
+  "name": "node-webkit-diplom-project",
+  "main": "views/app.html",
+  "version": "0.1.0",
+  "window": {
+    "title": "DiplomProject",
+    "toolbar": false,
+    "frame": true,
+    "width": 800,
+    "height": 500,
+    "min_width": 400,
+    "min_height": 200,
+    "position": "center",
+    "resizable": false,
+    "show": true
+  },
+  "dependencies": {
+    "markdown": "^0.5.0"
+  }
+}

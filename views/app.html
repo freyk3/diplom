@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Дипломогенератор 3000</title>
+</head>
+<body>
+    <button onclick="hidNote()">Чо нить показать</button>
+    <div id="hui">Этого достаточно для "типа не с пустыми руками", маленький извращенец?!</div>
+    <script type="text/javascript">
+        function hidNote() {
+            var hui = document.getElementById('hui');
+            var huiBool = hui.getAttribute('hidden');
+
+            if(huiBool == false)
+                huiBool = hui.setAttribute('hidden', true);
+            else
+                huiBool = hui.setAttribute('hidden', false);
+        }
+    </script>
+</body>
+</html>
