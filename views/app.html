@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Дипломогенератор 3000</title>
+    <link href="/css/style.css" rel="stylesheet">
+    <script src="/scripts/jquery-3.1.1.js"></script>
 </head>
 <body>
-    <button onclick="hidNote()">Чо нить показать</button>
-    <div id="hui">Этого достаточно для "типа не с пустыми руками", маленький извращенец?!</div>
-    <script type="text/javascript">
-        function hidNote() {
-            var hui = document.getElementById('hui');
-            var huiBool = hui.getAttribute('hidden');
-
-            if(huiBool == false)
-                huiBool = hui.setAttribute('hidden', true);
-            else
-                huiBool = hui.setAttribute('hidden', false);
-        }
-    </script>
+    <div id="barellsBlock">
+        <img class="barrelsImg" src="/images/barell.png">
+        <img class="barrelsImg" src="/images/barell.png">
+        <img class="barrelsImg" src="/images/barell.png">
+    </div>
+    <div id="carsBlock">
+        <img class="carsImg" src="/images/car.png">
+        <img class="carsImg" src="/images/car.png">
+    </div>
 </body>
 </html>

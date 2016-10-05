@@ -1,0 +1,17 @@
+.carsImg
+{
+    width: 200px;
+    display: block;
+}
+.barrelsImg
+{
+    width: 120px;
+}
+#barellsBlock
+{
+    margin-left: 250px;
+}
+#carsBlock
+{
+    width: 200px;
+}
