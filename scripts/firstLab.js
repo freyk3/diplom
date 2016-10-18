@@ -35,25 +35,69 @@ function Point(numb,pointArr,isStart,isFinish) {
     };
     this.domElem = document.getElementById('point'+this.numb);
 }
-var point1 = new Point(1,[], false, true),
-    point2 = new Point(2,[], false, true),
-    point3 = new Point(3,[], false, true),
-    point4 = new Point(4,[1,5,7],true,false),
-    point5 = new Point(5,[4,2,6,8],false,false),
-    point6 = new Point(6,[5,3,9],false,false),
-    point7 = new Point(7,[4,8],true,false),
-    point8 = new Point(8,[5,9],false,false),
-    point9 = new Point(9,[8,6],false,false);
+function Path() {
+    this.startPoint = {};
+    this.lastPoint = {};
+    this.points = [];
+    this.finishedPoint = {};
+    this.isStarted = false;
+    this.isFinished = false;
+}
 
-var points = [point1,point2,point3,point4,point5,point6,point7,point8,point9];
+var point0 = new Point(0,[], false, true),
+    point1 = new Point(1,[], false, true),
+    point2 = new Point(2,[], false, true),
+    point3 = new Point(3,[0,4,6],true,false),
+    point4 = new Point(4,[3,1,5,7],false,false),
+    point5 = new Point(5,[4,2,8],false,false),
+    point6 = new Point(6,[3,7],true,false),
+    point7 = new Point(7,[4,8],false,false),
+    point8 = new Point(8,[7,5],false,false);
+
+var points = [point0,point1,point2,point3,point4,point5,point6,point7,point8];
+var pathIsStarted = false;
+var path;
 
 function activatePoint(numb)
 {
-    for(var i=0; i<points.length; i++)
+    var point = points[numb];
+    if(point.isStart == true && pathIsStarted == false)
     {
-        if(points[i].numb == numb)
+        pathIsStarted = true;
+        path = new Path();
+        path.startPoint = point;
+        path.lastPoint = point;
+        path.points.push(point);
+        path.isStarted = true;
+        point.changeStatus();
+    }
+    else if (pathIsStarted == true)
+    {
+        var lastPoint = path.lastPoint;
+        for (var i=0; i<lastPoint.pointArr.length; i++)
         {
-            points[i].changeStatus();
+            if((lastPoint.pointArr[i] == numb) && point.status == 'off')
+            {
+                if(point.isFinish == false)
+                {
+                    path.lastPoint = point;
+                    path.points.push(point);
+                    point.changeStatus();
+                }
+                else
+                {
+                    path = {};
+                    pathIsStarted = false;
+                    point.changeStatus();
+                }
+
+            }
         }
     }
+    /*else if (point.isFinish == true && pathIsStarted == true)
+    {
+        path = {};
+        pathIsStarted = false;
+        point.changeStatus();
+    }*/
 }
