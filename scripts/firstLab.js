@@ -42,6 +42,13 @@ function Path() {
     this.finishedPoint = {};
     this.isStarted = false;
     this.isFinished = false;
+    this.colorPipe = function (point)
+    {
+        var point1 = this.lastPoint.numb,
+            point2 = point.numb,
+            pipe = document.getElementById('pipe'+point1+point2) != null ? document.getElementById('pipe'+point1+point2) : document.getElementById('pipe'+point2+point1);
+            pipe.style.backgroundColor = 'green';
+    }
 }
 
 var point0 = new Point(0,[], false, true),
@@ -65,6 +72,7 @@ function activatePoint(numb)
     {
         if(point.isStart == true && pathIsStarted == false)
         {
+            var pipe = document.getElementById('pipe'+point.numb);
             pathIsStarted = true;
             path = new Path();
             path.startPoint = point;
@@ -72,6 +80,8 @@ function activatePoint(numb)
             path.points.push(point);
             path.isStarted = true;
             point.changeStatus();
+            pipe.style.backgroundColor = 'green';
+
         }
         else if (pathIsStarted == true)
         {
@@ -82,15 +92,17 @@ function activatePoint(numb)
                 {
                     if(point.isFinish == false)
                     {
-                        path.lastPoint = point;
                         path.points.push(point);
                         point.changeStatus();
+                        path.colorPipe(point);
+                        path.lastPoint = point;
                     }
                     else
                     {
-                        path = {};
                         pathIsStarted = false;
                         point.changeStatus();
+                        path.colorPipe(point);
+                        path = {};
                     }
 
                 }
