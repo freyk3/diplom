@@ -24,7 +24,7 @@ function Point(numb,pointArr,isStart,isFinish) {
     this.changeStatus = function () {
         if(this.isActivated == true)
         {
-            this.domElem.style.backgroundColor = 'red';
+            this.domElem.style.backgroundColor = '#f5f5f5';
             this.isActivated = false;
         }
         else
@@ -48,7 +48,32 @@ function Path() {
             point2 = point.numb,
             pipe = document.getElementById('pipe'+point1+point2) != null ? document.getElementById('pipe'+point1+point2) : document.getElementById('pipe'+point2+point1);
             pipe.style.backgroundColor = 'green';
-    }
+    };
+    this.throwPath = function (newTime) {
+        console.log('путь скинулся');
+        /* здесь будет функция по скидыванию пути */
+        var points = this.points;
+        var time = 0;
+        if(newTime !== undefined)
+            time = newTime * 1000;
+        var timerId = setTimeout(function () {
+            for (var i = 0; i < points.length; i++)
+            {
+                if(i == 0)
+                {
+                    points[i].changeStatus();
+                    document.getElementById('pipe'+points[i].numb).style.backgroundColor = 'black';
+                }
+                else
+                {
+                    points[i].changeStatus();
+                    var pipe = document.getElementById('pipe'+points[i].numb+points[i-1].numb) != null ? document.getElementById('pipe'+points[i].numb+points[i-1].numb) : document.getElementById('pipe'+points[i-1].numb+points[i].numb);
+                    pipe.style.backgroundColor = 'black';
+                }
+            }
+        },time);
+
+    };
 }
 
 var point0 = new Point(0,[], false, true),
@@ -58,8 +83,9 @@ var point0 = new Point(0,[], false, true),
     point4 = new Point(4,[3,1,5,7],false,false),
     point5 = new Point(5,[4,2,8],false,false),
     point6 = new Point(6,[3,7],true,false),
-    point7 = new Point(7,[4,8],false,false),
+    point7 = new Point(7,[4,6,8],false,false),
     point8 = new Point(8,[7,5],false,false);
+
 
 var points = [point0,point1,point2,point3,point4,point5,point6,point7,point8];
 var pathIsStarted = false;
@@ -81,7 +107,7 @@ function activatePoint(numb)
             path.isStarted = true;
             point.changeStatus();
             pipe.style.backgroundColor = 'green';
-
+            checkFreePoints(path);
         }
         else if (pathIsStarted == true)
         {
@@ -96,17 +122,41 @@ function activatePoint(numb)
                         point.changeStatus();
                         path.colorPipe(point);
                         path.lastPoint = point;
+                        checkFreePoints(path);
                     }
                     else
                     {
                         pathIsStarted = false;
+                        path.points.push(point);
                         point.changeStatus();
                         path.colorPipe(point);
+                        path.lastPoint = point;
+                        path.throwPath(5);
                         path = {};
                     }
-
                 }
             }
         }
     }
+}
+
+function checkFreePoints(path) {
+    var lastPoint = path.lastPoint,
+        adjacentPoints = path.lastPoint.pointArr,
+        boolFreePoints = true;
+
+    for(var i=0; i<adjacentPoints.length; i++)
+    {
+        var adjacentPoint = points[adjacentPoints[i]];
+        if(adjacentPoint.isActivated == false)
+            boolFreePoints = false;
+    }
+
+    if(boolFreePoints == true)
+    {
+        path.throwPath();
+        path = {};
+        pathIsStarted = false;
+    }
+
 }
