@@ -1,20 +1,6 @@
 /**
  * Created by Freyk on 10.10.2016.
  */
-function move() {
-    var elem = document.getElementById("barIndicator1");
-    var height = 1;
-    var id = setInterval(frame, 10);
-    function frame() {
-        if (height >= 100) {
-            clearInterval(id);
-        } else {
-            height++;
-            elem.style.height = height + '%';
-        }
-    }
-}
-
 function Point(numb,pointArr,isStart,isFinish) {
     this.numb = numb;
     this.pointArr = pointArr;
@@ -72,8 +58,49 @@ function Path() {
                 }
             }
         },time);
-
     };
+    this.provideMilk = function () {
+        var litres = prompt('Введите количество литров, которые пойдут в данный танк','');
+        var firstPoint = this.points[0].numb;
+        var lastPoint = this.points[this.points.length-1].numb;
+        var car;
+        if(firstPoint == 3)
+            car = cars[0];
+        else if(firstPoint == 6)
+            car = cars[1];
+        var barrel = barrels[lastPoint];
+
+        car.volume = car.volume - litres;
+        barrel.value = barrel.value + litres;
+        barrel.changeProgressBar(litres);
+        insertCarValue();
+    }
+}
+
+function Barrel(progressNumb) {
+    this.fullVolume = 150;
+    this.value = 0;
+    this.progressBar = document.getElementById('barIndicator'+progressNumb);
+    this.changeProgressBar = function (litres) {
+        var elem = this.progressBar;
+        var height = 1;
+        var id = setInterval(frame, 10);
+        function frame() {
+            if (height >= 100) {
+                clearInterval(id);
+            } else {
+                height++;
+                elem.style.height = height + '%';
+            }
+        }
+    }
+}
+
+function Car(numb) {
+    this.numb = numb;
+    this.volume = 150;
+    this.isActive = false; //приехала машина\ещё не приехала
+    this.carVolume = document.getElementById('carVolume'+this.numb);
 }
 
 var point0 = new Point(0,[], false, true),
@@ -85,9 +112,15 @@ var point0 = new Point(0,[], false, true),
     point6 = new Point(6,[3,7],true,false),
     point7 = new Point(7,[4,6,8],false,false),
     point8 = new Point(8,[7,5],false,false);
-
+var barrel0 = new Barrel(0),
+    barrel1 = new Barrel(1),
+    barrel2 = new Barrel(2);
+var car0 = new Car(0),
+    car1 = new Car(1);
 
 var points = [point0,point1,point2,point3,point4,point5,point6,point7,point8];
+var barrels = [barrel0,barrel1,barrel2];
+var cars = [car0,car1];
 var pathIsStarted = false;
 var path;
 
@@ -131,7 +164,7 @@ function activatePoint(numb)
                         point.changeStatus();
                         path.colorPipe(point);
                         path.lastPoint = point;
-                        path.throwPath(5);
+                        path.provideMilk();
                         path = {};
                     }
                 }
@@ -158,5 +191,16 @@ function checkFreePoints(path) {
         path = {};
         pathIsStarted = false;
     }
-
 }
+
+function insertCarValue() {
+    for(var i = 0; i<cars.length; i++)
+    {
+        var car = cars[i];
+        car.carVolume.innerText = car.volume;
+    }
+}
+
+/* Всё что будет происходить сразу после загрузки */
+insertCarValue();
+
