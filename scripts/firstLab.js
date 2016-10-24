@@ -70,29 +70,56 @@ function Path() {
             car = cars[1];
         var barrel = barrels[lastPoint];
 
-        car.volume = car.volume - litres;
-        barrel.value = barrel.value + litres;
-        barrel.changeProgressBar(litres);
+        if(car.volume < litres)
+        {
+            alert('В молоковозе нет столько молока');
+        }
+        else if(barrel.fullVolume - barrel.value < litres)
+        {
+            alert('В танк больше не влезет');
+        }
+        else
+        {
+            car.volume = car.volume - litres;
+            barrel.addMilk(litres);
+        }
+
+        this.throwPath();
         insertCarValue();
     }
 }
 
 function Barrel(progressNumb) {
-    this.fullVolume = 150;
+    this.numb = progressNumb;
+    this.fullVolume = 200;
     this.value = 0;
     this.progressBar = document.getElementById('barIndicator'+progressNumb);
-    this.changeProgressBar = function (litres) {
+    this.addMilk = function (litres) {
+        var addedPercents = litres * 0.5;
         var elem = this.progressBar;
-        var height = 1;
-        var id = setInterval(frame, 10);
-        function frame() {
-            if (height >= 100) {
-                clearInterval(id);
-            } else {
+        var beforeAdd = this.value*0.5;
+        var height = beforeAdd;
+        var newValue = beforeAdd + addedPercents;
+
+        //frame();
+        
+        this.value = this.value + +litres;
+        elem.style.height = newValue + '%';
+        elem.previousElementSibling.innerHTML = this.value;
+        if(this.value > 105) //ну при 105 лпрогресс перекрывает числа, но над этим подумать надо ещё
+            elem.previousElementSibling.style.color = 'white';
+        else
+            elem.previousElementSibling.style.color = 'black';
+
+        /*function frame() {
+            while (height < newValue)
+            {
                 height++;
-                elem.style.height = height + '%';
+                var timerId = setTimeout(function () {
+                    elem.style.height = height + '%';
+                },1000)
             }
-        }
+        }*/
     }
 }
 
