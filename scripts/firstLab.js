@@ -15,7 +15,7 @@ function Point(numb,pointArr,isStart,isFinish) {
         }
         else
         {
-            this.domElem.style.backgroundColor = 'green';
+            this.domElem.style.backgroundColor = 'white';
             this.isActivated = true;
         }
     };
@@ -33,7 +33,7 @@ function Path() {
         var point1 = this.lastPoint.numb,
             point2 = point.numb,
             pipe = document.getElementById('pipe'+point1+point2) != null ? document.getElementById('pipe'+point1+point2) : document.getElementById('pipe'+point2+point1);
-            pipe.style.backgroundColor = 'green';
+            pipe.style.backgroundColor = 'white';
     };
     this.throwPath = function (newTime) {
         console.log('путь скинулся');
@@ -41,20 +41,20 @@ function Path() {
         var points = this.points;
         var time = 0;
         if(newTime !== undefined)
-            time = newTime * 1000;
+            time = newTime;
         var timerId = setTimeout(function () {
             for (var i = 0; i < points.length; i++)
             {
                 if(i == 0)
                 {
                     points[i].changeStatus();
-                    document.getElementById('pipe'+points[i].numb).style.backgroundColor = 'black';
+                    document.getElementById('pipe'+points[i].numb).style.backgroundColor = 'rgb(246,144,33)';
                 }
                 else
                 {
                     points[i].changeStatus();
                     var pipe = document.getElementById('pipe'+points[i].numb+points[i-1].numb) != null ? document.getElementById('pipe'+points[i].numb+points[i-1].numb) : document.getElementById('pipe'+points[i-1].numb+points[i].numb);
-                    pipe.style.backgroundColor = 'black';
+                    pipe.style.backgroundColor = 'rgb(246,144,33)';
                 }
             }
         },time);
@@ -81,10 +81,10 @@ function Path() {
         else
         {
             car.volume = car.volume - litres;
-            barrel.addMilk(litres);
+            var timeOfFilling = barrel.addMilk(litres);
         }
 
-        this.throwPath();
+        this.throwPath(timeOfFilling ? timeOfFilling : '');
         insertCarValue();
     }
 }
@@ -100,26 +100,28 @@ function Barrel(progressNumb) {
         var beforeAdd = this.value*0.5;
         var height = beforeAdd;
         var newValue = beforeAdd + addedPercents;
+        var animationSpeed = 100;
+        var timeOfFilling = (newValue - height) * animationSpeed;
 
-        //frame();
-        
         this.value = this.value + +litres;
-        elem.style.height = newValue + '%';
         elem.previousElementSibling.innerHTML = this.value;
+
+        var id = setInterval(frame, animationSpeed);
+        function frame() {
+            if (height >= newValue) {
+                clearInterval(id);
+            } else {
+                height++;
+                elem.style.height = height + '%';
+            }
+        }
+
         if(this.value > 105) //ну при 105 лпрогресс перекрывает числа, но над этим подумать надо ещё
             elem.previousElementSibling.style.color = 'white';
         else
             elem.previousElementSibling.style.color = 'black';
 
-        /*function frame() {
-            while (height < newValue)
-            {
-                height++;
-                var timerId = setTimeout(function () {
-                    elem.style.height = height + '%';
-                },1000)
-            }
-        }*/
+        return timeOfFilling;
     }
 }
 
@@ -166,7 +168,7 @@ function activatePoint(numb)
             path.points.push(point);
             path.isStarted = true;
             point.changeStatus();
-            pipe.style.backgroundColor = 'green';
+            pipe.style.backgroundColor = 'white';
             checkFreePoints(path);
         }
         else if (pathIsStarted == true)

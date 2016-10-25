@@ -1,16 +1,19 @@
 body
 {
     background-color: #eee;
+    padding-left: 30px;
+    padding-top: 15px;
 }
 .carsImg
 {
-    margin-top: 50px;
+    margin-top: 47px;
     width: 200px;
     display: block;
 }
 .barrelsImg
 {
     width: 120px;
+    height: 170px;
 }
 #barellsBlock
 {
@@ -71,7 +74,7 @@ body
 #middlePipesBlock
 {
     width: 100%;
-    height: 140px;
+    height: 102px;
 }
 #lowPipesBlock
 {
@@ -91,14 +94,15 @@ body
     width: 15px;
     margin: auto;
     height: 60px;
-    background-color: black;
+    background-color: rgb(246,144,33);
+    outline: 1px solid rgb(246,144,33);
 }
 
 .highPipes
 {
     height: 30px;
     display: inline-block;
-    margin-left: -.36em;
+    margin-left: -.26em;
 }
 
 .highPipesInt
@@ -107,21 +111,24 @@ body
     width: 70%;
     display: inline-block;
     vertical-align: -webkit-baseline-middle;
-    background-color: black;
+    background-color: rgb(246,144,33);
+    outline: 1px solid rgb(246,144,33);
 }
 .middlePipes
 {
     height: 100%;
     width: 15px;
     display: inline-block;
-    background-color: black;
+    background-color: rgb(246,144,33);
+    outline: 1px solid rgb(246,144,33);
+
 }
 
 .lowPipes
 {
     height: 30px;
     display: inline-block;
-    margin-left: -.36em;
+    margin-left: -.26em;
 }
 
 .lowPipesInt
@@ -130,7 +137,9 @@ body
     width: 70%;
     display: inline-block;
     vertical-align: -webkit-baseline-middle;
-    background-color: black;
+    background-color: rgb(246,144,33);
+    outline: 1px solid rgb(246,144,33);
+
 }
 
 .iconDiv
@@ -150,54 +159,11 @@ body
 }
 #carText1
 {
-    margin-top: 40px;
+    margin-top: 30px;
     margin-left: 15px;
 }
 #carText2
 {
-    margin-top: 210px;
+    margin-top: 160px;
     margin-left: 15px;
-}
-
-/* Диалоговое окно */
-#prompt-form {
-    display: inline-block;
-    padding: 5px 5px 5px 70px;
-    width: 200px;
-    border: 1px solid black;
-    background: white;
-    vertical-align: middle;
-}
-
-#prompt-form-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-}
-
-#prompt-form-container:before {
-    display: inline-block;
-    height: 100%;
-    content: '';
-    vertical-align: middle;
-}
-
-#prompt-form input[name="text"] {
-    display: block;
-    margin: 5px;
-    width: 180px;
-}
-#cover-div {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9000;
-    width: 100%;
-    height: 100%;
-    background-color: gray;
-    opacity: 0.3;
 }
