@@ -42,3 +42,10 @@ body {
 {
     width: 100%;
 }
+#doLogin
+{
+    position: absolute;
+    margin-top: 70px;
+    width: 95%;
+    text-align: center;
+}
