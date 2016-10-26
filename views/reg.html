@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Логин</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/reg.css" rel="stylesheet">
 </head>
 <body>
-
+<div class="container">
+    <form class="form-signin" role="form">
+        <h2 class="form-signin-heading" style="font-size: 26px; text-align: center">Регистрация</h2>
+        <input type="email" class="form-control" placeholder="Логин" id="inputLogin">
+        <input type="email" class="form-control" placeholder="Имя" id="inputName">
+        <input type="email" class="form-control" placeholder="Фамилия" id="inputSurname">
+        <input type="email" class="form-control" placeholder="Группа" id="inputGroup">
+        <input type="password" class="form-control" placeholder="Пароль" id="inputPassword" style="margin-bottom: -1px">
+        <input type="password" class="form-control" placeholder="Пароль ещё раз" id="inputConfirmPassword">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="reg()">Войти</button>
+    </form>
+</div>
+<script src="/scripts/reg.js"></script>
 </body>
 </html>

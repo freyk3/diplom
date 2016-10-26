@@ -3,9 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Логин</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/login.css" rel="stylesheet">
 </head>
 <body>
-    Здесь будет страница логина
-    <a href="app.html"><button>Перейти на лабораторку</button></a>
+<div class="container">
+    <form class="form-signin" role="form">
+        <h2 class="form-signin-heading" style="font-size: 26px; text-align: center">Введите логин и пароль</h2>
+        <input type="email" class="form-control" placeholder="Логин" id="inputLogin">
+        <input type="password" class="form-control" placeholder="Пароль" id="inputPassword">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="login()">Войти</button>
+    </form>
+    <a href="app.html" id="cheatButton"><button>Перейти на лабораторку</button></a>
+    <div id="doReg">
+        <a href="reg.html">Зарегистрироваться</a>
+    </div>
+</div>
+<script src="/scripts/login.js"></script>
 </body>
 </html>

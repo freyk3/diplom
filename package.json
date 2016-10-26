@@ -1,6 +1,6 @@
 {
   "name": "node-webkit-diplom-project",
-  "main": "views/app.html",
+  "main": "views/login.html",
   "version": "0.1.0",
   "window": {
     "title": "DiplomProject",
