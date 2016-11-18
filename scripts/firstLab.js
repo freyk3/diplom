@@ -64,10 +64,20 @@ function Path() {
         var firstPoint = this.points[0].numb;
         var lastPoint = this.points[this.points.length-1].numb;
         var car;
-        if(firstPoint == 3)
-            car = cars[0];
-        else if(firstPoint == 6)
-            car = cars[1];
+        switch (firstPoint) {
+            case 4:
+                car = cars[0];
+                break;
+            case 8:
+                car = cars[1];
+                break;
+            case 12:
+                car = cars[2];
+                break;
+            case 16:
+                car = cars[3];
+                break;
+        }
         var barrel = barrels[lastPoint];
 
         if(car.volume < litres)
@@ -135,21 +145,35 @@ function Car(numb) {
 var point0 = new Point(0,[], false, true),
     point1 = new Point(1,[], false, true),
     point2 = new Point(2,[], false, true),
-    point3 = new Point(3,[0,4,6],true,false),
-    point4 = new Point(4,[3,1,5,7],false,false),
-    point5 = new Point(5,[4,2,8],false,false),
-    point6 = new Point(6,[3,7],true,false),
-    point7 = new Point(7,[4,6,8],false,false),
-    point8 = new Point(8,[7,5],false,false);
+    point3 = new Point(3,[], false, true),
+    point4 = new Point(4,[0,5,8],true,false),
+    point5 = new Point(5,[1,4,6,9],false,false),
+    point6 = new Point(6,[2,5,7,10],false,false),
+    point7 = new Point(7,[3,6,11],false,false),
+    point8 = new Point(8,[4,9,12],true,false),
+    point9 = new Point(9,[5,8,10,13], false, false),
+    point10 = new Point(10,[6,9,11,14], false, false),
+    point11 = new Point(11,[7,10,15], false, false),
+    point12 = new Point(12,[8,13,16],true,false),
+    point13 = new Point(13,[9,12,14,17],false,false),
+    point14 = new Point(14,[10,13,15,18],false,false),
+    point15 = new Point(15,[11,14,19],false,false),
+    point16 = new Point(16,[12,17],true,false),
+    point17 = new Point(17,[16,13,18],false,false),
+    point18 = new Point(18,[17,19,14],false,false),
+    point19 = new Point(19,[15,18],false,false);
 var barrel0 = new Barrel(0),
     barrel1 = new Barrel(1),
-    barrel2 = new Barrel(2);
+    barrel2 = new Barrel(2),
+    barrel3 = new Barrel(3);
 var car0 = new Car(0),
-    car1 = new Car(1);
+    car1 = new Car(1),
+    car2 = new Car(2),
+    car3 = new Car(3);
 
-var points = [point0,point1,point2,point3,point4,point5,point6,point7,point8];
-var barrels = [barrel0,barrel1,barrel2];
-var cars = [car0,car1];
+var points = [point0,point1,point2,point3,point4,point5,point6,point7,point8,point9,point10,point11,point12,point13,point14,point15,point16,point17,point18,point19];
+var barrels = [barrel0,barrel1,barrel2,barrel3];
+var cars = [car0,car1,car2,car3];
 var pathIsStarted = false;
 var path;
 

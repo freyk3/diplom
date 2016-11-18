@@ -4,7 +4,7 @@
 var fs = require('fs');
 
 function login() {
-    var contents = fs.readFileSync('files/users.json', 'utf8');
+    var contents = fs.readFileSync('../data/users.json', 'utf8');
     var users = JSON.parse(contents);
     var inputLogin = document.getElementById('inputLogin').value;
     var inputPassword = document.getElementById('inputPassword').value;

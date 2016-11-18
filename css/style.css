@@ -56,27 +56,27 @@ body
 #pipes
 {
     position: relative;
-    width: 500px;
+    width: 600px;
     height: 300px;
     float: left;
 
 }
-#toBarrelsPipesBlock
+.toBarrelsPipesBlock
 {
     width: 100%;
     height: 90px;
 }
-#highPipesBlock
+.highPipesBlock
 {
     width: 100%;
     height: 30px;
 }
-#middlePipesBlock
+.middlePipesBlock
 {
     width: 100%;
     height: 102px;
 }
-#lowPipesBlock
+.lowPipesBlock
 {
     width: 100%;
     height: 30px;

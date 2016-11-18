@@ -2,9 +2,12 @@
  * Created by Freyk on 26.10.2016.
  */
 var fs = require('fs');
+var path = require('path');
+var file = 'users.json';
+var filePath = path.join(nw.App.dataPath, file);
 
 function reg() {
-    var contents = fs.readFileSync('files/users.json', 'utf8');
+    var contents = fs.readFileSync('../data/users.json', 'utf8');
     var users = JSON.parse(contents);
     var inputLogin = document.getElementById('inputLogin').value;
     var inputName = document.getElementById('inputName').value;
@@ -27,9 +30,14 @@ function reg() {
     }
 
     /* Блок ошибок */
+    if(inputLogin == '' || inputPassword == '' || inputConfirmPassword == '')
+    {
+        alert('Введите данные');
+        return;
+    }
     if(inputPassword != inputConfirmPassword)
     {
-        alert('пароли не совпадают');
+        alert('Пароли не совпадают');
         return;
     }
     if (user !== undefined)
@@ -47,7 +55,15 @@ function reg() {
     };
     users[inputLogin] = newUser;
     var jsonResponse = JSON.stringify(users);
-    fs.writeFileSync('files/users.json',jsonResponse);
+    fs.writeFile('../data/users.json',jsonResponse,function (err) {
+        if (err) {
+            console.info("There was an error attempting to save your data.");
+            console.warn(err.message);
+            return;
+        } else if (callback) {
+            callback();
+        }
+    });
     document.location.href='login.html';
 
 }
