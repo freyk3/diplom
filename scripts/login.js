@@ -2,9 +2,24 @@
  * Created by Freyk on 26.10.2016.
  */
 var fs = require('fs');
+var path = require('path');
+var file = 'users.json';
+var filePath = path.join(nw.App.dataPath, file);
+console.log(filePath);
+fs.open(filePath, 'wx', function (err, fd) {
+    if (err) {
+        if (err.code === "EEXIST") {
+            console.log('myfile already exists');
+            return;
+        } else {
+            throw err;
+        }
+    }
+    fs.writeFileSync(filePath,'{}');
+});
 
 function login() {
-    var contents = fs.readFileSync('../data/users.json', 'utf8');
+    var contents = fs.readFileSync(filePath, 'utf8');
     var users = JSON.parse(contents);
     var inputLogin = document.getElementById('inputLogin').value;
     var inputPassword = document.getElementById('inputPassword').value;

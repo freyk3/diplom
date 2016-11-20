@@ -1,8 +1,14 @@
 body
 {
     background-color: #eee;
-    padding-left: 30px;
-    padding-top: 15px;
+    width: auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+#appBlock
+{
+    //margin-top: 100px;
 }
 .carsImg
 {
@@ -165,5 +171,15 @@ body
 #carText2
 {
     margin-top: 160px;
+    margin-left: 15px;
+}
+#carText3
+{
+    margin-top: 295px;
+    margin-left: 15px;
+}
+#carText4
+{
+    margin-top: 425px;
     margin-left: 15px;
 }
