@@ -10,12 +10,14 @@ function Point(numb,pointArr,isStart,isFinish) {
     this.changeStatus = function () {
         if(this.isActivated == true)
         {
-            this.domElem.style.backgroundColor = '#f5f5f5';
+            this.domElem.style.background = 'url(/images/Kran_zakryty.jpg)';
+            this.domElem.style.backgroundSize ='contain';
             this.isActivated = false;
         }
         else
         {
-            this.domElem.style.backgroundColor = 'white';
+            this.domElem.style.background = 'url(/images/Kran_otkryty.jpg)';
+            this.domElem.style.backgroundSize ='contain';
             this.isActivated = true;
         }
     };
@@ -101,43 +103,63 @@ function Path() {
 
 function Barrel(progressNumb) {
     this.numb = progressNumb;
-    this.fullVolume = 200;
+    this.fullVolume = 20000;
     this.value = 0;
     this.progressBar = document.getElementById('barIndicator'+progressNumb);
     this.addMilk = function (litres) {
-        var addedPercents = litres * 0.5;
+        var percentStep = 200; //это шаг изменения 1 процента. 100% - 20000кг, следовательно 1% - 200
+        var animationSpeed = 6; //примерная скорость чтобы 10000 2мин заливалось
         var elem = this.progressBar;
-        var beforeAdd = this.value*0.5;
-        var height = beforeAdd;
-        var newValue = beforeAdd + addedPercents;
-        var animationSpeed = 100;
-        var timeOfFilling = (newValue - height) * animationSpeed;
-
+        var tempValue = this.value;
+        var newValue = tempValue + +litres;
+        var tempVar = 0;
+        var timeOfFilling = +litres*animationSpeed;
         this.value = this.value + +litres;
-        elem.previousElementSibling.innerHTML = this.value;
-
+        //elem.previousElementSibling.innerHTML = this.value;
         var id = setInterval(frame, animationSpeed);
+
         function frame() {
-            if (height >= newValue) {
+            if (tempValue >= newValue) {
                 clearInterval(id);
             } else {
-                height++;
-                elem.style.height = height + '%';
+                tempValue++;
+                tempVar++;
+                elem.previousElementSibling.innerHTML = tempValue;
+                if(tempVar >= percentStep)
+                {
+                    var height = elem.style.height;
+                    if(height == '')
+                        elem.style.height = 1 + '%';
+                    else
+                    {
+                        var value = elem.style.height;
+                        value = value.substring(0, value.length - 1);
+                        value = 1 + +value;
+                        elem.style.height = value + '%';
+                    }
+                    //elem.style.height++;
+                    //elem.style.height = elem.style.height++;
+                    //elem.style.height = 40 + '%';
+                    var hui = elem.style.height;
+                    console.log(elem.style.height);
+                    tempVar= 0;
+                }
             }
         }
-
+        /*
         if(this.value > 105) //ну при 105 лпрогресс перекрывает числа, но над этим подумать надо ещё
             elem.previousElementSibling.style.color = 'white';
         else
             elem.previousElementSibling.style.color = 'black';
-
+        */
         return timeOfFilling;
+
     }
 }
 
 function Car(numb) {
     this.numb = numb;
-    this.volume = 150;
+    this.volume = 10000;
     this.isActive = false; //приехала машина\ещё не приехала
     this.carVolume = document.getElementById('carVolume'+this.numb);
 }
@@ -179,6 +201,9 @@ var path;
 
 function activatePoint(numb)
 {
+    if(appIsStart != true)
+        return;
+
     var point = points[numb];
     if(point.isActivated == false)
     {
@@ -253,7 +278,51 @@ function insertCarValue() {
         car.carVolume.innerText = car.volume;
     }
 }
+function startApp() {
+    appIsStart = true;
+    playButton.style.display = 'none';
+    pauseButton.style.display = '';
+    startTimer();
+}
+function startTimer() {
+    if (init==0) {
+        startDate = new Date();
+        init=1;
+    }
+    var thisDate = new Date();
+    var t = thisDate.getTime() - startDate.getTime();
+    var ms = t%1000; t-=ms; ms=Math.floor(ms/10);
+    t = Math.floor (t/1000);
+    var s = t%60; t-=s;
+    t = Math.floor (t/60);
+    var m = t%60; t-=m;
+    t = Math.floor (t/60);
+    var h = t%60;
+    if (h<10) h='0'+h;
+    if (m<10) m='0'+m;
+    if (s<10) s='0'+s;
+    if (ms<10) ms='0'+ms;
+    if (init==1) document.getElementById('timer').innerText = h + ':' + m + ':' + s + '.' + ms;
+    clocktimer = setTimeout("startTimer()",10);
+}
+function pauseApp()
+{
+    alert('Я не знаю зачем тут пауза, но на, держи');
+}
+
+// Переменные для таймера
+function trim(string) { return string.replace (/\s+/g, " ").replace(/(^\s*)|(\s*)$/g, ''); }
+var init=0;
+var startDate;
+var clocktimer;
+var timer = 0;
 
 /* Всё что будет происходить сразу после загрузки */
+var appIsStart = false;
+var playButton = document.getElementById('playButton');
+var pauseButton = document.getElementById('pauseButton');
+var exitButton = document.getElementById('exitButton');
+
 insertCarValue();
+
 
