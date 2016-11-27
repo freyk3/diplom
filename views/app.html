@@ -36,6 +36,32 @@
             <div class="myBar" id="barIndicator3"></div>
         </div>
     </div>
+    <div id="carButtonsBlock">
+        <div id="buttonsLine0" class="buttonsLines" style="margin: 0">
+            <button onclick="showWaybill(0)">Накладная</button>
+            <button>Отправить на анализ</button>
+            <button>Установить сорт</button>
+            <button>Отправить</button>
+        </div>
+        <div id="buttonsLine1" class="buttonsLines">
+            <button onclick="showWaybill(1)">Накладная</button>
+            <button>Отправить на анализ</button>
+            <button>Установить сорт</button>
+            <button>Отправить</button>
+        </div>
+        <div id="buttonsLine2" class="buttonsLines">
+            <button onclick="showWaybill(2)">Накладная</button>
+            <button>Отправить на анализ</button>
+            <button>Установить сорт</button>
+            <button>Отправить</button>
+        </div>
+        <div id="buttonsLine3" class="buttonsLines">
+            <button onclick="showWaybill(3)">Накладная</button>
+            <button>Отправить на анализ</button>
+            <button>Установить сорт</button>
+            <button>Отправить</button>
+        </div>
+    </div>
     <div id="carsBlock">
         <img class="carsImg" src="/images/car.jpg">
         <img class="carsImg" src="/images/car.jpg">
@@ -55,6 +81,8 @@
                 <div class="fromCarPipes6" id="fromCarPipe02"></div>
             </div>
             <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze0">
+            <button class="freezeButtons" onclick="activateFreeze(0)" id="freezeButton01">Включить</button>
+            <button class="freezeButtons" onclick="deactivateFreeze(0)" id="freezeButton02" style="display: none">Выключить</button>
             <img src="/images/Separator.jpg" class="separators" id="separator0">
         </div>
         <div id="devices1" class="devicesLine">
@@ -69,6 +97,8 @@
                 <div class="fromCarPipes6" id="fromCarPipe12"></div>
             </div>
             <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze1">
+            <button class="freezeButtons" onclick="activateFreeze(1)" id="freezeButton11">Включить</button>
+            <button class="freezeButtons" onclick="deactivateFreeze(1)" id="freezeButton12" style="display: none">Выключить</button>
             <img src="/images/Separator.jpg" class="separators" id="separator1">
         </div>
         <div id="devices2" class="devicesLine">
@@ -83,6 +113,8 @@
                 <div class="fromCarPipes6" id="fromCarPipe22"></div>
             </div>
             <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze2">
+            <button class="freezeButtons" onclick="activateFreeze(2)" id="freezeButton21">Включить</button>
+            <button class="freezeButtons" onclick="deactivateFreeze(2)" id="freezeButton22" style="display: none">Выключить</button>
             <img src="/images/Separator.jpg" class="separators" id="separator2">
         </div>
         <div id="devices3" class="devicesLine">
@@ -97,6 +129,8 @@
                 <div class="fromCarPipes6" id="fromCarPipe32"></div>
             </div>
             <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze3">
+            <button class="freezeButtons" onclick="activateFreeze(3)" id="freezeButton31">Включить</button>
+            <button class="freezeButtons" onclick="deactivateFreeze(3)" id="freezeButton32" style="display: none">Выключить</button>
             <img src="/images/Separator.jpg" class="separators" id="separator3">
         </div>
     </div>
@@ -209,6 +243,9 @@
                 <div class="iconDiv" onclick="activatePoint(19)" style="float: right;" id="point19"></div>
             </div>
         </div>
+    </div>
+    <div id="labBlock">
+
     </div>
     <div class="carsInfo">
         <div class="carText" id="carText1">Машина 1. Объем: <span id="carVolume0"></span></div>

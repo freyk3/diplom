@@ -178,6 +178,20 @@ function Filter(numb) {
 
 }
 
+function Freeze(numb) {
+    this.numb = numb;
+    this.isActivated = false;
+    this.activate = function () {
+        this.isActivated = true;
+        this.domElem.src = '/images/Okhladitel_vklyuchen.jpg';
+    };
+    this.deactivate = function () {
+        this.isActivated = false;
+        this.domElem.src = '/images/Okhladitel_vyklyuchen.jpg';
+    };
+    this.domElem = document.getElementById('freeze'+this.numb);
+}
+
 var point0 = new Point(0,[], false, true),
     point1 = new Point(1,[], false, true),
     point2 = new Point(2,[], false, true),
@@ -214,10 +228,15 @@ var filter01 = new Filter('01'),
     filter22 = new Filter('22'),
     filter31 = new Filter('31'),
     filter032 = new Filter('32');
+var freeze0 = new Freeze(0),
+    freeze1 = new Freeze(1),
+    freeze2 = new Freeze(2),
+    freeze3 = new Freeze(3);
 
 var points = [point0,point1,point2,point3,point4,point5,point6,point7,point8,point9,point10,point11,point12,point13,point14,point15,point16,point17,point18,point19];
 var barrels = [barrel0,barrel1,barrel2,barrel3];
 var cars = [car0,car1,car2,car3];
+var freezes = [freeze0,freeze1,freeze2,freeze3];
 var pathIsStarted = false;
 var path;
 
@@ -331,6 +350,88 @@ function pauseApp()
 {
     alert('Я не знаю зачем тут пауза, но на, держи');
 }
+
+function activateFreeze(numb) {
+    var freeze = freezes[numb];
+    freeze.activate();
+    var buttonOn = document.getElementById('freezeButton'+numb+'1');
+    var buttonOff = document.getElementById('freezeButton'+numb+'2');
+    buttonOn.style.display = 'none';
+    buttonOff.style.display = '';
+}
+function deactivateFreeze(numb) {
+    var freeze = freezes[numb];
+    freeze.deactivate();
+    var buttonOn = document.getElementById('freezeButton'+numb+'1');
+    var buttonOff = document.getElementById('freezeButton'+numb+'2');
+    buttonOn.style.display = '';
+    buttonOff.style.display = 'none';
+}
+
+function showWaybill(numb)
+{
+    switch (numb) {
+        case 0:
+            waybill = waybill0;
+            break;
+        case 1:
+            waybill = waybill1;
+            break;
+        case 2:
+            waybill = waybill2;
+            break;
+        case 3:
+            waybill = waybill3;
+            break;
+    }
+    var str = 'Сорт: '+waybill.sort+'\nНомер машины: '+waybill.numbOfCar+'\nКислотность: '+waybill.kislot+'\nГруппа чистоты: '+waybill.clearGroup+'\nПлотность: '+waybill.plotnost+'\nМассовая доля жира: '+waybill.jir+'\nМассовая доля белка: '+waybill.belok+'\nТемпература: '+waybill.t+'\nТемпература замерзания: '+waybill.tz;
+    alert(str);
+}
+//Накладные
+var waybill0 = {
+    sort: 'Еще не установлен',
+    numbOfCar: 'м401ко',
+    kislot: '16,80°T',
+    clearGroup: 'I',
+    plotnost: '1028,0 кг/м3',
+    jir: '3,8%',
+    belok: '3,0%',
+    t: '5,0 °С',
+    tz: 'минус 0,530 °С'
+};
+var waybill1 = {
+    sort: 'Еще не установлен',
+    numbOfCar: 'м402ко',
+    kislot: '18,80°Т',
+    clearGroup: 'II',
+    plotnost: '1028,0 кг/м3',
+    jir: '3,4%',
+    belok: '3,0%',
+    t: '6,5 °С',
+    tz: 'минус 0,520°С'
+};
+var waybill2 = {
+    sort: 'Еще не установлен',
+    numbOfCar: 'м403ко',
+    kislot: '20,00°Т',
+    clearGroup: 'II',
+    plotnost: '1027,0 кг/м3',
+    jir: '3,6%',
+    belok: '3,0%',
+    t: '6,0 °С',
+    tz: 'минус 0,525°С'
+};
+var waybill3 = {
+    sort: 'Еще не установлен',
+    numbOfCar: 'м404ко',
+    kislot: '16,50°Т',
+    clearGroup: 'II',
+    plotnost: '1027,0 кг/м3',
+    jir: '3,6%',
+    belok: '3,0%',
+    t: '5,8 °С',
+    tz: 'минус 0,520°С'
+};
 
 // Переменные для таймера
 function trim(string) { return string.replace (/\s+/g, " ").replace(/(^\s*)|(\s*)$/g, ''); }
