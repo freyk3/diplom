@@ -137,11 +137,6 @@ function Barrel(progressNumb) {
                         value = 1 + +value;
                         elem.style.height = value + '%';
                     }
-                    //elem.style.height++;
-                    //elem.style.height = elem.style.height++;
-                    //elem.style.height = 40 + '%';
-                    var hui = elem.style.height;
-                    console.log(elem.style.height);
                     tempVar= 0;
                 }
             }
@@ -162,6 +157,25 @@ function Car(numb) {
     this.volume = 10000;
     this.isActive = false; //приехала машина\ещё не приехала
     this.carVolume = document.getElementById('carVolume'+this.numb);
+}
+
+function Filter(numb) {
+    this.numb = numb;
+    this.maxVolume = 5000;
+    this.domFilter = document.getElementById('filter'+this.numb);
+    this.activateFilter = function () {
+        var numbOfFilters = this.numb.substring(0, this.numb.length - 1);
+        var pipe1 = document.getElementById('fromCarPipe'+numbOfFilters+'1');
+        var pipe2 = document.getElementById('fromCarPipe'+numbOfFilters+'2');
+        var pipe3 = document.getElementById('fromCarPipe'+this.numb+'1');
+        var pipe4 = document.getElementById('fromCarPipe'+this.numb+'2');
+        pipe1.style.backgroundColor ='white';
+        pipe2.style.backgroundColor ='white';
+        pipe3.style.backgroundColor ='white';
+        pipe4.style.backgroundColor ='white';
+
+    }
+
 }
 
 var point0 = new Point(0,[], false, true),
@@ -192,6 +206,14 @@ var car0 = new Car(0),
     car1 = new Car(1),
     car2 = new Car(2),
     car3 = new Car(3);
+var filter01 = new Filter('01'),
+    filter02 = new Filter('02'),
+    filter11 = new Filter('11'),
+    filter12 = new Filter('12'),
+    filter21 = new Filter('21'),
+    filter22 = new Filter('22'),
+    filter31 = new Filter('31'),
+    filter032 = new Filter('32');
 
 var points = [point0,point1,point2,point3,point4,point5,point6,point7,point8,point9,point10,point11,point12,point13,point14,point15,point16,point17,point18,point19];
 var barrels = [barrel0,barrel1,barrel2,barrel3];

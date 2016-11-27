@@ -9,6 +9,7 @@ body
 #appBlock
 {
     //margin-top: 100px;
+    width: 1200px;
 }
 .carsImg
 {
@@ -23,7 +24,7 @@ body
 }
 #barellsBlock
 {
-    margin-left: 250px;
+    margin-left: 543px;
 }
 #carsBlock
 {
@@ -63,7 +64,7 @@ body
 {
     position: relative;
     width: 600px;
-    height: 300px;
+    height: auto;
     float: left;
 
 }
@@ -188,4 +189,85 @@ body
 #playDiv
 {
     position: absolute;
+}
+
+/* Подключаемые модули */
+#devicesBlock
+{
+    float: left;
+}
+.devicesLine
+{
+    margin-top: 35px;
+}
+.separators
+{
+    width: 95px;
+}
+#devices0
+{
+    margin-top: 64px;
+}
+.freeze
+{
+    width: 95px;
+    margin-bottom: 8px;
+    margin-right: -4px;
+}
+.filtersBlock
+{
+    display: inline-block;
+    width: 100px;
+    height: 85px;
+}
+.filters
+{
+    width: 40px;
+    position: absolute;
+    //margin-left: 30px;
+}
+.fromCarPipes1,.fromCarPipes6
+{
+    position: absolute;
+    height: 15px;
+    width: 30px;
+    background-color: rgb(246,144,33);
+    outline: 1px solid rgb(246,144,33);
+}
+.fromCarPipes2,.fromCarPipes3,.fromCarPipes4,.fromCarPipes5
+{
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    background-color: rgb(246,144,33);
+    outline: 1px solid rgb(246,144,33);
+}
+.fromCarPipes1
+{
+    margin-top: 25px;
+}
+.fromCarPipes2
+{
+    margin-left: 15px;
+    margin-top: 8px;
+}
+.fromCarPipes3
+{
+    margin-left: 73px;
+    margin-top: 8px;
+}
+.fromCarPipes4
+{
+    margin-left: 15px;
+    margin-top: 42px;
+}
+.fromCarPipes5
+{
+    margin-left: 73px;
+    margin-top: 42px;
+}
+.fromCarPipes6
+{
+    margin-top: 25px;
+    margin-left: 73px;
 }
