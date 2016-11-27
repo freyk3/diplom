@@ -1,0 +1,21 @@
+{
+    "window": {
+        "title": "DiplomProject",
+        "toolbar": false,
+        "resizable": true,
+        "frame": true,
+        "position": "center",
+        "show": true,
+        "visible": true,
+        "min_width": 1200,
+        "min_height": 900,
+        "width": 1200,
+        "height": 900
+
+    },
+    "main": "views/login.html",
+    "name": "node-webkit-diplom-project",
+    "version": "0.1.0"
+
+
+}

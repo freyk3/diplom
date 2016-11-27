@@ -155,7 +155,7 @@ function Barrel(progressNumb) {
 function Car(numb) {
     this.numb = numb;
     this.volume = 10000;
-    this.isActive = false; //приехала машина\ещё не приехала
+    this.isActive = true; //приехала машина\ещё не приехала
     this.carVolume = document.getElementById('carVolume'+this.numb);
 }
 
@@ -432,6 +432,46 @@ var waybill3 = {
     t: '5,8 °С',
     tz: 'минус 0,520°С'
 };
+
+//лаборатория
+function labMessage(numb)
+{
+    var str;
+    var labBlock = document.getElementById('labBlock');
+    var div = document.createElement('div');
+    switch (numb) {
+        case 0:
+            div.innerHTML = '<span><strong>Машина '+(numb+1)+'</strong></span><br><span>Температура замерзания: минус 0,528 °С</span><br><span>Ингибирующие вещества не обнаружены.</span><br><br>';
+            break;
+        case 1:
+            div.innerHTML = '<span><strong>Машина '+(numb+1)+'</strong></span><br><span>Температура замерзания: минус 0,522 °С</span><br><span>Ингибирующие вещества не обнаружены.</span><br><br>';
+            break;
+        case 2:
+            div.innerHTML = '<span><strong>Машина '+(numb+1)+'</strong></span><br><span>Массовая доля жира: 3,4%</span><br><span>Ингибирующие вещества не обнаружены.</span><br><br>';
+            break;
+        case 3:
+            div.innerHTML = '<span><strong>Машина '+(numb+1)+'</strong></span><br><span>Кислотность: 15,90 °Т</span><br><span>Плотность: 1023,0 кг/м3</span><br><span>Массовая доля жира: 3,0%</span><br><span>Температура: 18 °С</span><br><span>Температура замерзания: минус 0,512 °С</span><br><span>Обнаружены ингибирующие вещества!</span><br><br>';
+            break;
+    }
+    labBlock.appendChild(div);
+}
+
+//Отказ от машины
+function rejectCar(numb) {
+    var car = cars[numb];
+    var isRejected = confirm("Вы уверены что хотите отказаться принимать эту машину?");
+    if(isRejected)
+    {
+        if(car.numb != 3)
+        {
+            alert('Неверно')
+        }
+        else
+        {
+            car.isActive = false;
+        }
+    }
+}
 
 // Переменные для таймера
 function trim(string) { return string.replace (/\s+/g, " ").replace(/(^\s*)|(\s*)$/g, ''); }
