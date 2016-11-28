@@ -1,0 +1,12 @@
+body
+{
+    background-color: #eee;
+    width: auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+#appBlock
+{
+    width: 1600px;
+}

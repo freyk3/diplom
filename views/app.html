@@ -15,21 +15,25 @@
         <span id="timer"></span>
     </div>
     <div id="barellsBlock">
+        <button class="barellButton" onclick="showBarrel(0)">?</button>
         <img class="barrelsImg" src="/images/barell.jpg">
         <div class="myProgress">
             <div id="label0" class="indicatorLabels">0</div>
             <div class="myBar" id="barIndicator0"></div>
         </div>
+        <button class="barellButton" onclick="showBarrel(1)">?</button>
         <img class="barrelsImg" src="/images/barell.jpg">
         <div class="myProgress">
             <div id="label1" class="indicatorLabels">0</div>
             <div class="myBar" id="barIndicator1"></div>
         </div>
+        <button class="barellButton" onclick="showBarrel(2)">?</button>
         <img class="barrelsImg" src="/images/barell.jpg">
         <div class="myProgress">
             <div id="label2" class="indicatorLabels">0</div>
             <div class="myBar" id="barIndicator2"></div>
         </div>
+        <button class="barellButton" onclick="showBarrel(3)">?</button>
         <img class="barrelsImg" src="/images/barell.jpg">
         <div class="myProgress">
             <div id="label3" class="indicatorLabels">0</div>
@@ -38,28 +42,28 @@
     </div>
     <div id="carButtonsBlock">
         <div id="buttonsLine0" class="buttonsLines" style="margin: 0">
-            <button onclick="showWaybill(0)">Накладная</button>
-            <button onclick="labMessage(0)">Отправить на анализ</button>
-            <button>Установить сорт</button>
-            <button onclick="rejectCar(0)">Отказ</button>
+            <button class="carButtons" onclick="showWaybill(0)">Накладная</button>
+            <button class="carButtons" onclick="labMessage(0)">Отправить на анализ</button>
+            <button class="carButtons" onclick="chooseSort(0)">Установить сорт</button>
+            <button class="carButtons" onclick="rejectCar(0)">Отказ</button>
         </div>
         <div id="buttonsLine1" class="buttonsLines">
-            <button onclick="showWaybill(1)">Накладная</button>
-            <button onclick="labMessage(1)">Отправить на анализ</button>
-            <button>Установить сорт</button>
-            <button onclick="rejectCar(1)">Отказ</button>
+            <button class="carButtons" onclick="showWaybill(1)">Накладная</button>
+            <button class="carButtons" onclick="labMessage(1)">Отправить на анализ</button>
+            <button class="carButtons" onclick="chooseSort(1)">Установить сорт</button>
+            <button class="carButtons" onclick="rejectCar(1)">Отказ</button>
         </div>
         <div id="buttonsLine2" class="buttonsLines">
-            <button onclick="showWaybill(2)">Накладная</button>
-            <button onclick="labMessage(2)">Отправить на анализ</button>
-            <button>Установить сорт</button>
-            <button onclick="rejectCar(2)">Отказ</button>
+            <button class="carButtons" onclick="showWaybill(2)">Накладная</button>
+            <button class="carButtons" onclick="labMessage(2)">Отправить на анализ</button>
+            <button class="carButtons" onclick="chooseSort(2)">Установить сорт</button>
+            <button class="carButtons" onclick="rejectCar(2)">Отказ</button>
         </div>
         <div id="buttonsLine3" class="buttonsLines">
-            <button onclick="showWaybill(3)">Накладная</button>
-            <button onclick="labMessage(3)">Отправить на анализ</button>
-            <button>Установить сорт</button>
-            <button onclick="rejectCar(3)">Отказ</button>
+            <button class="carButtons" onclick="showWaybill(3)">Накладная</button>
+            <button class="carButtons" onclick="labMessage(3)">Отправить на анализ</button>
+            <button class="carButtons" onclick="chooseSort(3)">Установить сорт</button>
+            <button class="carButtons" onclick="rejectCar(3)">Отказ</button>
         </div>
     </div>
     <div id="carsBlock">

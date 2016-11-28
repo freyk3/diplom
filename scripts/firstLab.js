@@ -1,6 +1,101 @@
 /**
  * Created by Freyk on 10.10.2016.
  */
+//Реальные данные по молоку
+var milkChar0 = {
+    sort: 1,
+    numbOfCar: 'м401ко',
+    kislot: '16.80',
+    clearGroup: 'I',
+    plotnost: '1028.0',
+    jir: '3.8',
+    belok: '3.0',
+    t: '5.0',
+    tz: '-0.528'
+};
+var milkChar1 = {
+    sort: 2,
+    numbOfCar: 'м402ко',
+    kislot: '18.80',
+    clearGroup: 'II',
+    plotnost: '1028.0',
+    jir: '3.4',
+    belok: '3.0',
+    t: '12',
+    tz: '-0.522'
+};
+var milkChar2 = {
+    sort: 2,
+    numbOfCar: 'м403ко',
+    kislot: '20.00',
+    clearGroup: 'II',
+    plotnost: '1027.0',
+    jir: '3.4',
+    belok: '3.0',
+    t: '6.0',
+    tz: '-0.525'
+};
+var milkChar3 = {
+    sort: 'Несортовое',
+    numbOfCar: 'м404ко',
+    kislot: '15.90',
+    clearGroup: 'II',
+    plotnost: '1023.0',
+    jir: '3.0',
+    belok: '3.0',
+    t: '18',
+    tz: '-0.520'
+};
+var milkChars = [milkChar0,milkChar1,milkChar2,milkChar3];
+
+
+//Накладные
+var waybill0 = {
+    sort: 'Еще не установлен',
+    numbOfCar: 'м401ко',
+    kislot: '16,80°T',
+    clearGroup: 'I',
+    plotnost: '1028,0 кг/м3',
+    jir: '3,8%',
+    belok: '3,0%',
+    t: '5,0 °С',
+    tz: 'минус 0,530 °С'
+};
+var waybill1 = {
+    sort: 'Еще не установлен',
+    numbOfCar: 'м402ко',
+    kislot: '18,80°Т',
+    clearGroup: 'II',
+    plotnost: '1028,0 кг/м3',
+    jir: '3,4%',
+    belok: '3,0%',
+    t: '6,5 °С',
+    tz: 'минус 0,520°С'
+};
+var waybill2 = {
+    sort: 'Еще не установлен',
+    numbOfCar: 'м403ко',
+    kislot: '20,00°Т',
+    clearGroup: 'II',
+    plotnost: '1027,0 кг/м3',
+    jir: '3,6%',
+    belok: '3,0%',
+    t: '6,0 °С',
+    tz: 'минус 0,525°С'
+};
+var waybill3 = {
+    sort: 'Еще не установлен',
+    numbOfCar: 'м404ко',
+    kislot: '16,50°Т',
+    clearGroup: 'II',
+    plotnost: '1027,0 кг/м3',
+    jir: '3,6%',
+    belok: '3,0%',
+    t: '5,8 °С',
+    tz: 'минус 0,520°С'
+};
+var waybills = [waybill0,waybill1,waybill2,waybill3];
+
 function Point(numb,pointArr,isStart,isFinish) {
     this.numb = numb;
     this.pointArr = pointArr;
@@ -92,12 +187,20 @@ function Path() {
         }
         else
         {
-            car.volume = car.volume - litres;
-            var timeOfFilling = barrel.addMilk(litres);
+            var timeOfFilling = barrel.addMilk(litres,car.numb);
+            if(timeOfFilling !== undefined)
+                car.volume = car.volume - litres;
         }
+        if (car.volume == 0)
+            car.isEmpty = true;
 
         this.throwPath(timeOfFilling ? timeOfFilling : '');
         insertCarValue();
+        if(timeOfFilling !== undefined)
+            var timerId = setTimeout(function () {
+                if(car0.isEmpty == true && car1.isEmpty == true && car2.isEmpty == true && car3.isEmpty == true)
+                    goToWash();
+            },timeOfFilling);
     }
 }
 
@@ -106,7 +209,7 @@ function Barrel(progressNumb) {
     this.fullVolume = 20000;
     this.value = 0;
     this.progressBar = document.getElementById('barIndicator'+progressNumb);
-    this.addMilk = function (litres) {
+    this.addMilk = function (litres,numbOfCar) {
         var percentStep = 200; //это шаг изменения 1 процента. 100% - 20000кг, следовательно 1% - 200
         var animationSpeed = 6; //примерная скорость чтобы 10000 2мин заливалось
         var elem = this.progressBar;
@@ -114,8 +217,39 @@ function Barrel(progressNumb) {
         var newValue = tempValue + +litres;
         var tempVar = 0;
         var timeOfFilling = +litres*animationSpeed;
+        var car = cars[numbOfCar];
+        var freeze = freezes[numbOfCar];
+        var temperature;
+        if(freeze.isActivated == true)
+            temperature = '5';
+        else
+            temperature = car.milkChar.t;
+
+        if(this.milkChar.sort == 1 && car.milkChar.sort == 2)
+        {
+            alert('Попытка испортить 1 категорию');
+            return;
+        }
+        if(temperature > 6)
+        {
+            alert('Слишком высокая температура молока!');
+            return;
+        }
+
+        if(this.milkChar.sort == 2 && car.milkChar.sort == 1)
+            return timeOfFilling;
+
+        this.milkChar.sort = car.milkChar.sort;
+        this.milkChar.kislot = car.milkChar.kislot;
+        this.milkChar.clearGroup = car.milkChar.clearGroup;
+        this.milkChar.plotnost = car.milkChar.plotnost;
+        this.milkChar.jir = car.milkChar.jir;
+        this.milkChar.belok = car.milkChar.belok;
+        this.milkChar.t = temperature;
+        this.milkChar.tz = car.milkChar.tz;
+
         this.value = this.value + +litres;
-        //elem.previousElementSibling.innerHTML = this.value;
+
         var id = setInterval(frame, animationSpeed);
 
         function frame() {
@@ -141,6 +275,7 @@ function Barrel(progressNumb) {
                 }
             }
         }
+
         /*
         if(this.value > 105) //ну при 105 лпрогресс перекрывает числа, но над этим подумать надо ещё
             elem.previousElementSibling.style.color = 'white';
@@ -149,6 +284,16 @@ function Barrel(progressNumb) {
         */
         return timeOfFilling;
 
+    };
+    this.milkChar = {
+        sort: 0,
+        kislot: 0,
+        clearGroup: 0,
+        plotnost: 0,
+        jir: 0,
+        belok: 0,
+        t: 0,
+        tz: 0
     }
 }
 
@@ -157,6 +302,9 @@ function Car(numb) {
     this.volume = 10000;
     this.isActive = true; //приехала машина\ещё не приехала
     this.carVolume = document.getElementById('carVolume'+this.numb);
+    this.milkChar = milkChars[this.numb];
+    this.waybill = waybills[this.numb];
+    this.isEmpty = false;
 }
 
 function Filter(numb) {
@@ -245,11 +393,31 @@ function activatePoint(numb)
     if(appIsStart != true)
         return;
 
+    var car;
     var point = points[numb];
     if(point.isActivated == false)
     {
         if(point.isStart == true && pathIsStarted == false)
         {
+            switch (numb) {
+                case 4:
+                    car = cars[0];
+                    break;
+                case 8:
+                    car = cars[1];
+                    break;
+                case 12:
+                    car = cars[2];
+                    break;
+                case 16:
+                    car = cars[3];
+                    break;
+            }
+            if(car.isActive == false)
+                return;
+            if(car.waybill.sort != 1 && car.waybill.sort != 2)
+                return;
+
             var pipe = document.getElementById('pipe'+point.numb);
             pathIsStarted = true;
             path = new Path();
@@ -387,51 +555,6 @@ function showWaybill(numb)
     var str = 'Сорт: '+waybill.sort+'\nНомер машины: '+waybill.numbOfCar+'\nКислотность: '+waybill.kislot+'\nГруппа чистоты: '+waybill.clearGroup+'\nПлотность: '+waybill.plotnost+'\nМассовая доля жира: '+waybill.jir+'\nМассовая доля белка: '+waybill.belok+'\nТемпература: '+waybill.t+'\nТемпература замерзания: '+waybill.tz;
     alert(str);
 }
-//Накладные
-var waybill0 = {
-    sort: 'Еще не установлен',
-    numbOfCar: 'м401ко',
-    kislot: '16,80°T',
-    clearGroup: 'I',
-    plotnost: '1028,0 кг/м3',
-    jir: '3,8%',
-    belok: '3,0%',
-    t: '5,0 °С',
-    tz: 'минус 0,530 °С'
-};
-var waybill1 = {
-    sort: 'Еще не установлен',
-    numbOfCar: 'м402ко',
-    kislot: '18,80°Т',
-    clearGroup: 'II',
-    plotnost: '1028,0 кг/м3',
-    jir: '3,4%',
-    belok: '3,0%',
-    t: '6,5 °С',
-    tz: 'минус 0,520°С'
-};
-var waybill2 = {
-    sort: 'Еще не установлен',
-    numbOfCar: 'м403ко',
-    kislot: '20,00°Т',
-    clearGroup: 'II',
-    plotnost: '1027,0 кг/м3',
-    jir: '3,6%',
-    belok: '3,0%',
-    t: '6,0 °С',
-    tz: 'минус 0,525°С'
-};
-var waybill3 = {
-    sort: 'Еще не установлен',
-    numbOfCar: 'м404ко',
-    kislot: '16,50°Т',
-    clearGroup: 'II',
-    plotnost: '1027,0 кг/м3',
-    jir: '3,6%',
-    belok: '3,0%',
-    t: '5,8 °С',
-    tz: 'минус 0,520°С'
-};
 
 //лаборатория
 function labMessage(numb)
@@ -444,7 +567,7 @@ function labMessage(numb)
             div.innerHTML = '<span><strong>Машина '+(numb+1)+'</strong></span><br><span>Температура замерзания: минус 0,528 °С</span><br><span>Ингибирующие вещества не обнаружены.</span><br><br>';
             break;
         case 1:
-            div.innerHTML = '<span><strong>Машина '+(numb+1)+'</strong></span><br><span>Температура замерзания: минус 0,522 °С</span><br><span>Ингибирующие вещества не обнаружены.</span><br><br>';
+            div.innerHTML = '<span><strong>Машина '+(numb+1)+'</strong></span><br><span>Температура : 12 °С</span><br><span>Температура замерзания: минус 0,522 °С</span><br><span>Ингибирующие вещества не обнаружены.</span><br><br>';
             break;
         case 2:
             div.innerHTML = '<span><strong>Машина '+(numb+1)+'</strong></span><br><span>Массовая доля жира: 3,4%</span><br><span>Ингибирующие вещества не обнаружены.</span><br><br>';
@@ -459,6 +582,8 @@ function labMessage(numb)
 //Отказ от машины
 function rejectCar(numb) {
     var car = cars[numb];
+    if(car.isEmpty == true)
+        return;
     var isRejected = confirm("Вы уверены что хотите отказаться принимать эту машину?");
     if(isRejected)
     {
@@ -468,11 +593,48 @@ function rejectCar(numb) {
         }
         else
         {
+            waybills[numb].sort = 'Несортовое';
+            car.waybill.sort = 'Несортовое';
+            car.isEmpty = true;
             car.isActive = false;
+            goToWash();
         }
     }
 }
 
+//Выбор сорта
+function chooseSort(numb) {
+    var car = cars[numb];
+    var rigthSort = car.milkChar.sort;
+    var sort = prompt('Введите сорт');
+    if(numb == 3 || sort != rigthSort)
+    {
+        alert('Неверно!');
+        return;
+    }
+    waybills[numb].sort = sort;
+    car.waybill.sort = sort;
+}
+
+//Мойка
+function goToWash() {
+    finishLines++;
+    if(finishLines == 4)
+    {
+        alert('На мойку!');
+        document.location.href='wash.html';
+    }
+}
+
+//Сведенья о том что в бочке
+function showBarrel(numb) {
+    var barrel = barrels[numb];
+    if(barrel.milkChar.sort == 0)
+        alert('Бочка пуста');
+    else
+        alert('Сорт в данной бочке: '+barrel.milkChar.sort);
+
+}
 // Переменные для таймера
 function trim(string) { return string.replace (/\s+/g, " ").replace(/(^\s*)|(\s*)$/g, ''); }
 var init=0;
@@ -487,5 +649,6 @@ var pauseButton = document.getElementById('pauseButton');
 var exitButton = document.getElementById('exitButton');
 
 insertCarValue();
+var finishLines = 0;
 
 

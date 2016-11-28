@@ -49,10 +49,15 @@ body {
     width: 95%;
     text-align: center;
 }
-#cheatButton
+#cheatButton1
 {
     position: absolute;
     margin-top: 240px;
+}
+#cheatButton2
+{
+    position: absolute;
+    margin-top: 280px;
 }
 
 
