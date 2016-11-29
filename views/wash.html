@@ -7,9 +7,53 @@
 </head>
 <body>
 <div id="appBlock">
-    <div class="barrelsBlock">
+    <div id="highLine">
         <img src="/images/Tank_up.jpg">
+        <img src="/images/Tank_up.jpg" style="margin-left: 150px">
+    </div>
+    <div id="pipe"></div>
+    <div id="lowLine">
+        <img src="/images/Tank_down.jpg" style="margin-right: 150px">
         <img src="/images/Tank_down.jpg">
+        <img src="/images/Tank_down.jpg" style="margin-left: 150px">
+    </div>
+    <div id="descriptionBlock">
+        <div class="description" style="margin-top: -280px; margin-left: 455px;">
+            <span><strong>Горячая вода</strong></span><br>
+            <span>Температура t=+90°С</span>
+        </div>
+        <div class="description" style="margin-top: -280px; margin-left: 725px;">
+            <span><strong>Щелочь NaOH</strong></span><br>
+            <span>температура t=+75°С</span><br>
+            <span>Концентрация C=2%</span>
+        </div>
+        <div class="description" style="margin-top: -110px; margin-left: 325px;">
+            <span><strong>Дез. раствор</strong></span><br>
+            <span>Температура t=+50°С</span><br>
+            <span>Концентрация C=1,5%</span>
+        </div>
+        <div class="description" style="margin-top: -110px; margin-left: 590px;">
+            <span><strong>Кислота HNO3</strong></span><br>
+            <span>Температура t=+65°С</span><br>
+            <span>Концентрация C=1,5%</span>
+        </div>
+        <div class="description" style="margin-top: -110px; margin-left: 855px;">
+            <span><strong>Холодная вода</strong></span><br>
+            <span>Температура +20 °С</span>
+        </div>
+    </div>
+    <div id="buttonsBlock">
+        <button class="launchButton" onclick="launch(4)" style="margin-top: -220px; margin-left: 490px;">Запустить</button>
+        <button class="launchButton" onclick="launch(1)" style="margin-top: -220px; margin-left: 760px;">Запустить</button>
+        <button class="launchButton" onclick="launch(3)" style="margin-top: -50px; margin-left: 360px;">Запустить</button>
+        <button class="launchButton" onclick="launch(2)" style="margin-top: -50px; margin-left: 625px;">Запустить</button>
+        <button class="launchButton" onclick="launch(0)" style="margin-top: -50px; margin-left: 890px;">Запустить</button>
+    </div>
+    <div id="progressBar">
+        <div id="progressText"></div>
+        <div id="myProgress">
+            <div id="myBar"></div>
+        </div>
     </div>
 </div>
 <script src="/scripts/wash.js"></script>

@@ -8,5 +8,50 @@ body
 }
 #appBlock
 {
+    margin-top: 200px;
+    text-align: -webkit-center;
     width: 1600px;
+}
+#pipe
+{
+    width: 800px;
+    height: 17px;
+    background-color: rgb(246,144,33);
+    outline: 1px solid black;
+}
+#highLine
+{
+    margin-bottom: -3px;
+}
+
+.description
+{
+    width: 160px;
+    height: 150px;
+    position: absolute;
+}
+.launchButton
+{
+    position: absolute;
+}
+#buttonsBlock
+{
+    position: absolute;
+}
+#progressBar
+{
+    margin-top: 200px;
+    width: 100%;
+}
+#myProgress {
+    position: relative;
+    width: 500px;
+    height: 30px;
+    background-color: grey;
+}
+#myBar {
+    position: absolute;
+    width: 1%;
+    height: 100%;
+    background-color: green;
 }

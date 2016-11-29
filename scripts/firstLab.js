@@ -21,7 +21,7 @@ var milkChar1 = {
     plotnost: '1028.0',
     jir: '3.4',
     belok: '3.0',
-    t: '12',
+    t: '7.0',
     tz: '-0.522'
 };
 var milkChar2 = {
@@ -391,7 +391,10 @@ var path;
 function activatePoint(numb)
 {
     if(appIsStart != true)
+    {
+        alert('Программа не начала работать (Кнопка "запуск" сверху слева)');
         return;
+    }
 
     var car;
     var point = points[numb];
@@ -414,9 +417,15 @@ function activatePoint(numb)
                     break;
             }
             if(car.isActive == false)
+            {
+                alert('От машины отказались');
                 return;
+            }
             if(car.waybill.sort != 1 && car.waybill.sort != 2)
+            {
+                alert('Не выбран сорт');
                 return;
+            }
 
             var pipe = document.getElementById('pipe'+point.numb);
             pathIsStarted = true;
@@ -490,7 +499,6 @@ function insertCarValue() {
 function startApp() {
     appIsStart = true;
     playButton.style.display = 'none';
-    pauseButton.style.display = '';
     startTimer();
 }
 function startTimer() {
@@ -513,10 +521,6 @@ function startTimer() {
     if (ms<10) ms='0'+ms;
     if (init==1) document.getElementById('timer').innerText = h + ':' + m + ':' + s + '.' + ms;
     clocktimer = setTimeout("startTimer()",10);
-}
-function pauseApp()
-{
-    alert('Я не знаю зачем тут пауза, но на, держи');
 }
 
 function activateFreeze(numb) {
@@ -567,7 +571,7 @@ function labMessage(numb)
             div.innerHTML = '<span><strong>Машина '+(numb+1)+'</strong></span><br><span>Температура замерзания: минус 0,528 °С</span><br><span>Ингибирующие вещества не обнаружены.</span><br><br>';
             break;
         case 1:
-            div.innerHTML = '<span><strong>Машина '+(numb+1)+'</strong></span><br><span>Температура : 12 °С</span><br><span>Температура замерзания: минус 0,522 °С</span><br><span>Ингибирующие вещества не обнаружены.</span><br><br>';
+            div.innerHTML = '<span><strong>Машина '+(numb+1)+'</strong></span><br><span>Температура : 7 °С</span><br><span>Температура замерзания: минус 0,522 °С</span><br><span>Ингибирующие вещества не обнаружены.</span><br><br>';
             break;
         case 2:
             div.innerHTML = '<span><strong>Машина '+(numb+1)+'</strong></span><br><span>Массовая доля жира: 3,4%</span><br><span>Ингибирующие вещества не обнаружены.</span><br><br>';
@@ -645,10 +649,7 @@ var timer = 0;
 /* Всё что будет происходить сразу после загрузки */
 var appIsStart = false;
 var playButton = document.getElementById('playButton');
-var pauseButton = document.getElementById('pauseButton');
-var exitButton = document.getElementById('exitButton');
-
-insertCarValue();
 var finishLines = 0;
+insertCarValue();
 
 
