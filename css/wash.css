@@ -47,7 +47,8 @@ body
     position: relative;
     width: 500px;
     height: 30px;
-    background-color: grey;
+    background-color: white;
+    box-shadow: inset 0px 4px 6px #ccc;
 }
 #myBar {
     position: absolute;

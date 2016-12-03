@@ -196,11 +196,6 @@ function Path() {
 
         this.throwPath(timeOfFilling ? timeOfFilling : '');
         insertCarValue();
-        if(timeOfFilling !== undefined)
-            var timerId = setTimeout(function () {
-                if(car0.isEmpty == true && car1.isEmpty == true && car2.isEmpty == true && car3.isEmpty == true)
-                    goToWash();
-            },timeOfFilling);
     }
 }
 
@@ -255,6 +250,8 @@ function Barrel(progressNumb) {
         function frame() {
             if (tempValue >= newValue) {
                 clearInterval(id);
+                if(car0.isEmpty == true && car1.isEmpty == true && car2.isEmpty == true && car3.isEmpty == true)
+                    goToWash();
             } else {
                 tempValue++;
                 tempVar++;
@@ -601,7 +598,8 @@ function rejectCar(numb) {
             car.waybill.sort = 'Несортовое';
             car.isEmpty = true;
             car.isActive = false;
-            goToWash();
+            if(car0.isEmpty == true && car1.isEmpty == true && car2.isEmpty == true && car3.isEmpty == true)
+                goToWash();
         }
     }
 }
@@ -622,12 +620,8 @@ function chooseSort(numb) {
 
 //Мойка
 function goToWash() {
-    finishLines++;
-    if(finishLines == 4)
-    {
-        alert('На мойку!');
-        document.location.href='wash.html';
-    }
+    alert('На мойку!');
+    document.location.href='wash.html';
 }
 
 //Сведенья о том что в бочке
