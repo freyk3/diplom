@@ -191,8 +191,6 @@ function Path() {
             if(timeOfFilling !== undefined)
                 car.volume = car.volume - litres;
         }
-        if (car.volume == 0)
-            car.isEmpty = true;
 
         this.throwPath(timeOfFilling ? timeOfFilling : '');
         insertCarValue();
@@ -250,6 +248,8 @@ function Barrel(progressNumb) {
         function frame() {
             if (tempValue >= newValue) {
                 clearInterval(id);
+                if(car.volume == 0)
+                    car.isEmpty = true;
                 if(car0.isEmpty == true && car1.isEmpty == true && car2.isEmpty == true && car3.isEmpty == true)
                     goToWash();
             } else {
