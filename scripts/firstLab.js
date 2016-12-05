@@ -133,13 +133,15 @@ function Path() {
             pipe.style.backgroundColor = 'white';
     };
     this.throwPath = function (newTime) {
-        console.log('путь скинулся');
-        /* здесь будет функция по скидыванию пути */
         var points = this.points;
         var time = 0;
+        var car = this.findCar();
+
         if(newTime !== undefined)
             time = newTime;
         var timerId = setTimeout(function () {
+            car.filter1.deactivateFilter();
+            car.filter2.deactivateFilter();
             for (var i = 0; i < points.length; i++)
             {
                 if(i == 0)
@@ -160,21 +162,7 @@ function Path() {
         var litres = prompt('Введите количество литров, которые пойдут в данный танк','');
         var firstPoint = this.points[0].numb;
         var lastPoint = this.points[this.points.length-1].numb;
-        var car;
-        switch (firstPoint) {
-            case 4:
-                car = cars[0];
-                break;
-            case 8:
-                car = cars[1];
-                break;
-            case 12:
-                car = cars[2];
-                break;
-            case 16:
-                car = cars[3];
-                break;
-        }
+        var car = this.findCar();
         var barrel = barrels[lastPoint];
 
         if(car.volume < litres)
@@ -194,6 +182,25 @@ function Path() {
 
         this.throwPath(timeOfFilling ? timeOfFilling : '');
         insertCarValue();
+    };
+    this.findCar = function () {
+        var firstPoint = this.points[0].numb;
+        var car;
+        switch (firstPoint) {
+            case 4:
+                car = cars[0];
+                break;
+            case 8:
+                car = cars[1];
+                break;
+            case 12:
+                car = cars[2];
+                break;
+            case 16:
+                car = cars[3];
+                break;
+        }
+        return car;
     }
 }
 
@@ -213,6 +220,7 @@ function Barrel(progressNumb) {
         var car = cars[numbOfCar];
         var freeze = freezes[numbOfCar];
         var temperature;
+        var filter = car.findActiveFilter();
         if(freeze.isActivated == true)
             temperature = '5';
         else
@@ -253,6 +261,14 @@ function Barrel(progressNumb) {
                 if(car0.isEmpty == true && car1.isEmpty == true && car2.isEmpty == true && car3.isEmpty == true)
                     goToWash();
             } else {
+                filter.limit = filter.limit - 1;
+                if(filter.limit == 0)
+                {
+                    filter.deactivateFilter();
+                    filter.breakFilter();
+                    filter.changeFilter();
+                    filter = filter.findNeibFilter();
+                }
                 tempValue++;
                 tempVar++;
                 elem.previousElementSibling.innerHTML = tempValue;
@@ -273,12 +289,6 @@ function Barrel(progressNumb) {
             }
         }
 
-        /*
-        if(this.value > 105) //ну при 105 лпрогресс перекрывает числа, но над этим подумать надо ещё
-            elem.previousElementSibling.style.color = 'white';
-        else
-            elem.previousElementSibling.style.color = 'black';
-        */
         return timeOfFilling;
 
     };
@@ -302,11 +312,26 @@ function Car(numb) {
     this.milkChar = milkChars[this.numb];
     this.waybill = waybills[this.numb];
     this.isEmpty = false;
+    this.findFilter = function (numbOfFilter) {
+        for(var i = 0; i<filters.length; i++)
+        {
+            if(filters[i].numb == (this.numb+String(numbOfFilter)))
+                return filters[i];
+        }
+    };
+    this.filter1 = this.findFilter(1);
+    this.filter2 = this.findFilter(2);
+    this.findActiveFilter = function () {
+        if(this.filter1.isActive == true)
+            return this.filter1;
+        else if(this.filter2.isActive == true)
+            return this.filter2;
+    };
 }
 
 function Filter(numb) {
     this.numb = numb;
-    this.maxVolume = 5000;
+    this.limit = 8000;
     this.domFilter = document.getElementById('filter'+this.numb);
     this.activateFilter = function () {
         var numbOfFilters = this.numb.substring(0, this.numb.length - 1);
@@ -318,9 +343,48 @@ function Filter(numb) {
         pipe2.style.backgroundColor ='white';
         pipe3.style.backgroundColor ='white';
         pipe4.style.backgroundColor ='white';
-
-    }
-
+        this.isActive = true;
+    };
+    this.deactivateFilter = function () {
+        var numbOfFilters = this.numb.substring(0, this.numb.length - 1);
+        var pipe1 = document.getElementById('fromCarPipe'+numbOfFilters+'1');
+        var pipe2 = document.getElementById('fromCarPipe'+numbOfFilters+'2');
+        var pipe3 = document.getElementById('fromCarPipe'+this.numb+'1');
+        var pipe4 = document.getElementById('fromCarPipe'+this.numb+'2');
+        pipe1.style.backgroundColor = 'rgb(246,144,33)';
+        pipe2.style.backgroundColor = 'rgb(246,144,33)';
+        pipe3.style.backgroundColor = 'rgb(246,144,33)';
+        pipe4.style.backgroundColor = 'rgb(246,144,33)';
+        this.isActive = false;
+    };
+    this.isWorking = true;
+    this.isActive = false;
+    this.filterImg = document.getElementById('filter'+this.numb);
+    this.breakFilter = function () {
+        this.filterImg.src="/images/Filtr_na_zamenu.jpg";
+        this.isWorking = false;
+        this.isActive = false;
+        this.repairButton.style.display = '';
+    };
+    this.findNeibFilter = function () {
+        var numbOfNeibFilter;
+        if(this.numb.substr(1,1) == 1)
+            numbOfNeibFilter = this.numb.substr(0,1) + '2';
+        else
+            numbOfNeibFilter = this.numb.substr(0,1) + '1';
+        for(var i = 0; i<filters.length; i++)
+        {
+            if(filters[i].numb == numbOfNeibFilter)
+                return filters[i];
+        }
+    };
+    this.changeFilter = function () {
+        var neibFilter = this.findNeibFilter();
+        neibFilter.activateFilter();
+        neibFilter.isActive = true;
+    };
+    this.repairButton = document.getElementById('repairButton'+this.numb);
+    this.repairText = document.getElementById('repairText'+this.numb);
 }
 
 function Freeze(numb) {
@@ -361,10 +425,6 @@ var barrel0 = new Barrel(0),
     barrel1 = new Barrel(1),
     barrel2 = new Barrel(2),
     barrel3 = new Barrel(3);
-var car0 = new Car(0),
-    car1 = new Car(1),
-    car2 = new Car(2),
-    car3 = new Car(3);
 var filter01 = new Filter('01'),
     filter02 = new Filter('02'),
     filter11 = new Filter('11'),
@@ -372,7 +432,13 @@ var filter01 = new Filter('01'),
     filter21 = new Filter('21'),
     filter22 = new Filter('22'),
     filter31 = new Filter('31'),
-    filter032 = new Filter('32');
+    filter32 = new Filter('32');
+var filters = [filter01,filter02,filter11,filter12,filter21,filter22,filter31,filter32];
+
+var car0 = new Car(0),
+    car1 = new Car(1),
+    car2 = new Car(2),
+    car3 = new Car(3);
 var freeze0 = new Freeze(0),
     freeze1 = new Freeze(1),
     freeze2 = new Freeze(2),
@@ -424,6 +490,11 @@ function activatePoint(numb)
                 return;
             }
 
+            var filter;
+            if(car.filter1.isWorking)
+                filter = car.filter1;
+            else
+                filter = car.filter2;
             var pipe = document.getElementById('pipe'+point.numb);
             pathIsStarted = true;
             path = new Path();
@@ -432,6 +503,8 @@ function activatePoint(numb)
             path.points.push(point);
             path.isStarted = true;
             point.changeStatus();
+            filter.activateFilter();
+            filter.isActive = true;
             pipe.style.backgroundColor = 'white';
             checkFreePoints(path);
         }
@@ -633,6 +706,13 @@ function showBarrel(numb) {
         alert('Сорт в данной бочке: '+barrel.milkChar.sort);
 
 }
+
+// TEST FUNCTION FOR EVERYTHING
+
+function test() {
+    filter02.activateFilter();
+}
+
 // Переменные для таймера
 function trim(string) { return string.replace (/\s+/g, " ").replace(/(^\s*)|(\s*)$/g, ''); }
 var init=0;

@@ -306,3 +306,17 @@ body
     height: 20px;
     margin-left: -5px;
 }
+.repairButton1
+{
+    position: absolute;
+    margin-top: -25px;
+    margin-left: 15px;
+    display: none;
+}
+.repairButton2
+{
+    position: absolute;
+    margin-top: 68px;
+    margin-left: 15px;
+    display: none;
+}
