@@ -211,7 +211,7 @@ function Barrel(progressNumb) {
     this.progressBar = document.getElementById('barIndicator'+progressNumb);
     this.addMilk = function (litres,numbOfCar) {
         var percentStep = 200; //это шаг изменения 1 процента. 100% - 20000кг, следовательно 1% - 200
-        var animationSpeed = 6; //примерная скорость чтобы 10000 2мин заливалось
+        var animationSpeed = 12; //примерная скорость чтобы 10000 2мин заливалось
         var elem = this.progressBar;
         var tempValue = this.value;
         var newValue = tempValue + +litres;
@@ -220,7 +220,7 @@ function Barrel(progressNumb) {
         var car = cars[numbOfCar];
         var freeze = freezes[numbOfCar];
         var temperature;
-        var filter = car.findActiveFilter();
+        var filter;
         if(freeze.isActivated == true)
             temperature = '5';
         else
@@ -256,11 +256,28 @@ function Barrel(progressNumb) {
         function frame() {
             if (tempValue >= newValue) {
                 clearInterval(id);
+                filter.deactivateFilter();
                 if(car.volume == 0)
                     car.isEmpty = true;
                 if(car0.isEmpty == true && car1.isEmpty == true && car2.isEmpty == true && car3.isEmpty == true)
                     goToWash();
             } else {
+                if(car.filter1.isWorking)
+                {
+                    filter = car.filter1;
+                    car.filter2.isActive = false;
+                }
+                else
+                {
+                    filter = car.filter2;
+                    car.filter1.isActive = false;
+                }
+                if( filter.isActive == false)
+                {
+                    filter.isActive = true;
+                    filter.activateFilter();
+                }
+                filter.activateFilter();
                 filter.limit = filter.limit - 1;
                 if(filter.limit == 0)
                 {
@@ -332,6 +349,7 @@ function Car(numb) {
 function Filter(numb) {
     this.numb = numb;
     this.limit = 8000;
+    this.maxLimit = 8000;
     this.domFilter = document.getElementById('filter'+this.numb);
     this.activateFilter = function () {
         var numbOfFilters = this.numb.substring(0, this.numb.length - 1);
@@ -364,7 +382,7 @@ function Filter(numb) {
         this.filterImg.src="/images/Filtr_na_zamenu.jpg";
         this.isWorking = false;
         this.isActive = false;
-        this.repairButton.style.display = '';
+        this.repairButton.style.display = 'block';
     };
     this.findNeibFilter = function () {
         var numbOfNeibFilter;
@@ -707,10 +725,32 @@ function showBarrel(numb) {
 
 }
 
+//Починка фильтра
+function repairFilter(numbOfFilter) {
+    var filter = findFilterByNumb(numbOfFilter);
+    var neibFilter = filter.findNeibFilter();
+    var button = document.getElementById('repairButton'+filter.numb);
+    button.style.display = 'none';
+    filter.isWorking = true;
+    filter.limit = filter.maxLimit;
+    filter.filterImg.src="/images/Filtr_rabochiy.jpg";
+    neibFilter.deactivateFilter();
+}
+
+//Поиск фильтра
+function findFilterByNumb (numbOfFilter) {
+    for(var i = 0; i<filters.length; i++)
+    {
+        if(filters[i].numb == (String(numbOfFilter)))
+            return filters[i];
+    }
+}
+
 // TEST FUNCTION FOR EVERYTHING
 
 function test() {
-    filter02.activateFilter();
+    var t = document.getElementById('repairButton01');
+    t.style.display  = 'block';
 }
 
 // Переменные для таймера
