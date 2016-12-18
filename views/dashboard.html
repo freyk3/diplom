@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Меню</title>
+    <link href="/css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+<div id="appBlock">
+    <button class="dashButtons" onclick="goToFirst()">Лабораторная №1</button>
+    <button class="dashButtons" onclick="goToSecond()" style="margin-left: 20px">Лабораторная №2</button>
+    <button class="dashButtons" onclick="reports()" style="margin-left: 20px">Отчеты</button>
+</div>
+<script>
+    function goToFirst() {
+        document.location.href='app.html';
+    }
+    function goToSecond() {
+        document.location.href='secondApp.html';
+    }
+    function reports() {
+        document.location.href='reports.html';
+    }
+</script>
+</body>
+</html>

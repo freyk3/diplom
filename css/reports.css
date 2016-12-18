@@ -1,0 +1,11 @@
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+}
+#appBlock
+{
+    margin-top: 200px;
+    text-align: -webkit-center;
+    width: 1600px;
+}

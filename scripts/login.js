@@ -43,9 +43,26 @@ function login() {
     else
     {
         if(user.password == inputPassword)
-            document.location.href='app.html';
+        {
+            sessionStorage.user = user.name;
+            document.location.href='dashboard.html';
+        }
         else
             alert('Неверный логин или пароль');
     }
-
+}
+function generateWord() {
+    var filePath = path.join(nw.App.dataPath, 'word.doc');
+    console.log(filePath);
+    fs.open(filePath, 'wx', function (err, fd) {
+        if (err) {
+            if (err.code === "EEXIST") {
+                console.log('myfile already exists');
+                return;
+            } else {
+                throw err;
+            }
+        }
+        fs.writeFileSync(filePath,'Ну что, чо каво сундучата?');
+    });
 }
