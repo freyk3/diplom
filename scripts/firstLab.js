@@ -51,7 +51,7 @@ var milkChars = [milkChar0,milkChar1,milkChar2,milkChar3];
 
 //Накладные
 var waybill0 = {
-    sort: 'Еще не установлен',
+    sort: 'Не установлен',
     numbOfCar: 'м401ко',
     kislot: '16,80°T',
     clearGroup: 'I',
@@ -62,7 +62,7 @@ var waybill0 = {
     tz: 'минус 0,530 °С'
 };
 var waybill1 = {
-    sort: 'Еще не установлен',
+    sort: 'Не установлен',
     numbOfCar: 'м402ко',
     kislot: '18,80°Т',
     clearGroup: 'II',
@@ -73,7 +73,7 @@ var waybill1 = {
     tz: 'минус 0,520°С'
 };
 var waybill2 = {
-    sort: 'Еще не установлен',
+    sort: 'Не установлен',
     numbOfCar: 'м403ко',
     kislot: '20,00°Т',
     clearGroup: 'II',
@@ -84,7 +84,7 @@ var waybill2 = {
     tz: 'минус 0,525°С'
 };
 var waybill3 = {
-    sort: 'Еще не установлен',
+    sort: 'Не установлен',
     numbOfCar: 'м404ко',
     kislot: '16,50°Т',
     clearGroup: 'II',
@@ -222,7 +222,7 @@ function Barrel(progressNumb) {
         var temperature;
         var filter;
         if(freeze.isActivated == true)
-            temperature = '5';
+            temperature = '3';
         else
             temperature = car.milkChar.t;
 
@@ -323,7 +323,7 @@ function Barrel(progressNumb) {
 
 function Car(numb) {
     this.numb = numb;
-    this.volume = 10000;
+    this.volume = 16000;
     this.isActive = true; //приехала машина\ещё не приехала
     this.carVolume = document.getElementById('carVolume'+this.numb);
     this.milkChar = milkChars[this.numb];
@@ -719,9 +719,9 @@ function goToWash() {
 function showBarrel(numb) {
     var barrel = barrels[numb];
     if(barrel.milkChar.sort == 0)
-        alert('Бочка пуста');
+        alert('Танк пуст');
     else
-        alert('Сорт в данной бочке: '+barrel.milkChar.sort);
+        alert('Сорт в данном танке: '+barrel.milkChar.sort);
 
 }
 

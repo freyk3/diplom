@@ -56,3 +56,9 @@ body
     height: 100%;
     background-color: green;
 }
+#title
+{
+    position: absolute;
+    font-size: 30px;
+    font-weight: bold;
+}
