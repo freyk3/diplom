@@ -270,7 +270,7 @@ function createReport() {
     var dirPath = pathToStorage.join(nw.App.dataPath, 'userReports/');
     if(!fs.existsSync(dirPath))
         fs.mkdirSync(dirPath);
-    var reportFile = 'userReports/'+reportObj.user.surname+' '+date.getTime();
+    var reportFile = 'userReports/'+reportObj.user.surname+' '+date.getTime()+'.docx';
     var newReportPath = pathToStorage.join(nw.App.dataPath, reportFile);
 
     fs.open(newReportPath, 'wx+', function (err, fd) {
