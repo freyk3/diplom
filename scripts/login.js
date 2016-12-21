@@ -44,25 +44,15 @@ function login() {
     {
         if(user.password == inputPassword)
         {
-            sessionStorage.user = user.name;
+            sessionStorage.user = user.login;
             document.location.href='dashboard.html';
         }
         else
             alert('Неверный логин или пароль');
     }
 }
-function generateWord() {
-    var filePath = path.join(nw.App.dataPath, 'word.doc');
-    console.log(filePath);
-    fs.open(filePath, 'wx', function (err, fd) {
-        if (err) {
-            if (err.code === "EEXIST") {
-                console.log('myfile already exists');
-                return;
-            } else {
-                throw err;
-            }
-        }
-        fs.writeFileSync(filePath,'Ну что, чо каво сундучата?');
-    });
+function test() {
+    var pathe = path.join(nw.App.dataPath, 'userReports/');
+    console.log(pathe);
+    console.log(fs.existsSync(pathe));
 }

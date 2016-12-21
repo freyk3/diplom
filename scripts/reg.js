@@ -51,7 +51,8 @@ function reg() {
         name: inputName,
         surname: inputSurname,
         group: inputGroup,
-        password: inputPassword
+        password: inputPassword,
+        reports: []
     };
     users[inputLogin] = newUser;
     var jsonResponse = JSON.stringify(users);

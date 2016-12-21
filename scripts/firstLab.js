@@ -1,6 +1,47 @@
 /**
  * Created by Freyk on 10.10.2016.
  */
+var fs = require('fs');
+var pathToStorage = require('path');
+var Docxtemplater = require('docxtemplater');
+var JSZip = require('jszip');
+
+var file = 'temp_report_first_vars.json';
+var usersFile = 'users.json';
+var filePath = pathToStorage.join(nw.App.dataPath, file);
+var pathToUsersFile = pathToStorage.join(nw.App.dataPath, usersFile);
+fs.open(filePath, 'wx', function (err, fd) {
+    if (err) {
+        if (err.code === "EEXIST") {
+            fs.writeFileSync(filePath,'{}');
+            return;
+        } else {
+            throw err;
+        }
+    }
+    fs.writeFileSync(filePath,'{}');
+});
+var contents = fs.readFileSync(pathToUsersFile, 'utf8');
+var users = JSON.parse(contents);
+var user;
+for(var key in users)
+{
+    if (!users.hasOwnProperty(key)) continue;
+    var tempUser = users[key];
+
+    if(tempUser.login == sessionStorage.user)
+    {
+        user = tempUser;
+        break;
+    }
+}
+
+var reportObj = {};
+reportObj.errors = [];
+reportObj.log = [];
+reportObj.user = user;
+
+
 //Реальные данные по молоку
 var milkChar0 = {
     sort: 1,
@@ -164,7 +205,7 @@ function Path() {
         var lastPoint = this.points[this.points.length-1].numb;
         var car = this.findCar();
         var barrel = barrels[lastPoint];
-
+        if(litres != null)
         if(car.volume < litres)
         {
             alert('В молоковозе нет столько молока');
@@ -228,14 +269,19 @@ function Barrel(progressNumb) {
 
         if(this.milkChar.sort == 1 && car.milkChar.sort == 2)
         {
+            createError('Попытка испортить 1 категорию в танке '+this.numb);
             alert('Попытка испортить 1 категорию');
             return;
         }
         if(temperature > 6)
         {
+            createError('Попытка залить молоко в танк с высокой температурой ('+temperature+')');
             alert('Слишком высокая температура молока!');
             return;
         }
+
+        freeze.isLocked = true;
+        createLog('В танк №'+this.numb+' заливают '+litres+'л молока из машины №'+car.numb);
 
         if(this.milkChar.sort == 2 && car.milkChar.sort == 1)
             return timeOfFilling;
@@ -256,6 +302,7 @@ function Barrel(progressNumb) {
         function frame() {
             if (tempValue >= newValue) {
                 clearInterval(id);
+                freeze.isLocked = false;
                 filter.deactivateFilter();
                 if(car.volume == 0)
                     car.isEmpty = true;
@@ -344,6 +391,13 @@ function Car(numb) {
         else if(this.filter2.isActive == true)
             return this.filter2;
     };
+    this.defineNeSort = function () {
+        if(this.milkChar.sort == 1 || this.milkChar.sort == 2)
+            return false;
+        else
+            return true;
+    };
+    this.neSort = this.defineNeSort();
 }
 
 function Filter(numb) {
@@ -417,6 +471,20 @@ function Freeze(numb) {
         this.domElem.src = '/images/Okhladitel_vyklyuchen.jpg';
     };
     this.domElem = document.getElementById('freeze'+this.numb);
+    this.isLocked = false;
+}
+
+function createError(msg) {
+    var errorObj = {};
+    errorObj.time = timer;
+    errorObj.message = msg;
+    reportObj.errors.push(errorObj);
+}
+function createLog(msg) {
+    var logObj = {};
+    logObj.time = timer;
+    logObj.message = msg;
+    reportObj.log.push(logObj);
 }
 
 var point0 = new Point(0,[], false, true),
@@ -500,6 +568,11 @@ function activatePoint(numb)
             if(car.isActive == false)
             {
                 alert('От машины отказались');
+                return;
+            }
+            if(car.waybill.sort == 'Несортовое')
+            {
+                alert('Молоко несортовое!');
                 return;
             }
             if(car.waybill.sort != 1 && car.waybill.sort != 2)
@@ -587,7 +660,9 @@ function insertCarValue() {
 function startApp() {
     appIsStart = true;
     playButton.style.display = 'none';
+    document.getElementById('timerDiv').style.height = '40px';
     startTimer();
+    createLog('Начало работы');
 }
 function startTimer() {
     if (init==0) {
@@ -608,11 +683,14 @@ function startTimer() {
     if (s<10) s='0'+s;
     if (ms<10) ms='0'+ms;
     if (init==1) document.getElementById('timer').innerText = h + ':' + m + ':' + s + '.' + ms;
+    timer = h + ':' + m + ':' + s + '.' + ms;
     clocktimer = setTimeout("startTimer()",10);
 }
 
 function activateFreeze(numb) {
     var freeze = freezes[numb];
+    if(freeze.isLocked == true)
+        return;
     freeze.activate();
     var buttonOn = document.getElementById('freezeButton'+numb+'1');
     var buttonOff = document.getElementById('freezeButton'+numb+'2');
@@ -621,6 +699,8 @@ function activateFreeze(numb) {
 }
 function deactivateFreeze(numb) {
     var freeze = freezes[numb];
+    if(freeze.isLocked == true)
+        return;
     freeze.deactivate();
     var buttonOn = document.getElementById('freezeButton'+numb+'1');
     var buttonOff = document.getElementById('freezeButton'+numb+'2');
@@ -679,8 +759,9 @@ function rejectCar(numb) {
     var isRejected = confirm("Вы уверены что хотите отказаться принимать эту машину?");
     if(isRejected)
     {
-        if(car.numb != 3)
+        if(car.neSort == false)
         {
+            createError('Попытка отказаться от машины №'+car.numb);
             alert('Неверно')
         }
         else
@@ -700,19 +781,43 @@ function chooseSort(numb) {
     var car = cars[numb];
     var rigthSort = car.milkChar.sort;
     var sort = prompt('Введите сорт');
-    if(numb == 3 || sort != rigthSort)
+    if(sort == null)
+        return;
+    if(sort != rigthSort)
     {
+        createError('Неверно определен сорт молока у машины №'+car.numb+'. Введен сорт '+sort+'. Верный сорт: '+car.milkChar.sort);
         alert('Неверно!');
         return;
     }
+    createLog('Выбран верный сорт молока в машине №'+car.numb)
     waybills[numb].sort = sort;
     car.waybill.sort = sort;
 }
 
 //Мойка
 function goToWash() {
+    var thisTime = new Date;
+    sessionStorage.timer = thisTime.getTime();
+    setReportForm();
     alert('На мойку!');
     document.location.href='wash.html';
+}
+
+//Формирование отчета
+function setReportForm() {
+
+    reportObj.car0 = car0.milkChar;
+    reportObj.car1 = car1.milkChar;
+    reportObj.car2 = car2.milkChar;
+    reportObj.car3 = car3.milkChar;
+
+    reportObj.barrel0 = barrel0.milkChar;
+    reportObj.barrel1 = barrel1.milkChar;
+    reportObj.barrel2 = barrel2.milkChar;
+    reportObj.barrel3 = barrel3.milkChar;
+
+    var jsonResponse = JSON.stringify(reportObj);
+    fs.writeFileSync(filePath,jsonResponse);
 }
 
 //Сведенья о том что в бочке
@@ -744,6 +849,150 @@ function findFilterByNumb (numbOfFilter) {
         if(filters[i].numb == (String(numbOfFilter)))
             return filters[i];
     }
+}
+
+function finishLab() {
+    var isAgree = confirm("Вы уверены что хотите прервать выполнение работы и сформировать отчет?");
+    if(isAgree)
+    {
+        alert('Работа окончена досрочно');
+        createLog('Работа окончена досрочно');
+        createError('Работа не окончена. Не пройдет этап мойки');
+        setReportForm();
+        createReport();
+        document.location.href='dashboard.html';
+    }
+}
+
+function createReport() {
+    var content = fs.readFileSync("files/report_template.docx", "binary");
+    var zip = new JSZip(content);
+    var doc= new Docxtemplater().loadZip(zip);
+
+    var date = new Date;
+    var day = date.getDay();
+    var year = date.getFullYear();
+    var month = date.getMonth();
+    if(month<10)
+        month = '0'+month;
+
+    var nowDate = day +'.'+month+'.'+year;
+    doc.setData({
+        "errors": reportObj.errors,
+        "log": reportObj.log,
+
+        "car0.carnumb": reportObj.car0.numbOfCar,
+        "car0.kislot": reportObj.car0.kislot,
+        "car0.sort": reportObj.car0.sort,
+        "car0.clearGroup": reportObj.car0.clearGroup,
+        "car0.plotnost": reportObj.car0.plotnost,
+        "car0.jir": reportObj.car0.jir,
+        "car0.belok": reportObj.car0.belok,
+        "car0.t": reportObj.car0.t,
+        "car0.tz": reportObj.car0.tz,
+
+        "car1.carnumb": reportObj.car1.numbOfCar,
+        "car1.kislot": reportObj.car1.kislot,
+        "car1.sort": reportObj.car1.sort,
+        "car1.clearGroup": reportObj.car1.clearGroup,
+        "car1.plotnost": reportObj.car1.plotnost,
+        "car1.jir": reportObj.car1.jir,
+        "car1.belok": reportObj.car1.belok,
+        "car1.t": reportObj.car1.t,
+        "car1.tz": reportObj.car1.tz,
+
+        "car2.carnumb": reportObj.car2.numbOfCar,
+        "car2.kislot": reportObj.car2.kislot,
+        "car2.sort": reportObj.car2.sort,
+        "car2.clearGroup": reportObj.car2.clearGroup,
+        "car2.plotnost": reportObj.car2.plotnost,
+        "car2.jir": reportObj.car2.jir,
+        "car2.belok": reportObj.car2.belok,
+        "car2.t": reportObj.car2.t,
+        "car2.tz": reportObj.car2.tz,
+
+        "car3.carnumb": reportObj.car3.numbOfCar,
+        "car3.kislot": reportObj.car3.kislot,
+        "car3.sort": reportObj.car3.sort,
+        "car3.clearGroup": reportObj.car3.clearGroup,
+        "car3.plotnost": reportObj.car3.plotnost,
+        "car3.jir": reportObj.car3.jir,
+        "car3.belok": reportObj.car3.belok,
+        "car3.t": reportObj.car3.t,
+        "car3.tz": reportObj.car3.tz,
+
+        "barrel0.kislot": reportObj.barrel0.kislot,
+        "barrel0.sort": reportObj.barrel0.sort,
+        "barrel0.clearGroup": reportObj.barrel0.clearGroup,
+        "barrel0.plotnost": reportObj.barrel0.plotnost,
+        "barrel0.jir": reportObj.barrel0.jir,
+        "barrel0.belok": reportObj.barrel0.belok,
+        "barrel0.t": reportObj.barrel0.t,
+        "barrel0.tz": reportObj.barrel0.tz,
+
+        "barrel1.carnumb": reportObj.barrel1.numbOfCar,
+        "barrel1.kislot": reportObj.barrel1.kislot,
+        "barrel1.sort": reportObj.barrel1.sort,
+        "barrel1.clearGroup": reportObj.barrel1.clearGroup,
+        "barrel1.plotnost": reportObj.barrel1.plotnost,
+        "barrel1.jir": reportObj.barrel1.jir,
+        "barrel1.belok": reportObj.barrel1.belok,
+        "barrel1.t": reportObj.barrel1.t,
+        "barrel1.tz": reportObj.barrel1.tz,
+
+        "barrel2.carnumb": reportObj.barrel2.numbOfCar,
+        "barrel2.kislot": reportObj.barrel2.kislot,
+        "barrel2.sort": reportObj.barrel2.sort,
+        "barrel2.clearGroup": reportObj.barrel2.clearGroup,
+        "barrel2.plotnost": reportObj.barrel2.plotnost,
+        "barrel2.jir": reportObj.barrel2.jir,
+        "barrel2.belok": reportObj.barrel2.belok,
+        "barrel2.t": reportObj.barrel2.t,
+        "barrel2.tz": reportObj.barrel2.tz,
+
+        "barrel3.carnumb": reportObj.barrel3.numbOfCar,
+        "barrel3.kislot": reportObj.barrel3.kislot,
+        "barrel3.sort": reportObj.barrel3.sort,
+        "barrel3.clearGroup": reportObj.barrel3.clearGroup,
+        "barrel3.plotnost": reportObj.barrel3.plotnost,
+        "barrel3.jir": reportObj.barrel3.jir,
+        "barrel3.belok": reportObj.barrel3.belok,
+        "barrel3.t": reportObj.barrel3.t,
+        "barrel3.tz": reportObj.barrel3.tz,
+
+        "report_date": nowDate,
+
+        'user.name': reportObj.user.name,
+        'user.surname': reportObj.user.surname,
+        'user.group': reportObj.user.group
+    });
+
+    doc.render();
+
+    var buf = doc.getZip().generate({type:"nodebuffer"});
+
+    var dirPath = pathToStorage.join(nw.App.dataPath, 'userReports/');
+    if(!fs.existsSync(dirPath))
+        fs.mkdirSync(dirPath);
+    var reportFile = 'userReports/'+reportObj.user.surname+' '+date.getTime()+'.docx';
+    var newReportPath = pathToStorage.join(nw.App.dataPath, reportFile);
+
+    fs.open(newReportPath, 'wx+', function (err, fd) {
+        if (err) {
+            if (err.code === "EEXIST") {
+                console.log('myfile already exists');
+                return;
+            } else {
+                throw err;
+            }
+        }
+        fs.writeFileSync(newReportPath,buf);
+    });
+
+    user.reports.push(reportObj.user.surname+' '+date.getTime()+'.docx');
+    users[user.login] = user;
+    var jsonResponseUsers = JSON.stringify(users);
+    fs.writeFileSync(pathToUsersFile,jsonResponseUsers);
 }
 
 // TEST FUNCTION FOR EVERYTHING

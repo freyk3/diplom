@@ -320,3 +320,14 @@ body
     margin-left: 15px;
     display: none;
 }
+#finishLabButton
+{
+    width: 180px;
+    height: 40px;
+    display: block;
+}
+#playButton
+{
+    width: 180px;
+    height: 40px;
+}
