@@ -303,7 +303,7 @@ function Barrel(progressNumb) {
             this.milkChar.plotnost = Math.round((((this.milkChar.plotnost*this.value)+(car.milkChar.plotnost*litres))/(this.value+ +litres))*10)/10;
             this.milkChar.jir = Math.round((((this.milkChar.jir*this.value)+(car.milkChar.jir*litres))/(this.value+ +litres))*10)/10;
             this.milkChar.belok = car.milkChar.belok;
-            this.milkChar.t = Math.round(((this.milkChar.t*this.value)+(car.milkChar.t*litres))/(this.value+ +litres));
+            this.milkChar.t = Math.round(((this.milkChar.t*this.value)+(temperature*litres))/(this.value+ +litres));
             this.milkChar.tz = Math.round((((this.milkChar.tz*this.value)+(car.milkChar.tz*litres))/(this.value+ +litres))*1000)/1000;
             if(this.milkChar.clearGroup == 'II' && car.milkChar.clearGroup == 'I')
                 this.milkChar.clearGroup = 'II';
