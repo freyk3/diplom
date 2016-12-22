@@ -41,7 +41,7 @@ reportObj.errors = [];
 reportObj.log = [];
 reportObj.user = user;
 
-
+/*
 //Реальные данные по молоку
 var milkChar0 = {
     sort: 1,
@@ -135,7 +135,7 @@ var waybill3 = {
     t: '5,8 °С',
     tz: 'минус 0,520°С'
 };
-var waybills = [waybill0,waybill1,waybill2,waybill3];
+var waybills = [waybill0,waybill1,waybill2,waybill3]; */
 
 function Point(numb,pointArr,isStart,isFinish) {
     this.numb = numb;
@@ -401,8 +401,8 @@ function Car(numb) {
     this.volume = 16000;
     this.isActive = true; //приехала машина\ещё не приехала
     this.carVolume = document.getElementById('carVolume'+this.numb);
-    this.milkChar = milkChars[this.numb];
-    this.waybill = waybills[this.numb];
+    this.milkChar = milkChars[carMilkChars[this.numb]];
+    this.waybill = waybills[carMilkChars[this.numb]];
     this.isEmpty = false;
     this.findFilter = function (numbOfFilter) {
         for(var i = 0; i<filters.length; i++)
@@ -549,86 +549,54 @@ var filter01 = new Filter('01'),
     filter32 = new Filter('32');
 var filters = [filter01,filter02,filter11,filter12,filter21,filter22,filter31,filter32];
 
-var i;
+
 var sorts = [1,2,2,3];
 var carChars = [];
 var carMilkChars = [];
-for(i = 0; i<4; i++)
+for(var i = 0; i<4; i++)
 {
     var rand = randomInteger(0,(sorts.length - 1));
     carChars.push(sorts[rand]);
     sorts.splice(rand,1);
 }
-var secondSortHadBeen = false;
-var firstSecondSort;
-for(i =0; i<4; i++)
-{
-    var carsort = carChars[i];
-    var randWay;
+var milkcharCar0numb = carChars[0];
+var milkcharCar1numb = carChars[1];
+var milkcharCar2numb = carChars[2];
+var milkcharCar3numb = carChars[3];
 
-    if(carsort == 1)
-        randWay = randomInteger(0,2);
-    else if(carsort == 2)
-    {
-        randWay = randomInteger(3,8);
-        if(secondSortHadBeen == false)
-        {
-            firstSecondSort = randWay;
-            secondSortHadBeen = true;
-        }
-        else
-        {
-            while (randWay == firstSecondSort)
-                randWay = randomInteger(3,8);
-        }
+var milkcharCar0 = getRandomTemplate(milkcharCar0numb);
+var milkcharCar1 = getRandomTemplate(milkcharCar1numb);
+if(milkcharCar1 == milkcharCar0)
+    while (milkcharCar1 == milkcharCar0)
+        milkcharCar1 = getRandomTemplate(milkcharCar1numb);
+var milkcharCar2 = getRandomTemplate(milkcharCar2numb);
+if(milkcharCar2 == milkcharCar1 || milkcharCar2 == milkcharCar0)
+    while(milkcharCar2 == milkcharCar1 || milkcharCar2 == milkcharCar0)
+        milkcharCar2 = getRandomTemplate(milkcharCar2numb);
+var milkcharCar3 = getRandomTemplate(milkcharCar3numb);
+if(milkcharCar3 == milkcharCar2 || milkcharCar3 == milkcharCar1 || milkcharCar3 == milkcharCar0)
+    while (milkcharCar3 == milkcharCar2 || milkcharCar3 == milkcharCar1 || milkcharCar3 == milkcharCar0)
+        milkcharCar3 = getRandomTemplate(milkcharCar3numb);
+
+carMilkChars.push(milkcharCar0,milkcharCar1,milkcharCar2,milkcharCar3);
+console.log(carMilkChars);
+
+
+function getRandomTemplate(numb) {
+    var rand;
+    switch (numb) {
+        case 1:
+            rand = randomInteger(0,2);
+            break;
+        case 2:
+            rand = randomInteger(3,8);
+            break;
+        case 3:
+            rand = randomInteger(9,11);
+            break;
     }
-    else if(carsort == 3)
-        randWay = randomInteger(8,11);
-
-    carMilkChars.push(randWay);
+    return rand;
 }
-
-function test() {
-    var sorts = [1,2,2,3];
-    var carChars = [];
-    var carMilkChars = [];
-    for(var i = 0; i<4; i++)
-    {
-        var rand = randomInteger(0,(sorts.length - 1));
-        carChars.push(sorts[rand]);
-        sorts.splice(rand,1);
-    }
-    var secondSortHadBeen = false;
-    var firstSecondSort;
-    for(var q =0; q<4; q++)
-    {
-        var carsort = carChars[q];
-        var randWay;
-
-        if(carsort == 1)
-            randWay = randomInteger(0,2);
-        else if(carsort == 2)
-        {
-            randWay = randomInteger(3,8);
-            if(secondSortHadBeen == false)
-            {
-                firstSecondSort = randWay;
-                secondSortHadBeen = true;
-            }
-            else
-            {
-                while (randWay == firstSecondSort)
-                    randWay = randomInteger(3,8);
-            }
-        }
-        else if(carsort == 3)
-            randWay = randomInteger(8,11);
-
-        carMilkChars.push(randWay);
-    }
-    console.log(carMilkChars);
-}
-
 
 var car0 = new Car(0),
     car1 = new Car(1),
