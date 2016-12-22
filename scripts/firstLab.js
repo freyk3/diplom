@@ -710,6 +710,11 @@ function deactivateFreeze(numb) {
 
 function showWaybill(numb)
 {
+    if(appIsStart != true)
+    {
+        return;
+    }
+
     switch (numb) {
         case 0:
             waybill = waybill0;
@@ -731,6 +736,11 @@ function showWaybill(numb)
 //лаборатория
 function labMessage(numb)
 {
+    if(appIsStart != true)
+    {
+        return;
+    }
+
     var str;
     var labBlock = document.getElementById('labBlock');
     var div = document.createElement('div');
@@ -753,6 +763,11 @@ function labMessage(numb)
 
 //Отказ от машины
 function rejectCar(numb) {
+    if(appIsStart != true)
+    {
+        return;
+    }
+
     var car = cars[numb];
     if(car.isEmpty == true)
         return;
@@ -778,7 +793,14 @@ function rejectCar(numb) {
 
 //Выбор сорта
 function chooseSort(numb) {
+    if(appIsStart != true)
+    {
+        return;
+    }
     var car = cars[numb];
+    if(car.waybill.sort == 1 || car.waybill.sort == 2 || car.waybill.sort == 'Несортовое')
+        return;
+
     var rigthSort = car.milkChar.sort;
     var sort = prompt('Введите сорт');
     if(sort == null)
