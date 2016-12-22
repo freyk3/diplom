@@ -299,6 +299,15 @@ function Barrel(progressNumb) {
             if(this.milkChar.sort == 2 && car.milkChar.sort == 1)
                 this.milkChar.sort = 2;
 
+            this.milkChar.kislot = Math.round(((this.milkChar.kislot*this.value)+(car.milkChar.kislot*litres))/(this.value+ +litres));
+            this.milkChar.plotnost = Math.round((((this.milkChar.plotnost*this.value)+(car.milkChar.plotnost*litres))/(this.value+ +litres))*10)/10;
+            this.milkChar.jir = Math.round((((this.milkChar.jir*this.value)+(car.milkChar.jir*litres))/(this.value+ +litres))*10)/10;
+            this.milkChar.belok = car.milkChar.belok;
+            this.milkChar.t = Math.round(((this.milkChar.t*this.value)+(car.milkChar.t*litres))/(this.value+ +litres));
+            this.milkChar.tz = Math.round((((this.milkChar.tz*this.value)+(car.milkChar.tz*litres))/(this.value+ +litres))*1000)/1000;
+            if(this.milkChar.clearGroup == 'II' && car.milkChar.clearGroup == 'I')
+                this.milkChar.clearGroup = 'II';
+            /*
             if(litres > this.value*0.5)
             {
                 this.milkChar.t = (this.milkChar.t + temperature)/2;
@@ -311,7 +320,7 @@ function Barrel(progressNumb) {
             if(this.milkChar.jir > car.milkChar.jir)
                 this.milkChar.jir = car.milkChar.jir;
             if(this.milkChar.clearGroup == 'II' && car.milkChar.clearGroup == 'I')
-                this.milkChar.clearGroup = 'II';
+                this.milkChar.clearGroup = 'II'; */
         }
 
         this.value = this.value + +litres;
@@ -540,6 +549,87 @@ var filter01 = new Filter('01'),
     filter32 = new Filter('32');
 var filters = [filter01,filter02,filter11,filter12,filter21,filter22,filter31,filter32];
 
+var i;
+var sorts = [1,2,2,3];
+var carChars = [];
+var carMilkChars = [];
+for(i = 0; i<4; i++)
+{
+    var rand = randomInteger(0,(sorts.length - 1));
+    carChars.push(sorts[rand]);
+    sorts.splice(rand,1);
+}
+var secondSortHadBeen = false;
+var firstSecondSort;
+for(i =0; i<4; i++)
+{
+    var carsort = carChars[i];
+    var randWay;
+
+    if(carsort == 1)
+        randWay = randomInteger(0,2);
+    else if(carsort == 2)
+    {
+        randWay = randomInteger(3,8);
+        if(secondSortHadBeen == false)
+        {
+            firstSecondSort = randWay;
+            secondSortHadBeen = true;
+        }
+        else
+        {
+            while (randWay == firstSecondSort)
+                randWay = randomInteger(3,8);
+        }
+    }
+    else if(carsort == 3)
+        randWay = randomInteger(8,11);
+
+    carMilkChars.push(randWay);
+}
+
+function test() {
+    var sorts = [1,2,2,3];
+    var carChars = [];
+    var carMilkChars = [];
+    for(var i = 0; i<4; i++)
+    {
+        var rand = randomInteger(0,(sorts.length - 1));
+        carChars.push(sorts[rand]);
+        sorts.splice(rand,1);
+    }
+    var secondSortHadBeen = false;
+    var firstSecondSort;
+    for(var q =0; q<4; q++)
+    {
+        var carsort = carChars[q];
+        var randWay;
+
+        if(carsort == 1)
+            randWay = randomInteger(0,2);
+        else if(carsort == 2)
+        {
+            randWay = randomInteger(3,8);
+            if(secondSortHadBeen == false)
+            {
+                firstSecondSort = randWay;
+                secondSortHadBeen = true;
+            }
+            else
+            {
+                while (randWay == firstSecondSort)
+                    randWay = randomInteger(3,8);
+            }
+        }
+        else if(carsort == 3)
+            randWay = randomInteger(8,11);
+
+        carMilkChars.push(randWay);
+    }
+    console.log(carMilkChars);
+}
+
+
 var car0 = new Car(0),
     car1 = new Car(1),
     car2 = new Car(2),
@@ -734,21 +824,8 @@ function showWaybill(numb)
         return;
     }
 
-    switch (numb) {
-        case 0:
-            waybill = waybill0;
-            break;
-        case 1:
-            waybill = waybill1;
-            break;
-        case 2:
-            waybill = waybill2;
-            break;
-        case 3:
-            waybill = waybill3;
-            break;
-    }
-    var str = 'Сорт: '+waybill.sort+'\nНомер машины: '+waybill.numbOfCar+'\nКислотность: '+waybill.kislot+'\nГруппа чистоты: '+waybill.clearGroup+'\nПлотность: '+waybill.plotnost+'\nМассовая доля жира: '+waybill.jir+'\nМассовая доля белка: '+waybill.belok+'\nТемпература: '+waybill.t+'\nТемпература замерзания: '+waybill.tz;
+    var car = cars[numb];
+    var str = 'Сорт: '+car.waybill.sort+'\nНомер машины: '+car.waybill.numbOfCar+'\nКислотность: '+car.waybill.kislot+'\nГруппа чистоты: '+car.waybill.clearGroup+'\nПлотность: '+car.waybill.plotnost+'\nМассовая доля жира: '+car.waybill.jir+'\nМассовая доля белка: '+car.waybill.belok+'\nТемпература: '+car.waybill.t+'\nТемпература замерзания: '+car.waybill.tz;
     alert(str);
 }
 
@@ -1040,12 +1117,10 @@ function createReport() {
     var jsonResponseUsers = JSON.stringify(users);
     fs.writeFileSync(pathToUsersFile,jsonResponseUsers);
 }
-
-// TEST FUNCTION FOR EVERYTHING
-
-function test() {
-    var t = document.getElementById('repairButton01');
-    t.style.display  = 'block';
+function randomInteger(min, max) {
+    var rand = min + Math.random() * (max + 1 - min);
+    rand = Math.floor(rand);
+    return rand;
 }
 
 // Переменные для таймера
