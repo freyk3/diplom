@@ -818,8 +818,7 @@ function chooseSort(numb) {
 
 //Мойка
 function goToWash() {
-    var thisTime = new Date;
-    sessionStorage.timer = thisTime.getTime();
+    sessionStorage.timer = startDate.getTime();
     setReportForm();
     alert('На мойку!');
     document.location.href='wash.html';
@@ -892,11 +891,13 @@ function createReport() {
     var doc= new Docxtemplater().loadZip(zip);
 
     var date = new Date;
-    var day = date.getDay();
+    var day = date.getDate();
     var year = date.getFullYear();
-    var month = date.getMonth();
+    var month = date.getMonth() + 1;
     if(month<10)
         month = '0'+month;
+    if(day<10)
+        day = '0'+day;
 
     var nowDate = day +'.'+month+'.'+year;
     doc.setData({
@@ -996,7 +997,8 @@ function createReport() {
     var dirPath = pathToStorage.join(nw.App.dataPath, 'userReports/');
     if(!fs.existsSync(dirPath))
         fs.mkdirSync(dirPath);
-    var reportFile = 'userReports/'+reportObj.user.surname+' '+date.getTime()+'.docx';
+    var fileName = reportObj.user.surname+' '+nowDate+' '+date.getTime()+'.docx';
+    var reportFile = 'userReports/'+fileName;
     var newReportPath = pathToStorage.join(nw.App.dataPath, reportFile);
 
     fs.open(newReportPath, 'wx+', function (err, fd) {
@@ -1011,7 +1013,7 @@ function createReport() {
         fs.writeFileSync(newReportPath,buf);
     });
 
-    user.reports.push(reportObj.user.surname+' '+date.getTime()+'.docx');
+    user.reports.push(fileName);
     users[user.login] = user;
     var jsonResponseUsers = JSON.stringify(users);
     fs.writeFileSync(pathToUsersFile,jsonResponseUsers);
