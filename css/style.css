@@ -28,7 +28,8 @@ body
 #carsBlock
 {
     width: 200px;
-    float: left
+    float: left;
+    margin-top: 15px;
 }
 .myProgress {
 
@@ -202,23 +203,26 @@ body
 #devicesBlock
 {
     float: left;
+    margin-top: 15px;
 }
 .devicesLine
 {
-    margin-top: 35px;
+    margin-top: 20px;
 }
 .separators
 {
     width: 95px;
+    margin-bottom: -35px;
+    margin-top: 35px;
 }
 #devices0
 {
-    margin-top: 64px;
+    margin-top: 48px;
 }
 .freeze
 {
     width: 95px;
-    margin-bottom: 8px;
+    margin-bottom: -16px;
     margin-right: -4px;
 }
 .filtersBlock
@@ -282,12 +286,12 @@ body
 .freezeButtons
 {
     position: absolute;
-    margin-top: -30px;
+    margin-top: 11px;
     margin-left: -85px;
 }
 #carButtonsBlock
 {
-    margin-top: 20px;
+    margin-top: 35px;
     width: 83px;
     float: left;
 }

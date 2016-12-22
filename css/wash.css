@@ -8,13 +8,13 @@ body
 }
 #appBlock
 {
-    margin-top: 200px;
+    margin-top: 100px;
     text-align: -webkit-center;
     width: 1600px;
 }
 #pipe
 {
-    width: 800px;
+    width: 1200px;
     height: 17px;
     background-color: rgb(246,144,33);
     outline: 1px solid black;
