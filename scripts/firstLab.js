@@ -283,17 +283,36 @@ function Barrel(progressNumb) {
         freeze.isLocked = true;
         createLog('В танк №'+this.numb+' заливают '+litres+'л молока из машины №'+car.numb);
 
-        if(this.milkChar.sort == 2 && car.milkChar.sort == 1)
-            return timeOfFilling;
+        if(this.milkChar.sort == 0)
+        {
+            this.milkChar.sort = car.milkChar.sort;
+            this.milkChar.kislot = car.milkChar.kislot;
+            this.milkChar.clearGroup = car.milkChar.clearGroup;
+            this.milkChar.plotnost = car.milkChar.plotnost;
+            this.milkChar.jir = car.milkChar.jir;
+            this.milkChar.belok = car.milkChar.belok;
+            this.milkChar.t = temperature;
+            this.milkChar.tz = car.milkChar.tz;
+        }
+        else
+        {
+            if(this.milkChar.sort == 2 && car.milkChar.sort == 1)
+                this.milkChar.sort = 2;
 
-        this.milkChar.sort = car.milkChar.sort;
-        this.milkChar.kislot = car.milkChar.kislot;
-        this.milkChar.clearGroup = car.milkChar.clearGroup;
-        this.milkChar.plotnost = car.milkChar.plotnost;
-        this.milkChar.jir = car.milkChar.jir;
-        this.milkChar.belok = car.milkChar.belok;
-        this.milkChar.t = temperature;
-        this.milkChar.tz = car.milkChar.tz;
+            if(litres > this.value*0.5)
+            {
+                this.milkChar.t = (this.milkChar.t + temperature)/2;
+                this.milkChar.kislot = car.milkChar.kislot;
+            }
+            if(this.milkChar.tz > car.milkChar.tz)
+                this.milkChar.tz = car.milkChar.tz;
+            if(this.milkChar.plotnost > car.milkChar.plotnost)
+                this.milkChar.plotnost = car.milkChar.plotnost;
+            if(this.milkChar.jir > car.milkChar.jir)
+                this.milkChar.jir = car.milkChar.jir;
+            if(this.milkChar.clearGroup == 'II' && car.milkChar.clearGroup == 'I')
+                this.milkChar.clearGroup = 'II';
+        }
 
         this.value = this.value + +litres;
 
@@ -847,7 +866,10 @@ function showBarrel(numb) {
     if(barrel.milkChar.sort == 0)
         alert('Танк пуст');
     else
-        alert('Сорт в данном танке: '+barrel.milkChar.sort);
+    {
+        var str = 'Сорт в данном танке: '+barrel.milkChar.sort+'\nКислотность: '+barrel.milkChar.kislot+'\nГруппа чистоты: '+barrel.milkChar.clearGroup+'\nПлотность: '+barrel.milkChar.plotnost+'\nМассовая доля жира: '+barrel.milkChar.jir+'\nМассовая доля белка: '+barrel.milkChar.belok+'\nТемпература: '+barrel.milkChar.t+'\nТемпература замерзания: '+barrel.milkChar.tz;
+        alert(str);
+    }
 
 }
 
