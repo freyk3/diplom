@@ -41,101 +41,6 @@ reportObj.errors = [];
 reportObj.log = [];
 reportObj.user = user;
 
-/*
-//Реальные данные по молоку
-var milkChar0 = {
-    sort: 1,
-    numbOfCar: 'м401ко',
-    kislot: '16.80',
-    clearGroup: 'I',
-    plotnost: '1028.0',
-    jir: '3.8',
-    belok: '3.0',
-    t: '5.0',
-    tz: '-0.528'
-};
-var milkChar1 = {
-    sort: 2,
-    numbOfCar: 'м402ко',
-    kislot: '18.80',
-    clearGroup: 'II',
-    plotnost: '1028.0',
-    jir: '3.4',
-    belok: '3.0',
-    t: '7.0',
-    tz: '-0.522'
-};
-var milkChar2 = {
-    sort: 2,
-    numbOfCar: 'м403ко',
-    kislot: '20.00',
-    clearGroup: 'II',
-    plotnost: '1027.0',
-    jir: '3.4',
-    belok: '3.0',
-    t: '6.0',
-    tz: '-0.525'
-};
-var milkChar3 = {
-    sort: 'Несортовое',
-    numbOfCar: 'м404ко',
-    kislot: '15.90',
-    clearGroup: 'II',
-    plotnost: '1023.0',
-    jir: '3.0',
-    belok: '3.0',
-    t: '18',
-    tz: '-0.520'
-};
-var milkChars = [milkChar0,milkChar1,milkChar2,milkChar3];
-
-
-//Накладные
-var waybill0 = {
-    sort: 'Не установлен',
-    numbOfCar: 'м401ко',
-    kislot: '16,80°T',
-    clearGroup: 'I',
-    plotnost: '1028,0 кг/м3',
-    jir: '3,8%',
-    belok: '3,0%',
-    t: '5,0 °С',
-    tz: 'минус 0,530 °С'
-};
-var waybill1 = {
-    sort: 'Не установлен',
-    numbOfCar: 'м402ко',
-    kislot: '18,80°Т',
-    clearGroup: 'II',
-    plotnost: '1028,0 кг/м3',
-    jir: '3,4%',
-    belok: '3,0%',
-    t: '6,5 °С',
-    tz: 'минус 0,520°С'
-};
-var waybill2 = {
-    sort: 'Не установлен',
-    numbOfCar: 'м403ко',
-    kislot: '20,00°Т',
-    clearGroup: 'II',
-    plotnost: '1027,0 кг/м3',
-    jir: '3,6%',
-    belok: '3,0%',
-    t: '6,0 °С',
-    tz: 'минус 0,525°С'
-};
-var waybill3 = {
-    sort: 'Не установлен',
-    numbOfCar: 'м404ко',
-    kislot: '16,50°Т',
-    clearGroup: 'II',
-    plotnost: '1027,0 кг/м3',
-    jir: '3,6%',
-    belok: '3,0%',
-    t: '5,8 °С',
-    tz: 'минус 0,520°С'
-};
-var waybills = [waybill0,waybill1,waybill2,waybill3]; */
 
 function Point(numb,pointArr,isStart,isFinish) {
     this.numb = numb;
@@ -206,20 +111,28 @@ function Path() {
         var car = this.findCar();
         var barrel = barrels[lastPoint];
         if(litres != null)
-        if(car.volume < litres)
-        {
-            alert('В молоковозе нет столько молока');
-        }
-        else if(barrel.fullVolume - barrel.value < litres)
-        {
-            alert('В танк больше не влезет');
-        }
-        else
-        {
-            var timeOfFilling = barrel.addMilk(litres,car.numb);
-            if(timeOfFilling !== undefined)
-                car.volume = car.volume - litres;
-        }
+            if(isInteger(litres))
+            {
+                if(car.volume < litres)
+                {
+                    alert('В молоковозе нет столько молока');
+                }
+                else if(barrel.fullVolume - barrel.value < litres)
+                {
+                    alert('В танк больше не влезет');
+                }
+                else
+                {
+                    var timeOfFilling = barrel.addMilk(litres,car.numb);
+                    if(timeOfFilling !== undefined)
+                        car.volume = car.volume - litres;
+                }
+            }
+            else
+            {
+                alert('Введите корректное число');
+            }
+
 
         this.throwPath(timeOfFilling ? timeOfFilling : '');
         insertCarValue();
@@ -307,20 +220,7 @@ function Barrel(progressNumb) {
             this.milkChar.tz = Math.round((((this.milkChar.tz*this.value)+(car.milkChar.tz*litres))/(this.value+ +litres))*1000)/1000;
             if(this.milkChar.clearGroup == 'II' && car.milkChar.clearGroup == 'I')
                 this.milkChar.clearGroup = 'II';
-            /*
-            if(litres > this.value*0.5)
-            {
-                this.milkChar.t = (this.milkChar.t + temperature)/2;
-                this.milkChar.kislot = car.milkChar.kislot;
-            }
-            if(this.milkChar.tz > car.milkChar.tz)
-                this.milkChar.tz = car.milkChar.tz;
-            if(this.milkChar.plotnost > car.milkChar.plotnost)
-                this.milkChar.plotnost = car.milkChar.plotnost;
-            if(this.milkChar.jir > car.milkChar.jir)
-                this.milkChar.jir = car.milkChar.jir;
-            if(this.milkChar.clearGroup == 'II' && car.milkChar.clearGroup == 'I')
-                this.milkChar.clearGroup = 'II'; */
+
         }
 
         this.value = this.value + +litres;
@@ -334,7 +234,7 @@ function Barrel(progressNumb) {
                 filter.deactivateFilter();
                 if(car.volume == 0)
                     car.isEmpty = true;
-                if(car0.isEmpty == true && car1.isEmpty == true && car2.isEmpty == true && car3.isEmpty == true)
+                if(car0.isEmpty == true && car1.isEmpty == true && car2.isEmpty == true && car3.isEmpty == true && checkFilters())
                     goToWash();
             } else {
                 if(car.filter1.isWorking)
@@ -849,7 +749,7 @@ function rejectCar(numb) {
             car.waybill.sort = 'Несортовое';
             car.isEmpty = true;
             car.isActive = false;
-            if(car0.isEmpty == true && car1.isEmpty == true && car2.isEmpty == true && car3.isEmpty == true)
+            if(car0.isEmpty == true && car1.isEmpty == true && car2.isEmpty == true && car3.isEmpty == true && checkFilters())
                 goToWash();
         }
     }
@@ -928,6 +828,9 @@ function repairFilter(numbOfFilter) {
     filter.limit = filter.maxLimit;
     filter.filterImg.src="/images/Filtr_rabochiy.jpg";
     neibFilter.deactivateFilter();
+
+    if(car0.isEmpty == true && car1.isEmpty == true && car2.isEmpty == true && car3.isEmpty == true && checkFilters())
+        goToWash();
 }
 
 //Поиск фильтра
@@ -1085,6 +988,14 @@ function createReport() {
     var jsonResponseUsers = JSON.stringify(users);
     fs.writeFileSync(pathToUsersFile,jsonResponseUsers);
 }
+
+function checkFilters() {
+    if(filter01.isWorking == true && filter02.isWorking == true && filter11.isWorking == true && filter12.isWorking == true && filter21.isWorking == true && filter22.isWorking == true && filter31.isWorking == true && filter32.isWorking == true)
+        return true;
+    else
+        return false;
+}
+
 function randomInteger(min, max) {
     var rand = min + Math.random() * (max + 1 - min);
     rand = Math.floor(rand);
@@ -1103,5 +1014,9 @@ var appIsStart = false;
 var playButton = document.getElementById('playButton');
 var finishLines = 0;
 insertCarValue();
+
+function isInteger(num) {
+    return num-Math.floor(num)==0;
+}
 
 

@@ -11,6 +11,9 @@
     <button class="dashButtons" onclick="goToSecond()" style="margin-left: 20px">Лабораторная №2</button>
     <button class="dashButtons" onclick="reports()" style="margin-left: 20px">Отчеты</button>
 </div>
+<div id="exitBlock">
+    <button id="exitButton" onclick="logout()">Выход</button>
+</div>
 <script>
     function goToFirst() {
         document.location.href='app.html';
@@ -20,6 +23,10 @@
     }
     function reports() {
         document.location.href='reports.html';
+    }
+    function logout() {
+        delete sessionStorage.user;
+        document.location.href='login.html';
     }
 </script>
 </body>
