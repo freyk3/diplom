@@ -10,7 +10,8 @@ var milkChar0 = {
     jir: '3.4',
     belok: '3.0',
     t: '5',
-    tz: '-0.528'
+    tz: '-0.528',
+    labMes: ''
 };
 
 var milkChar1 = {
