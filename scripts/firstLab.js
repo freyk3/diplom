@@ -1007,4 +1007,16 @@ function isInteger(num) {
     return num-Math.floor(num)==0;
 }
 
+$(document).ready(function(){
+    $("#barrelImg0").mousemove(
 
+        function (pos) {
+            $("#floatingmes").show();
+            $("#floatingmes").css('left',(pos.pageX+10)+'px').css('top',(pos.pageY+10)+'px');
+        }
+
+    ).mouseleave(function() {
+        $("#floatingmes").hide();
+    });
+
+});

@@ -171,6 +171,10 @@ body
     background-size: contain;
 }
 
+#floatingmes {position:absolute; z-index:999; top:0; left:0; width:100px; background:#FFF; opacity:0.85; border:1px solid #000;}
+
+
+
 /* Надписи и абсолютные элементы */
 .carText
 {

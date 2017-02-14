@@ -16,7 +16,15 @@
     </div>
     <div id="barellsBlock">
         <button class="barellButton" onclick="showBarrel(0)">?</button>
-        <img class="barrelsImg" src="/images/barell.jpg">
+        <img id="barrelImg0" class="barrelsImg" src="/images/barell.jpg">
+        <script>
+            document.getElementById("barrelImg0").onmousemove = function(e){
+                img = document.getElementById("myimg");
+                img.style.top = e.clientY+"px";
+                img.style.left = e.clientX+"px";
+
+            }
+        </script>
         <div class="myProgress">
             <div id="label0" class="indicatorLabels">0</div>
             <div class="myBar" id="barIndicator0"></div>
@@ -277,5 +285,6 @@
     <script src="/scripts/waybills_and_milkchars.js"></script>
     <script src="/scripts/firstLab.js"></script>
 </div>
+<div id="floatingmes">Это бочка, гарантирую</div>
 </body>
 </html>
