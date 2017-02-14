@@ -11,7 +11,7 @@ var milkChar0 = {
     belok: '3.0',
     t: '5',
     tz: '-0.528',
-    labMes: ''
+    labMes: '<span>Температура замерзания: минус 0,528 °С</span><br><span>Ингибирующие вещества не обнаружены</span><br><br>'
 };
 
 var milkChar1 = {
@@ -23,7 +23,8 @@ var milkChar1 = {
     jir: '3.6',
     belok: '3.0',
     t: '4',
-    tz: '-0.525'
+    tz: '-0.525',
+    labMes: '<span>Температура замерзания: минус 0,525 °С</span><br><span>Ингибирующие вещества не обнаружены</span><br><br>'
 };
 
 var milkChar2 = {
@@ -35,7 +36,8 @@ var milkChar2 = {
     jir: '3.6',
     belok: '3.0',
     t: '3',
-    tz: '-0.532'
+    tz: '-0.532',
+    labMes: '<span>Температура: 3 °С</span><br><span>Кислотность: 17 °Т</span><br><span>Ингибирующие вещества не обнаружены</span><br><br>'
 };
 
 var milkChar3 = {
@@ -47,7 +49,8 @@ var milkChar3 = {
     jir: '3.4',
     belok: '3.0',
     t: '3',
-    tz: '-0.528'
+    tz: '-0.528',
+    labMes: '<span>Температура замерзания: минус 0,528 °С</span><br><span>Ингибирующие вещества не обнаружены</span><br><br>'
 };
 
 var milkChar4 = {
@@ -59,7 +62,8 @@ var milkChar4 = {
     jir: '3.5',
     belok: '3.0',
     t: '6',
-    tz: '-0.522'
+    tz: '-0.522',
+    labMes: '<span>Температура: 6 °С</span><br><span>Кислотность: 19 °Т</span><br><span>Ингибирующие вещества не обнаружены</span><br><br>'
 };
 
 var milkChar5 = {
@@ -71,7 +75,8 @@ var milkChar5 = {
     jir: '3.4',
     belok: '3.0',
     t: '5',
-    tz: '-0.524'
+    tz: '-0.524',
+    labMes: '<span>Температура: 5 °С</span><br><span>Ингибирующие вещества не обнаружены</span><br><br>'
 };
 
 var milkChar6 = {
@@ -83,7 +88,8 @@ var milkChar6 = {
     jir: '3.6',
     belok: '3.0',
     t: '4',
-    tz: '-0.523'
+    tz: '-0.523',
+    labMes: '<span>Температура: 4 °С</span><br><span>Температура замерзания: минус 0,523°С</span><br><span>Ингибирующие вещества не обнаружены</span><br><br>'
 };
 
 var milkChar7 = {
@@ -95,7 +101,8 @@ var milkChar7 = {
     jir: '3.5',
     belok: '3.0',
     t: '7',
-    tz: '-0.522'
+    tz: '-0.522',
+    labMes: '<span>Температура: 7 °С</span><br><span>Ингибирующие вещества не обнаружены</span><br><br>'
 };
 
 var milkChar8 = {
@@ -107,7 +114,8 @@ var milkChar8 = {
     jir: '3.6',
     belok: '3.0',
     t: '3',
-    tz: '-0.525'
+    tz: '-0.525',
+    labMes: '<span>Кислотность: 20 °Т</span><br><span>Ингибирующие вещества не обнаружены</span><br><br>'
 };
 
 var milkChar9 = {
@@ -119,7 +127,8 @@ var milkChar9 = {
     jir: '3.0',
     belok: '3.0',
     t: '6',
-    tz: '-0.512'
+    tz: '-0.512',
+    labMes: '<span>Кислотность: 15 °Т</span><br><span>Массовая доля жира: 3,0 %</span><br><span>Группа чистоты: III</span><br><span>Температура: 6 °С</span><br><span>Температура замерзания: минус 0,512°С</span><br><span>Обнаружены ингибирующие вещества!</span><br><br>'
 };
 
 var milkChar10 = {
@@ -131,7 +140,8 @@ var milkChar10 = {
     jir: '3.6',
     belok: '3.0',
     t: '3',
-    tz: '-0.525'
+    tz: '-0.525',
+    labMes: '<span>Группа чистоты: III</span><br><span>Плотность: 1025,0 кг/м3</span><br><span>Ингибирующие вещества не обнаружены</span><br><br>'
 };
 
 var milkChar11 = {
@@ -143,7 +153,8 @@ var milkChar11 = {
     jir: '3.2',
     belok: '3.0',
     t: '4',
-    tz: '-0.515'
+    tz: '-0.515',
+    labMes: '<span>Кислотность: 12 °Т</span><br><span>Массовая доля жира: 3,2 %</span><br><span>Группа чистоты: III</span><br><span>Плотность: 1024,0 кг/м3</span><br><span>Температура: 4 °С</span><br><span>Температура замерзания: минус 0,515°С</span><br><span>Обнаружены ингибирующие вещества!</span><br><br>'
 };
 var milkChars = [milkChar0,milkChar1,milkChar2,milkChar3,milkChar4,milkChar5,milkChar6,milkChar7,milkChar8,milkChar9,milkChar10,milkChar11];
 var waybill0 = {

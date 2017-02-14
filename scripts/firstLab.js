@@ -708,20 +708,8 @@ function labMessage(numb)
     var str;
     var labBlock = document.getElementById('labBlock');
     var div = document.createElement('div');
-    switch (numb) {
-        case 0:
-            div.innerHTML = '<span><strong>Машина '+(numb+1)+'</strong></span><br><span>Температура замерзания: минус 0,528 °С</span><br><span>Ингибирующие вещества не обнаружены.</span><br><br>';
-            break;
-        case 1:
-            div.innerHTML = '<span><strong>Машина '+(numb+1)+'</strong></span><br><span>Температура : 7 °С</span><br><span>Температура замерзания: минус 0,522 °С</span><br><span>Ингибирующие вещества не обнаружены.</span><br><br>';
-            break;
-        case 2:
-            div.innerHTML = '<span><strong>Машина '+(numb+1)+'</strong></span><br><span>Массовая доля жира: 3,4%</span><br><span>Ингибирующие вещества не обнаружены.</span><br><br>';
-            break;
-        case 3:
-            div.innerHTML = '<span><strong>Машина '+(numb+1)+'</strong></span><br><span>Кислотность: 15,90 °Т</span><br><span>Плотность: 1023,0 кг/м3</span><br><span>Массовая доля жира: 3,0%</span><br><span>Температура: 18 °С</span><br><span>Температура замерзания: минус 0,512 °С</span><br><span>Обнаружены ингибирующие вещества!</span><br><br>';
-            break;
-    }
+    var car = cars[numb];
+    div.innerHTML = '<span><strong>Машина '+(numb+1)+'</strong><br>'+car.milkChar.labMes;
     labBlock.appendChild(div);
 }
 
