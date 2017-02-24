@@ -26,18 +26,10 @@ body
 
 .description
 {
-    width: 160px;
-    height: 150px;
+    display: initial;
     position: absolute;
 }
-.launchButton
-{
-    position: absolute;
-}
-#buttonsBlock
-{
-    position: absolute;
-}
+
 #progressBar
 {
     margin-top: 200px;
