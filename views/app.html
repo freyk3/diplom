@@ -4,7 +4,22 @@
     <meta charset="UTF-8">
     <title>Лабораторная работа №1</title>
     <link href="/css/style.css" rel="stylesheet">
-    <script src="/scripts/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="/scripts/jquery-3.1.1.js"></script>
+    <link href="/css/tooltips/tooltipster.bundle.min.css" rel="stylesheet">
+    <link href="/css/tooltips/tooltipster-follower.min.css" rel="stylesheet">
+    <link href="/css/tooltips/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css" rel="stylesheet">
+    <script type="text/javascript" src="/scripts/tooltips/tooltipster.bundle.min.js"></script>
+    <script type="text/javascript" src="/scripts/tooltips/tooltipster-follower.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.barrelsImg, .filters, .separators, .freeze').tooltipster({
+                theme: 'tooltipster-shadow',
+                animation: 'fade',
+                delay: [2000,0],
+                plugins: ['follower']
+            });
+        });
+    </script>
 </head>
 <body>
 <div id="appBlock">
@@ -16,33 +31,25 @@
     </div>
     <div id="barellsBlock">
         <button class="barellButton" onclick="showBarrel(0)">?</button>
-        <img id="barrelImg0" class="barrelsImg" src="/images/barell.jpg">
-        <script>
-            document.getElementById("barrelImg0").onmousemove = function(e){
-                img = document.getElementById("myimg");
-                img.style.top = e.clientY+"px";
-                img.style.left = e.clientX+"px";
-
-            }
-        </script>
+        <img class="barrelsImg" src="/images/barell.jpg" title="Танк №1">
         <div class="myProgress">
             <div id="label0" class="indicatorLabels">0</div>
             <div class="myBar" id="barIndicator0"></div>
         </div>
         <button class="barellButton" onclick="showBarrel(1)">?</button>
-        <img class="barrelsImg" src="/images/barell.jpg">
+        <img class="barrelsImg" src="/images/barell.jpg"  title="Танк №2">
         <div class="myProgress">
             <div id="label1" class="indicatorLabels">0</div>
             <div class="myBar" id="barIndicator1"></div>
         </div>
         <button class="barellButton" onclick="showBarrel(2)">?</button>
-        <img class="barrelsImg" src="/images/barell.jpg">
+        <img class="barrelsImg" src="/images/barell.jpg"  title="Танк №3">
         <div class="myProgress">
             <div id="label2" class="indicatorLabels">0</div>
             <div class="myBar" id="barIndicator2"></div>
         </div>
         <button class="barellButton" onclick="showBarrel(3)">?</button>
-        <img class="barrelsImg" src="/images/barell.jpg">
+        <img class="barrelsImg" src="/images/barell.jpg"  title="Танк №4">
         <div class="myProgress">
             <div id="label3" class="indicatorLabels">0</div>
             <div class="myBar" id="barIndicator3"></div>
@@ -88,18 +95,18 @@
                 <div class="fromCarPipes3" id="fromCarPipe012"></div>
                 <button class="repairButton1" id="repairButton01" onclick="repairFilter('01')">Заменить</button>
                 <span class="repairButton1" id="repairText01">Чиним...</span>
-                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter01" style="margin-left: 31px;">
-                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter02" style="margin-left: 31px; margin-top: 35px;">
+                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter01" style="margin-left: 31px;" title="Фильтр">
+                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter02" style="margin-left: 31px; margin-top: 35px;" title="Фильтр">
                 <button class="repairButton2"  id="repairButton02" onclick="repairFilter('02')">Заменить</button>
                 <span class="repairButton2" id="repairText02">Чиним...</span>
                 <div class="fromCarPipes4" id="fromCarPipe021"></div>
                 <div class="fromCarPipes5" id="fromCarPipe022"></div>
                 <div class="fromCarPipes6" id="fromCarPipe02"></div>
             </div>
-            <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze0">
+            <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze0" title="Охладитель 1">
             <button class="freezeButtons" onclick="activateFreeze(0)" id="freezeButton01">Включить</button>
             <button class="freezeButtons" onclick="deactivateFreeze(0)" id="freezeButton02" style="display: none">Выключить</button>
-            <img src="/images/Separator.jpg" class="separators" id="separator0">
+            <img src="/images/Separator.jpg" class="separators" id="separator0" title="Сепаратор 1">
         </div>
         <div id="devices1" class="devicesLine">
             <div class="filtersBlock" id="filterBlock1">
@@ -108,18 +115,18 @@
                 <div class="fromCarPipes3" id="fromCarPipe112"></div>
                 <button class="repairButton1" id="repairButton11" onclick="repairFilter('11')">Заменить</button>
                 <span class="repairButton1" id="repairText11">Чиним...</span>
-                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter11" style="margin-left: 31px;">
-                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter12" style="margin-left: 31px; margin-top: 35px;">
+                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter11" style="margin-left: 31px;" title="Фильтр">
+                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter12" style="margin-left: 31px; margin-top: 35px;" title="Фильтр">
                 <button class="repairButton2" id="repairButton12" onclick="repairFilter('12')">Заменить</button>
                 <span class="repairButton2" id="repairText12">Чиним...</span>
                 <div class="fromCarPipes4" id="fromCarPipe121"></div>
                 <div class="fromCarPipes5" id="fromCarPipe122"></div>
                 <div class="fromCarPipes6" id="fromCarPipe12"></div>
             </div>
-            <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze1">
+            <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze1" title="Охладитель 2">
             <button class="freezeButtons" onclick="activateFreeze(1)" id="freezeButton11">Включить</button>
             <button class="freezeButtons" onclick="deactivateFreeze(1)" id="freezeButton12" style="display: none">Выключить</button>
-            <img src="/images/Separator.jpg" class="separators" id="separator1">
+            <img src="/images/Separator.jpg" class="separators" id="separator1" title="Сепаратор 2">
         </div>
         <div id="devices2" class="devicesLine">
             <div class="filtersBlock" id="filterBlock2">
@@ -128,18 +135,18 @@
                 <div class="fromCarPipes3" id="fromCarPipe212"></div>
                 <button class="repairButton1" id="repairButton21" onclick="repairFilter('21')">Заменить</button>
                 <span class="repairButton1" id="repairText21">Чиним...</span>
-                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter21" style="margin-left: 31px;">
-                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter22" style="margin-left: 31px; margin-top: 35px;">
+                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter21" style="margin-left: 31px;" title="Фильтр">
+                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter22" style="margin-left: 31px; margin-top: 35px;" title="Фильтр">
                 <button class="repairButton2" id="repairButton22" onclick="repairFilter('22')">Заменить</button>
                 <span class="repairButton2" id="repairText22">Чиним...</span>
                 <div class="fromCarPipes4" id="fromCarPipe221"></div>
                 <div class="fromCarPipes5" id="fromCarPipe222"></div>
                 <div class="fromCarPipes6" id="fromCarPipe22"></div>
             </div>
-            <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze2">
+            <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze2" title="Охладитель 3">
             <button class="freezeButtons" onclick="activateFreeze(2)" id="freezeButton21">Включить</button>
             <button class="freezeButtons" onclick="deactivateFreeze(2)" id="freezeButton22" style="display: none">Выключить</button>
-            <img src="/images/Separator.jpg" class="separators" id="separator2">
+            <img src="/images/Separator.jpg" class="separators" id="separator2" title="Сепаратор 3">
         </div>
         <div id="devices3" class="devicesLine">
             <div class="filtersBlock" id="filterBlock3">
@@ -148,18 +155,18 @@
                 <div class="fromCarPipes3" id="fromCarPipe312"></div>
                 <button class="repairButton1" id="repairButton31" onclick="repairFilter('31')">Заменить</button>
                 <span class="repairButton1" id="repairText31">Чиним...</span>
-                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter31" style="margin-left: 31px;">
-                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter32" style="margin-left: 31px; margin-top: 35px;">
+                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter31" style="margin-left: 31px;" title="Фильтр">
+                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter32" style="margin-left: 31px; margin-top: 35px;" title="Фильтр">
                 <button class="repairButton2" id="repairButton32" onclick="repairFilter('32')">Заменить</button>
                 <span class="repairButton2" id="repairText32">Чиним...</span>
                 <div class="fromCarPipes4" id="fromCarPipe321"></div>
                 <div class="fromCarPipes5" id="fromCarPipe322"></div>
                 <div class="fromCarPipes6" id="fromCarPipe32"></div>
             </div>
-            <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze3">
+            <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze3" title="Охладитель 4">
             <button class="freezeButtons" onclick="activateFreeze(3)" id="freezeButton31">Включить</button>
             <button class="freezeButtons" onclick="deactivateFreeze(3)" id="freezeButton32" style="display: none">Выключить</button>
-            <img src="/images/Separator.jpg" class="separators" id="separator3">
+            <img src="/images/Separator.jpg" class="separators" id="separator3" title="Сепаратор 4">
         </div>
     </div>
     <div id="pipes">
@@ -285,6 +292,5 @@
     <script src="/scripts/waybills_and_milkchars.js"></script>
     <script src="/scripts/firstLab.js"></script>
 </div>
-<div id="floatingmes">Это бочка, гарантирую</div>
 </body>
 </html>
