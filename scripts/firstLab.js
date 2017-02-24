@@ -182,7 +182,7 @@ function Barrel(progressNumb) {
 
         if(this.milkChar.sort == 1 && car.milkChar.sort == 2)
         {
-            createError('Попытка испортить 1 категорию в танке '+this.numb);
+            createError('Попытка испортить 1 категорию в танке '+(this.numb+1));
             alert('Попытка испортить 1 категорию');
             return;
         }
@@ -194,7 +194,7 @@ function Barrel(progressNumb) {
         }
 
         freeze.isLocked = true;
-        createLog('В танк №'+this.numb+' заливают '+litres+'л молока из машины №'+car.numb);
+        createLog('В танк №'+(this.numb+1)+' заливают '+litres+'л молока из машины №'+(car.numb+1));
 
         if(this.milkChar.sort == 0)
         {
@@ -728,7 +728,7 @@ function rejectCar(numb) {
     {
         if(car.neSort == false)
         {
-            createError('Попытка отказаться от машины №'+car.numb);
+            createError('Попытка отказаться от машины №'+(car.numb+1));
             alert('Неверно')
         }
         else
@@ -759,11 +759,11 @@ function chooseSort(numb) {
         return;
     if(sort != rigthSort)
     {
-        createError('Неверно определен сорт молока у машины №'+car.numb+'. Введен сорт '+sort+'. Верный сорт: '+car.milkChar.sort);
+        createError('Неверно определен сорт молока у машины №'+(car.numb+1)+'. Введен сорт '+sort+'. Верный сорт: '+car.milkChar.sort);
         alert('Неверно!');
         return;
     }
-    createLog('Выбран верный сорт молока в машине №'+car.numb)
+    createLog('Выбран верный сорт молока в машине №'+(car.numb+1));
     waybills[numb].sort = sort;
     car.waybill.sort = sort;
 }
