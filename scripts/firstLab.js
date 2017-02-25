@@ -733,7 +733,7 @@ function rejectCar(numb) {
         }
         else
         {
-            waybills[numb].sort = 'Несортовое';
+            //waybills[numb].sort = 'Несортовое';
             car.waybill.sort = 'Несортовое';
             car.isEmpty = true;
             car.isActive = false;
@@ -764,7 +764,7 @@ function chooseSort(numb) {
         return;
     }
     createLog('Выбран верный сорт молока в машине №'+(car.numb+1));
-    waybills[numb].sort = sort;
+    //waybills[numb].sort = sort;
     car.waybill.sort = sort;
 }
 
