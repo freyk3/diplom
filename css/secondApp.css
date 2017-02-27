@@ -1,9 +1,98 @@
-body {
-    padding-top: 40px;
-    padding-bottom: 40px;
+body
+{
     background-color: #eee;
+    width: auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
 }
 #appBlock
 {
-
+    width: 1200px;
+}
+.abs
+{
+    position: absolute;
+}
+#tank
+{
+    width: 120px;
+    margin-top: 50px;
+}
+#tank2
+{
+    width: 120px;
+    margin-left: 1050px;
+    margin-top: 450px;
+}
+#ventil
+{
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: url(/images/Kran_zakryty.jpg);
+    background-size: contain;
+    margin-top: 270px;
+    margin-left: 150px;
+}
+#slivki
+{
+    width: 130px;
+    margin-top: 520px;
+    margin-left: 750px;
+}
+#separator
+{
+    width: 150px;
+    margin-left: 574px;
+    margin-top: 500px;
+}
+#kirpich
+{
+    width: 30px;
+    margin-left: 608px;
+    margin-top: 420px;
+}
+#gomo
+{
+    width: 170px;
+    margin-top: 230px;
+    margin-left: 1000px;
+}
+#pou
+{
+    width: 470px;
+    margin-left: 430px;
+    margin-top: 210px;
+}
+#nasos
+{
+    width: 100px;
+    height: 100px;
+    background-color: #67b168;
+    margin-top: 235px;
+    margin-left: 240px;
+}
+.outerPipesVert
+{
+    position: absolute;
+    width: 17px;
+    background-color: rgb(246,144,33);
+}
+.outerPipesHorz
+{
+    position: absolute;
+    height: 17px;
+    background-color: rgb(246,144,33);
+}
+.innerPipesVert
+{
+    width: 15px;
+    height: inherit;
+}
+.innerPipesHorz
+{
+    height: 15px;
+    width: inherit;
 }
