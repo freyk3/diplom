@@ -4,19 +4,35 @@
     <meta charset="UTF-8">
     <title>Лабораторная работа №2</title>
     <link href="/css/secondApp.css" rel="stylesheet">
+    <script type="text/javascript" src="/scripts/jquery-3.1.1.js"></script>
+    <link href="/css/tooltips/tooltipster.bundle.min.css" rel="stylesheet">
+    <link href="/css/tooltips/tooltipster-follower.min.css" rel="stylesheet">
+    <link href="/css/tooltips/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css" rel="stylesheet">
+    <script type="text/javascript" src="/scripts/tooltips/tooltipster.bundle.min.js"></script>
+    <script type="text/javascript" src="/scripts/tooltips/tooltipster-follower.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.abs').tooltipster({
+                theme: 'tooltipster-shadow',
+                animation: 'fade',
+                delay: [2000,0],
+                plugins: ['follower']
+            });
+        });
+    </script>
 </head>
 <body>
 
 <div id="appBlock">
-    <img class="abs" id="tank" src="/images/secondApp/Tank.jpg">
-    <div class="abs" id="ventil"></div>
-    <div class="abs" id="nasos"></div>
-    <img class="abs" id="pou" src="/images/secondApp/POU.jpg">
-    <img class="abs" id="gomo" src="/images/secondApp/gomogenizator.jpg">
-    <img class="abs" id="kirpich" src="/images/secondApp/blok_podklyuchenia_separatora.jpg">
-    <img class="abs" id="separator" src="/images/secondApp/Separator_2.jpg">
-    <img class="abs" id="slivki" src="/images/secondApp/tank_nizhniy.jpg">
-    <img class="abs" id="tank2" src="/images/secondApp/Tank.jpg">
+    <img class="abs" id="tank" src="/images/secondApp/Tank.jpg" title="Танк c молоком">
+    <div class="abs" id="ventil" title="Вентиль. Кликните чтобы запустить"></div>
+    <div class="abs" id="nasos" title="Тут будет насос"></div>
+    <img class="abs" id="pou" title="ПОУ" src="/images/secondApp/POU.jpg">
+    <img class="abs" id="gomo" title="Гомогенизатор" src="/images/secondApp/gomogenizator.jpg">
+    <img class="abs" id="kirpich" title="Сепаратор" src="/images/secondApp/blok_podklyuchenia_separatora.jpg">
+    <img class="abs" id="separator" title="Сепаратор" src="/images/secondApp/Separator_2.jpg">
+    <img class="abs" id="slivki" title="Танк со сливками" src="/images/secondApp/tank_nizhniy.jpg">
+    <img class="abs" id="tank2" title="Танк с готовым продуктом" src="/images/secondApp/Tank.jpg">
         <!-- Pipes --> <!-- В лабе 12 вертикальных труб и 9 горизонтальных -->
     <!-- Вертикальные -->
     <div class="outerPipesVert" id="vertPipe1" style="margin-top: 253px; margin-left: 51px; height: 24px;">
@@ -86,62 +102,62 @@
             <tr>
                 <td>
                     Температура молока на первой секции:<br/>
-                    <input type="text">
+                    <input type="text" id="input1">
                 </td>
-                <td><button>Подтвердить</button></td>
+                <td><button onclick="disableInput(1)">Подтвердить</button></td>
             </tr>
             <tr>
                 <td>
                     Температура молока на второй секции:<br/>
-                    <input type="text">
+                    <input type="text" id="input2">
                 </td>
-                <td><button>Подтвердить</button></td>
+                <td><button onclick="disableInput(2)">Подтвердить</button></td>
             </tr>
             <tr>
                 <td>
                     Температура молока в выдерживателе:<br/>
-                    <input type="text">
+                    <input type="text" id="input3">
                 </td>
-                <td><button>Подтвердить</button></td>
+                <td><button onclick="disableInput(3)">Подтвердить</button></td>
             </tr>
             <tr>
                 <td>
                     Время работы выдерживателя:<br/>
-                    <input type="text">
+                    <input type="text" id="input4">
                 </td>
-                <td><button>Подтвердить</button></td>
+                <td><button onclick="disableInput(4)">Подтвердить</button></td>
             </tr>
             <tr>
                 <td>
                     Давление в гомогенизаторе:<br/>
-                    <input type="text">
+                    <input type="text" id="input5">
                 </td>
-                <td><button>Подтвердить</button></td>
+                <td><button onclick="disableInput(5)">Подтвердить</button></td>
             </tr>
             <tr>
                 <td>
                     Температура в пастеризаторе:<br/>
-                    <input type="text">
+                    <input type="text" id="input6">
                 </td>
-                <td><button>Подтвердить</button></td>
+                <td><button onclick="disableInput(6)">Подтвердить</button></td>
             </tr>
             <tr>
                 <td>
                     Время работы пастеризатора:<br/>
-                    <input type="text">
+                    <input type="text" id="input7">
                 </td>
-                <td><button>Подтвердить</button></td>
+                <td><button onclick="disableInput(7)">Подтвердить</button></td>
             </tr>
             <tr>
                 <td>
                     Температура в охладителе:<br/>
-                    <input type="text">
+                    <input type="text" id="input8">
                 </td>
-                <td><button>Подтвердить</button></td>
+                <td><button onclick="disableInput(8)">Подтвердить</button></td>
             </tr>
         </table>
     </div>
 </div>
-
+<script src="/scripts/secondLab.js"></script>
 </body>
 </html>
