@@ -23,7 +23,7 @@ body
 {
     width: 120px;
     margin-left: 1050px;
-    margin-top: 450px;
+    margin-top: 380px;
 }
 #ventil
 {
@@ -39,14 +39,14 @@ body
 #slivki
 {
     width: 130px;
-    margin-top: 520px;
+    margin-top: 443px;
     margin-left: 750px;
 }
 #separator
 {
     width: 150px;
     margin-left: 574px;
-    margin-top: 500px;
+    margin-top: 450px;
 }
 #kirpich
 {
@@ -95,4 +95,10 @@ body
 {
     height: 15px;
     width: inherit;
+}
+
+#inputsBlock
+{
+    position: absolute;
+    margin-top: 340px;
 }
