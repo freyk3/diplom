@@ -122,7 +122,18 @@ body
 }
 .innerPipesHorz
 {
-    width: 0px;
+    width: 2px;
     height: 15px;
     background-color: white;
+}
+#buttons
+{
+    position: absolute;
+    margin-top: 500px;
+
+}
+button
+{
+    height: 40px;
+    width: 150px;
 }
