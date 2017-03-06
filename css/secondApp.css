@@ -9,6 +9,7 @@ body
 #appBlock
 {
     width: 1200px;
+    margin-top: -25px;
 }
 .abs
 {
@@ -16,89 +17,112 @@ body
 }
 #tank
 {
-    width: 120px;
+    width: 140px;
     margin-top: 50px;
 }
 #tank2
 {
-    width: 120px;
-    margin-left: 1050px;
-    margin-top: 380px;
+    width: 130px;
+    margin-left: 998px;
+    margin-top: 303px;
 }
-#ventil
-{
-    width: 30px;
-    height: 30px;
-    border-radius: 10px;
-    cursor: pointer;
-    background: url(/images/Kran_zakryty.jpg);
-    background-size: contain;
-    margin-top: 270px;
-    margin-left: 150px;
-}
+
 #slivki
 {
-    width: 130px;
-    margin-top: 443px;
-    margin-left: 750px;
+    width: 90px;
+    margin-top: 573px;
+    margin-left: 772px;
 }
 #separator
 {
     width: 150px;
-    margin-left: 574px;
-    margin-top: 450px;
+    margin-left: 517px;
+    margin-top: 594px;
 }
 #kirpich
 {
     width: 30px;
-    margin-left: 608px;
-    margin-top: 420px;
+    margin-left: 551px;
+    margin-top: 564px;
 }
 #gomo
 {
     width: 170px;
-    margin-top: 230px;
-    margin-left: 1000px;
-}
-#pou
-{
-    width: 470px;
-    margin-left: 430px;
     margin-top: 210px;
+    margin-left: 525px;
+}
+#pou1
+{
+    width: 80px;
+    margin-left: 447px;
+    margin-top: 372px;
+}
+#pou2
+{
+    width: 80px;
+    margin-left: 526px;
+    margin-top: 372px;
+}
+#pou3
+{
+    width: 80px;
+    margin-left: 605px;
+    margin-top: 372px;
+}
+#pou4
+{
+    width: 80px;
+    margin-left: 368px;
+    margin-top: 372px;
+}
+#viderj
+{
+    width: 65px;
+    margin-top: 405px;
+    margin-left: 729px;
 }
 #nasos
 {
-    width: 100px;
-    height: 100px;
-    background-color: #67b168;
-    margin-top: 235px;
-    margin-left: 240px;
+    width: 60px;
+    margin-top: 282px;
+    margin-left: 150px;
+}
+#nasos2
+{
+    width: 60px;
+    margin-top: 282px;
+    margin-left: 457px;
+}
+#buffer_tank
+{
+    width: 120px;
+    height: 105px;
+    margin-top: 237px;
+    margin-left: 254px;
 }
 .outerPipesVert
 {
     position: absolute;
     width: 17px;
     background-color: rgb(246,144,33);
+    text-align: -webkit-center;
 }
 .outerPipesHorz
 {
     position: absolute;
-    height: 17px;
+    height: 16px;
     background-color: rgb(246,144,33);
+    padding-top: 1px;
 }
 .innerPipesVert
 {
+    height: 2px;
     width: 15px;
-    height: inherit;
+    background-color: white;
 }
 .innerPipesHorz
 {
+    width: 0px;
     height: 15px;
-    width: inherit;
-}
-
-#inputsBlock
-{
-    position: absolute;
-    margin-top: 340px;
+    background-color: white;
 }
