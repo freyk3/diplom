@@ -7,13 +7,10 @@ var horzPipes = [];
 
 //Базовые установки
 var animationSpeed = 10;
-var firstPouDelay = 100;
-var secondPouDelay = 100;
-var thirdPouDelay = 100;
-var fourthPouDelay = 100;
-var gomogDelay = 1000;
-var separatorDelay = 100;
-var viderjDelay = 100;
+var rashirTankDelay = 2000;
+var gomogDelay = 5000;
+var separatorDelay = 5000;
+var viderjDelay = 10000;
 
 var mainPipes;
 for(var i=1; i<14; i++)
@@ -29,18 +26,22 @@ var correctPipes = [vertPipes[1],
     vertPipes[2],
     horzPipes[2],
     vertPipes[3],
+    rashirTankDelay,
     horzPipes[3],
     horzPipes[4],
     vertPipes[5],
     vertPipes[9],
     horzPipes[9],
+    separatorDelay,
     horzPipes[10],
     vertPipes[11],
     horzPipes[11],
     vertPipes[10],
     vertPipes[6],
+    gomogDelay,
     vertPipes[7],
     horzPipes[5],
+    viderjDelay,
     horzPipes[6],
     vertPipes[12],
     horzPipes[12],
@@ -51,18 +52,22 @@ var inCorrectPipes = [vertPipes[1],
     vertPipes[2],
     horzPipes[2],
     vertPipes[3],
+    rashirTankDelay,
     horzPipes[3],
     horzPipes[4],
     vertPipes[5],
     vertPipes[9],
     horzPipes[9],
+    separatorDelay,
     horzPipes[10],
     vertPipes[11],
     horzPipes[11],
     vertPipes[10],
     vertPipes[6],
+    gomogDelay,
     vertPipes[7],
     horzPipes[5],
+    viderjDelay,
     horzPipes[8],
     vertPipes[8],
     horzPipes[7],
@@ -75,13 +80,16 @@ var againCorrectPipes = [
     vertPipes[5],
     vertPipes[9],
     horzPipes[9],
+    separatorDelay,
     horzPipes[10],
     vertPipes[11],
     horzPipes[11],
     vertPipes[10],
     vertPipes[6],
+    gomogDelay,
     vertPipes[7],
     horzPipes[5],
+    viderjDelay,
     horzPipes[6],
     vertPipes[12],
     horzPipes[12],
@@ -124,7 +132,17 @@ function pipeAnimation() {
         if (+value >= lenght) {
             iterator++;
             if(iterator < mainPipes.length)
-                pipeAnimation();
+            {
+                if(typeof mainPipes[iterator] == 'object')
+                    pipeAnimation();
+                else if(typeof mainPipes[iterator] == 'number')
+                {
+                    var timeout = mainPipes[iterator];
+                    iterator++;
+                    setTimeout(pipeAnimation,timeout);
+                }
+            }
+
             clearInterval(id);
         } else {
             if(isVertical)
