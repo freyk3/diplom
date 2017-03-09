@@ -130,6 +130,11 @@ function pipeAnimation() {
             value = value.substring(0, value.length - 2);
 
         if (+value >= lenght) {
+            if(mainPipes[iterator].id == 'horzPipe11')
+                progressSlivkiBar();
+            if(mainPipes[iterator].id == 'vertPipe13')
+                progressFinishProductBar();
+
             iterator++;
             if(iterator < mainPipes.length)
             {
@@ -185,5 +190,53 @@ function clearPipes() {
         pipe = horzPipes[h];
         internalPipe = pipe.firstElementChild;
         internalPipe.style.width = '0px';
+    }
+}
+
+function progressSlivkiBar() {
+    var bar = document.getElementById('barIndicator0');
+
+    var id = setInterval(frame, 50);
+
+    function frame() {
+        var value = bar.style.height;
+        if(value != '')
+            value = value.substring(0, value.length - 1);
+
+        if (+value >= 100) {
+            clearInterval(id);
+        } else {
+            if (value == '')
+                bar.style.height = 1 + '%';
+            else {
+                value = 1 + +value;
+                bar.style.height = value + '%';
+            }
+        }
+
+    }
+}
+
+function progressFinishProductBar() {
+    var bar = document.getElementById('barIndicator1');
+
+    var id = setInterval(frame, 50);
+
+    function frame() {
+        var value = bar.style.height;
+        if(value != '')
+            value = value.substring(0, value.length - 1);
+
+        if (+value >= 100) {
+            clearInterval(id);
+        } else {
+            if (value == '')
+                bar.style.height = 1 + '%';
+            else {
+                value = 1 + +value;
+                bar.style.height = value + '%';
+            }
+        }
+
     }
 }
