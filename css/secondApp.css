@@ -116,13 +116,13 @@ body
 }
 .innerPipesVert
 {
-    height: 2px;
+    height: 0px;
     width: 15px;
     background-color: white;
 }
 .innerPipesHorz
 {
-    width: 2px;
+    width: 0px;
     height: 15px;
     background-color: white;
 }

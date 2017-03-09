@@ -38,7 +38,7 @@
     <img class="abs" id="separator" title="Сепаратор" src="/images/secondApp/Separator_2.jpg">
     <img class="abs" id="slivki" title="Танк со сливками" src="/images/secondApp/bak_dlya_slivok.jpg">
     <img class="abs" id="tank2" title="Танк с готовым продуктом" src="/images/secondApp/bak_s_produktom.jpg">
-        <!-- Pipes --> <!-- В лабе 12 вертикальных труб и 9 горизонтальных -->
+        <!-- Pipes -->
     <!-- Вертикальные -->
     <div class="outerPipesVert" id="vertPipe1" style="height: 19px; margin-top: 286px; margin-left: 62px;">
         <div class="innerPipesVert" data-lenght="19"></div>
@@ -90,7 +90,7 @@
         <div class="innerPipesHorz" data-lenght="33"></div>
     </div>
     <div class="outerPipesHorz" id="horzPipe4" style="margin-top: 304px; margin-left: 407px; width: 50px;">
-        <div class="innerPipesHorz" data-lenght="33" style="margin-right: 17px;"></div>
+        <div class="innerPipesHorz" data-lenght="33" style="margin-left: 17px;"></div>
     </div>
     <div class="outerPipesHorz" id="horzPipe5" style="margin-top: 388px; margin-left: 685px; width: 90px;">
         <div class="innerPipesHorz" data-lenght="89"></div>
@@ -102,7 +102,7 @@
         <div class="innerPipesHorz" data-lenght="516" style="margin-right: 17px;"></div>
     </div>
     <div class="outerPipesHorz" id="horzPipe8" style="margin-top: 501px; margin-left: 775px; width: 70px;">
-        <div class="innerPipesHorz" data-lenght="70"></div>
+        <div class="innerPipesHorz" data-lenght="89" style="margin-left: -20px;"></div>
     </div>
     <div class="outerPipesHorz" id="horzPipe9" style="margin-top: 572px; margin-left: 479px; width: 72px;">
         <div class="innerPipesHorz" data-lenght="55" style="margin-left: 17px;"></div>
@@ -117,8 +117,10 @@
         <div class="innerPipesHorz" data-lenght="639"></div>
     </div>
     <div id="buttons">
-        <button>Норм пустить</button><br/>
-        <button>Пустить с обраткой</button>
+        <button onclick="start()">Норм пустить</button><br/>
+        <button onclick="startWithError()">Пустить с обраткой</button><br/>
+        <button onclick="startAgain()">Пустить повторно</button><br/>
+        <button onclick="clearPipes()">Очистить трубы</button>
     </div>
 </div>
 <script src="/scripts/secondLab.js"></script>
