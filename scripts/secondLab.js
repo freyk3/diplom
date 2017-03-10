@@ -2,15 +2,23 @@
  * Created by Freyk on 28.02.2017.
  */
 
-var vertPipes = [];
-var horzPipes = [];
-
 //Базовые установки
 var animationSpeed = 10;
 var rashirTankDelay = 2000;
 var gomogDelay = 5000;
 var separatorDelay = 5000;
 var viderjDelay = 10000;
+
+var vertPipes = [];
+var horzPipes = [];
+var errorExist;
+var mainTemplate;
+var secTempIsCorrect1 = false,
+    secTempIsCorrect2 = false,
+    secTempIsCorrect3 = false,
+    secTempIsCorrect4 = false,
+    viderjTimeIsCorrect = false,
+    gomoDavlenIsCorrect = false;
 
 var mainPipes;
 for(var i=1; i<14; i++)
@@ -111,6 +119,17 @@ function startAgain() {
     iterator = 0;
     pipeAnimation();
 }
+
+var templateNumb = randomInteger(0,3);
+mainTemplate = templates[templateNumb];
+console.log('Номер шаблона: '+templateNumb);
+var errorNumb = randomInteger(0,3);
+if(errorNumb == 0) //для обеспечения 1 к 4 появление ошибки
+    errorExist = true;
+else
+    errorExist = false;
+console.log('Наличие ошибки: '+errorExist);
+
 
 function pipeAnimation() {
     var pipe = mainPipes[iterator];
@@ -239,4 +258,47 @@ function progressFinishProductBar() {
         }
 
     }
+}
+
+function randomInteger(min, max) {
+    var rand = min + Math.random() * (max + 1 - min);
+    rand = Math.floor(rand);
+    return rand;
+}
+
+function test() {
+    var errorNumb = randomInteger(0,3);
+    if(errorNumb == 0) //для обеспечения 1 к 4 появление ошибки
+        errorExist = true;
+    else
+        errorExist = false;
+    console.log('Наличие ошибки: '+errorExist);
+}
+
+function chooseSec1() {
+    var temp = prompt('Введите температуру в °С','');
+    if(temp == '')
+        return;
+
+    if(temp > mainTemplate.temperSec1Min && temp < mainTemplate.temperSec1Max)
+    {
+        d();//тут будет чтото
+    }
+    else
+        alert('Неверно!');
+}
+function chooseSec2() {
+
+}
+function chooseSec3() {
+
+}
+function chooseSec4() {
+
+}
+function chooseGomog() {
+
+}
+function chooseViderj() {
+
 }

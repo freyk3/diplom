@@ -34,12 +34,12 @@
     <img class="abs" id="nasos" title="Тут будет насос" src="/images/secondApp/Nasos.jpg">
     <img class="abs" id="buffer_tank" title="Расширительный бак" src="/images/secondApp/buferny_bak_2.jpg">
     <img class="abs" id="nasos2" title="Тут будет насос" src="/images/secondApp/Nasos_vniz.jpg">
-    <img class="abs" id="gomo" title="Гомогенизатор" src="/images/secondApp/gomogena.jpg">
-    <img class="abs" id="pou1" title="ПОУ1" src="/images/secondApp/1.jpg">
-    <img class="abs" id="pou2" title="ПОУ2" src="/images/secondApp/2.jpg">
-    <img class="abs" id="pou3" title="ПОУ3" src="/images/secondApp/3.jpg">
-    <img class="abs" id="pou4" title="ПОУ4" src="/images/secondApp/4.jpg">
-    <img class="abs" id="viderj" title="Выдерживатель" src="/images/secondApp/vyderzhivatel.jpg">
+    <img class="abs" id="gomo" onclick="chooseGomog()" title="Гомогенизатор" src="/images/secondApp/gomogena.jpg">
+    <img class="abs" id="pou1" onclick="chooseSec1()" title="ПОУ1" src="/images/secondApp/1.jpg">
+    <img class="abs" id="pou2" onclick="chooseSec2()" title="ПОУ2" src="/images/secondApp/2.jpg">
+    <img class="abs" id="pou3" onclick="chooseSec3()" title="ПОУ3" src="/images/secondApp/3.jpg">
+    <img class="abs" id="pou4" onclick="chooseSec4()" title="ПОУ4" src="/images/secondApp/4.jpg">
+    <img class="abs" id="viderj" onclick="chooseViderj()" title="Выдерживатель" src="/images/secondApp/vyderzhivatel.jpg">
     <img class="abs" id="kirpich" title="Сепаратор" src="/images/secondApp/blok_podklyuchenia_separatora.jpg">
     <img class="abs" id="separator" title="Сепаратор" src="/images/secondApp/Separator_2.jpg">
     <img class="abs" id="slivki" title="Танк со сливками" src="/images/secondApp/bak_dlya_slivok.jpg">
@@ -123,12 +123,14 @@
         <div class="innerPipesHorz" data-lenght="639"></div>
     </div>
     <div id="buttons">
+        <button onclick="test()">test</button><br/>
         <button onclick="start()">Норм пустить</button><br/>
         <button onclick="startWithError()">Пустить с обраткой</button><br/>
         <button onclick="startAgain()">Пустить повторно</button><br/>
         <button onclick="clearPipes()">Очистить трубы</button>
     </div>
 </div>
+<script src="/scripts/templatesLab2.js"></script>
 <script src="/scripts/secondLab.js"></script>
 </body>
 </html>
