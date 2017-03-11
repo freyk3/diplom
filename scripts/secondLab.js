@@ -12,13 +12,14 @@ var viderjDelay = 10000;
 var vertPipes = [];
 var horzPipes = [];
 var errorExist;
+var appIsFinished = false;
 var mainTemplate;
-var secTempIsCorrect1 = false,
-    secTempIsCorrect2 = false,
-    secTempIsCorrect3 = false,
-    secTempIsCorrect4 = false,
-    viderjTimeIsCorrect = false,
-    gomoDavlenIsCorrect = false;
+var secTempIsCorrect1,
+    secTempIsCorrect2,
+    secTempIsCorrect3,
+    secTempIsCorrect4,
+    viderjTimeIsCorrect,
+    gomoDavlenIsCorrect;
 
 var mainPipes;
 for(var i=1; i<14; i++)
@@ -122,6 +123,8 @@ function startAgain() {
 
 var templateNumb = randomInteger(0,3);
 mainTemplate = templates[templateNumb];
+document.getElementById('temperatura1').innerHTML = mainTemplate.enterTemper;
+document.getElementById('jirnost1').innerHTML = mainTemplate.enterJir;
 console.log('Номер шаблона: '+templateNumb);
 var errorNumb = randomInteger(0,3);
 if(errorNumb == 0) //для обеспечения 1 к 4 появление ошибки
@@ -164,6 +167,15 @@ function pipeAnimation() {
                     var timeout = mainPipes[iterator];
                     iterator++;
                     setTimeout(pipeAnimation,timeout);
+                }
+            }
+            else
+            {
+                if(appIsFinished == false)
+                {
+                    clearPipes();
+                    appIsFinished = true;
+                    alert('Пастеризатор не догрел молоко до необходимой температуры. Просто запустите ещё раз.');
                 }
             }
 
@@ -247,6 +259,7 @@ function progressFinishProductBar() {
             value = value.substring(0, value.length - 1);
 
         if (+value >= 100) {
+            finishLab2();
             clearInterval(id);
         } else {
             if (value == '')
@@ -276,29 +289,164 @@ function test() {
 }
 
 function chooseSec1() {
-    var temp = prompt('Введите температуру в °С','');
+    var temp = prompt('Введите температуру в °С:','');
     if(temp == '')
         return;
 
     if(temp > mainTemplate.temperSec1Min && temp < mainTemplate.temperSec1Max)
     {
-        d();//тут будет чтото
+        secTempIsCorrect1 = true;
     }
     else
-        alert('Неверно!');
+    {
+        secTempIsCorrect1 = false;
+    }
 }
 function chooseSec2() {
+    var temp = prompt('Введите температуру в °С','');
+    if(temp == '')
+        return;
 
+    if(temp > mainTemplate.temperSec2Min && temp < mainTemplate.temperSec2Max)
+    {
+        secTempIsCorrect2 = true;
+    }
+    else
+    {
+        secTempIsCorrect2 = false;
+    }
 }
 function chooseSec3() {
+    var temp = prompt('Введите температуру в °С:','');
+    if(temp == '')
+        return;
 
+    if(temp > mainTemplate.temperSec3Min && temp < mainTemplate.temperSec3Max)
+    {
+        secTempIsCorrect3 = true;
+    }
+    else
+    {
+        secTempIsCorrect3 = false;
+    }
+
+    var time = prompt('Введите время выдерживания в секундах:','');
+    if(time == '')
+        return;
+
+    if(time == mainTemplate.viderjTime)
+    {
+        viderjTimeIsCorrect = true;
+    }
+    else
+    {
+        viderjTimeIsCorrect = false;
+    }
 }
 function chooseSec4() {
+    var temp = prompt('Введите температуру в °С','');
+    if(temp == '')
+        return;
 
+    if(temp > mainTemplate.temperSec4Min && temp < mainTemplate.temperSec4Max)
+    {
+        secTempIsCorrect4 = true;
+    }
+    else
+    {
+        secTempIsCorrect4 = false;
+    }
 }
 function chooseGomog() {
+    var davlen = prompt('Введите давление в МПа:','');
+    if(davlen == '')
+        return;
+
+    if(davlen > mainTemplate.gomoDavlenMin && davlen < mainTemplate.gomoDavlenMax)
+    {
+        gomoDavlenIsCorrect = true;
+    }
+    else
+    {
+        gomoDavlenIsCorrect = false;
+    }
+}
+
+function checkAll() {
+    if(secTempIsCorrect1 == undefined)
+    {
+        alert('Не установлена температура в секции 1');
+        return;
+    }
+    if(secTempIsCorrect2 == undefined)
+    {
+        alert('Не установлена температура в секции 2');
+        return;
+    }
+    if(secTempIsCorrect3 == undefined)
+    {
+        alert('Не установлена температура в секции 3');
+        return;
+    }
+    if(viderjTimeIsCorrect == undefined)
+    {
+        alert('Не установлено время выдержки в выдерживателе');
+        return;
+    }
+    if(secTempIsCorrect4 == undefined)
+    {
+        alert('Не установлена температура в секции 4');
+        return;
+    }
+    if(gomoDavlenIsCorrect == undefined)
+    {
+        alert('Не установлено давление в гомогенизаторе');
+        return;
+    }
+
+    if(secTempIsCorrect1 == true &&
+        secTempIsCorrect2 == true &&
+        secTempIsCorrect3 == true &&
+        secTempIsCorrect4 == true &&
+        viderjTimeIsCorrect == true &&
+        gomoDavlenIsCorrect == true)
+    {
+        if(errorExist) {
+            if (appIsFinished)
+            {
+                startAgain();
+            }
+            else
+            {
+                startWithError();
+            }
+        }
+        else
+        {
+            appIsFinished = true;
+            start();
+        }
+
+    }
+
+    if(secTempIsCorrect1 == false)
+        alert('Что-то пошло не так в секции 1');
+    if(secTempIsCorrect2 == false)
+        alert('Что-то пошло не так в секции 2');
+    if(secTempIsCorrect3 == false || viderjTimeIsCorrect == false)
+        alert('Что-то пошло не так в секции 3');
+    if(secTempIsCorrect4 == false)
+        alert('Что-то пошло не так в секции 4');
+    if(gomoDavlenIsCorrect == false)
+        alert('Что-то пошло не так в гомогенизаторе');
 
 }
-function chooseViderj() {
 
+function finishLab2() {
+    alert('Работа окончена! Отчет можно найти в разделе отчетов');
+    document.location.href='dashboard.html';
+}
+
+function tankInfo1() {
+    alert();
 }

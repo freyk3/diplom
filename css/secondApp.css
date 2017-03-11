@@ -132,10 +132,17 @@ body
     margin-top: 500px;
 
 }
-button
+#startButton
 {
     height: 40px;
     width: 150px;
+}
+
+#tankInfo1
+{
+    position: absolute;
+    margin-left: 150px;
+    margin-top: 75px;
 }
 
 .myProgress {
