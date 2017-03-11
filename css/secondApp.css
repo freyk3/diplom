@@ -144,6 +144,12 @@ body
     margin-left: 150px;
     margin-top: 75px;
 }
+#tankInfo2
+{
+    position: absolute;
+    margin-left: 1136px;
+    margin-top: 339px;
+}
 
 .myProgress {
     position: absolute;

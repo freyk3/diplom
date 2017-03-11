@@ -20,6 +20,7 @@ var secTempIsCorrect1,
     secTempIsCorrect4,
     viderjTimeIsCorrect,
     gomoDavlenIsCorrect;
+var finishTemp;
 
 var mainPipes;
 for(var i=1; i<14; i++)
@@ -89,10 +90,6 @@ var againCorrectPipes = [
     vertPipes[5],
     vertPipes[9],
     horzPipes[9],
-    separatorDelay,
-    horzPipes[10],
-    vertPipes[11],
-    horzPipes[11],
     vertPipes[10],
     vertPipes[6],
     gomogDelay,
@@ -250,6 +247,8 @@ function progressSlivkiBar() {
 
 function progressFinishProductBar() {
     var bar = document.getElementById('barIndicator1');
+    document.getElementById('temperatura2').innerHTML = finishTemp +' °С';
+    document.getElementById('jirnost2').innerHTML = mainTemplate.vihodJir;
 
     var id = setInterval(frame, 50);
 
@@ -347,7 +346,7 @@ function chooseSec4() {
     var temp = prompt('Введите температуру в °С','');
     if(temp == '')
         return;
-
+    finishTemp = temp;
     if(temp > mainTemplate.temperSec4Min && temp < mainTemplate.temperSec4Max)
     {
         secTempIsCorrect4 = true;
