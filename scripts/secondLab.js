@@ -278,21 +278,13 @@ function randomInteger(min, max) {
     return rand;
 }
 
-function test() {
-    var errorNumb = randomInteger(0,3);
-    if(errorNumb == 0) //для обеспечения 1 к 4 появление ошибки
-        errorExist = true;
-    else
-        errorExist = false;
-    console.log('Наличие ошибки: '+errorExist);
-}
 
 function chooseSec1() {
     var temp = prompt('Введите температуру в °С:','');
     if(temp == '')
         return;
 
-    if(temp > mainTemplate.temperSec1Min && temp < mainTemplate.temperSec1Max)
+    if(temp >= mainTemplate.temperSec1Min && temp <= mainTemplate.temperSec1Max)
     {
         secTempIsCorrect1 = true;
     }
@@ -306,7 +298,7 @@ function chooseSec2() {
     if(temp == '')
         return;
 
-    if(temp > mainTemplate.temperSec2Min && temp < mainTemplate.temperSec2Max)
+    if(temp >= mainTemplate.temperSec2Min && temp <= mainTemplate.temperSec2Max)
     {
         secTempIsCorrect2 = true;
     }
@@ -320,7 +312,7 @@ function chooseSec3() {
     if(temp == '')
         return;
 
-    if(temp > mainTemplate.temperSec3Min && temp < mainTemplate.temperSec3Max)
+    if(temp >= mainTemplate.temperSec3Min && temp <= mainTemplate.temperSec3Max)
     {
         secTempIsCorrect3 = true;
     }
@@ -347,7 +339,7 @@ function chooseSec4() {
     if(temp == '')
         return;
     finishTemp = temp;
-    if(temp > mainTemplate.temperSec4Min && temp < mainTemplate.temperSec4Max)
+    if(temp >= mainTemplate.temperSec4Min && temp <= mainTemplate.temperSec4Max)
     {
         secTempIsCorrect4 = true;
     }
@@ -361,7 +353,7 @@ function chooseGomog() {
     if(davlen == '')
         return;
 
-    if(davlen > mainTemplate.gomoDavlenMin && davlen < mainTemplate.gomoDavlenMax)
+    if(davlen >= mainTemplate.gomoDavlenMin && davlen <= mainTemplate.gomoDavlenMax)
     {
         gomoDavlenIsCorrect = true;
     }
