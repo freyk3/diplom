@@ -137,6 +137,17 @@ body
     height: 40px;
     width: 150px;
 }
+#playButton
+{
+    height: 40px;
+    width: 150px;
+}
+#timerDiv
+{
+    height: 40px;
+    width: 150px;
+    display: none;
+}
 
 #tankInfo1
 {

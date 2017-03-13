@@ -30,10 +30,7 @@
     <div class="myProgress" style="margin-left: 1144px; margin-top: 414px;">
         <div class="myBar" id="barIndicator1"></div>
     </div>
-    <div id="tankInfo1">
-        <span>Температура: </span><span id="temperatura1"></span><br/>
-        <span>Жирность: </span><span id="jirnost1"></span>
-    </div>
+    <button onclick="tankInfo1()" id="tankInfo1">Задание</button>
     <div id="tankInfo2">
         <span>Температура: </span><span id="temperatura2"></span><br/>
         <span>Жирность: </span><span id="jirnost2"></span>
@@ -131,7 +128,9 @@
         <div class="innerPipesHorz" data-lenght="639"></div>
     </div>
     <div id="buttons">
-        <button id="startButton" onclick="checkAll()">Запуск</button>
+        <button id="playButton" onclick="startApp()">Начать выполнение работы</button><br/>
+        <div id="timerDiv"><span id="timer"></span></div>
+        <button id="startButton" onclick="checkAll()" style="display: none">Запуск</button>
     </div>
 </div>
 <script src="/scripts/templatesLab2.js"></script>
