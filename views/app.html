@@ -12,11 +12,12 @@
     <script type="text/javascript" src="/scripts/tooltips/tooltipster-follower.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('.barrelsImg, .filters, .separators, .freeze').tooltipster({
+            $('.barrelsImg, .filters, .separators, .freeze, .iconDiv').tooltipster({
                 theme: 'tooltipster-shadow',
                 animation: 'fade',
-                delay: [2000,0],
-                plugins: ['follower']
+                delay: [2500,0],
+                plugins: ['follower'],
+                maxWidth: 200
             });
         });
     </script>
@@ -31,25 +32,25 @@
     </div>
     <div id="barellsBlock">
         <button class="barellButton" onclick="showBarrel(0)">?</button>
-        <img class="barrelsImg" src="/images/barell.jpg" title="Танк №1">
+        <img class="barrelsImg" src="/images/barell.jpg" title="Танк длительного хранения. Термоизолированная емкость. Эти емкости позволяют отложить срок необходимой переработки молока на период времени до 12 часов.">
         <div class="myProgress">
             <div id="label0" class="indicatorLabels">0</div>
             <div class="myBar" id="barIndicator0"></div>
         </div>
         <button class="barellButton" onclick="showBarrel(1)">?</button>
-        <img class="barrelsImg" src="/images/barell.jpg"  title="Танк №2">
+        <img class="barrelsImg" src="/images/barell.jpg"  title="Танк длительного хранения. Термоизолированная емкость. Эти емкости позволяют отложить срок необходимой переработки молока на период времени до 12 часов.">
         <div class="myProgress">
             <div id="label1" class="indicatorLabels">0</div>
             <div class="myBar" id="barIndicator1"></div>
         </div>
         <button class="barellButton" onclick="showBarrel(2)">?</button>
-        <img class="barrelsImg" src="/images/barell.jpg"  title="Танк №3">
+        <img class="barrelsImg" src="/images/barell.jpg"  title="Танк длительного хранения. Термоизолированная емкость. Эти емкости позволяют отложить срок необходимой переработки молока на период времени до 12 часов.">
         <div class="myProgress">
             <div id="label2" class="indicatorLabels">0</div>
             <div class="myBar" id="barIndicator2"></div>
         </div>
         <button class="barellButton" onclick="showBarrel(3)">?</button>
-        <img class="barrelsImg" src="/images/barell.jpg"  title="Танк №4">
+        <img class="barrelsImg" src="/images/barell.jpg"  title="Танк длительного хранения. Термоизолированная емкость. Эти емкости позволяют отложить срок необходимой переработки молока на период времени до 12 часов.">
         <div class="myProgress">
             <div id="label3" class="indicatorLabels">0</div>
             <div class="myBar" id="barIndicator3"></div>
@@ -95,18 +96,18 @@
                 <div class="fromCarPipes3" id="fromCarPipe012"></div>
                 <button class="repairButton1" id="repairButton01" onclick="repairFilter('01')">Заменить</button>
                 <span class="repairButton1" id="repairText01">Чиним...</span>
-                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter01" style="margin-left: 31px;" title="Фильтр">
-                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter02" style="margin-left: 31px; margin-top: 35px;" title="Фильтр">
+                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter01" style="margin-left: 31px;" title="Фильтр тонкой очистки молока. Используется для очистки сырого молока от механических частиц. Рабочий ресурс – 8 тонн.">
+                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter02" style="margin-left: 31px; margin-top: 35px;" title="Фильтр тонкой очистки молока. Используется для очистки сырого молока от механических частиц. Рабочий ресурс – 8 тонн.">
                 <button class="repairButton2"  id="repairButton02" onclick="repairFilter('02')">Заменить</button>
                 <span class="repairButton2" id="repairText02">Чиним...</span>
                 <div class="fromCarPipes4" id="fromCarPipe021"></div>
                 <div class="fromCarPipes5" id="fromCarPipe022"></div>
                 <div class="fromCarPipes6" id="fromCarPipe02"></div>
             </div>
-            <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze0" title="Охладитель 1">
+            <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze0" title="Охладитель молока пластинчатого типа. Служит для быстрого охлаждения сырого молока до нужной температуры перед хранением.">
             <button class="freezeButtons" onclick="activateFreeze(0)" id="freezeButton01">Включить</button>
             <button class="freezeButtons" onclick="deactivateFreeze(0)" id="freezeButton02" style="display: none">Выключить</button>
-            <img src="/images/Separator.jpg" class="separators" id="separator0" title="Сепаратор 1">
+            <img src="/images/Separator.jpg" class="separators" id="separator0" title="Сепаратор-очиститель. Используется для окончательной очистки молока от примесей, а также от лейкоцитов и частиц казеина во избежание появления осадка и развития микробов во время хранения молока.">
         </div>
         <div id="devices1" class="devicesLine">
             <div class="filtersBlock" id="filterBlock1">
@@ -115,18 +116,18 @@
                 <div class="fromCarPipes3" id="fromCarPipe112"></div>
                 <button class="repairButton1" id="repairButton11" onclick="repairFilter('11')">Заменить</button>
                 <span class="repairButton1" id="repairText11">Чиним...</span>
-                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter11" style="margin-left: 31px;" title="Фильтр">
-                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter12" style="margin-left: 31px; margin-top: 35px;" title="Фильтр">
+                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter11" style="margin-left: 31px;" title="Фильтр тонкой очистки молока. Используется для очистки сырого молока от механических частиц. Рабочий ресурс – 8 тонн.">
+                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter12" style="margin-left: 31px; margin-top: 35px;" title="Фильтр тонкой очистки молока. Используется для очистки сырого молока от механических частиц. Рабочий ресурс – 8 тонн.">
                 <button class="repairButton2" id="repairButton12" onclick="repairFilter('12')">Заменить</button>
                 <span class="repairButton2" id="repairText12">Чиним...</span>
                 <div class="fromCarPipes4" id="fromCarPipe121"></div>
                 <div class="fromCarPipes5" id="fromCarPipe122"></div>
                 <div class="fromCarPipes6" id="fromCarPipe12"></div>
             </div>
-            <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze1" title="Охладитель 2">
+            <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze1" title="Охладитель молока пластинчатого типа. Служит для быстрого охлаждения сырого молока до нужной температуры перед хранением.">
             <button class="freezeButtons" onclick="activateFreeze(1)" id="freezeButton11">Включить</button>
             <button class="freezeButtons" onclick="deactivateFreeze(1)" id="freezeButton12" style="display: none">Выключить</button>
-            <img src="/images/Separator.jpg" class="separators" id="separator1" title="Сепаратор 2">
+            <img src="/images/Separator.jpg" class="separators" id="separator1" title="Сепаратор-очиститель. Используется для окончательной очистки молока от примесей, а также от лейкоцитов и частиц казеина во избежание появления осадка и развития микробов во время хранения молока.">
         </div>
         <div id="devices2" class="devicesLine">
             <div class="filtersBlock" id="filterBlock2">
@@ -135,18 +136,18 @@
                 <div class="fromCarPipes3" id="fromCarPipe212"></div>
                 <button class="repairButton1" id="repairButton21" onclick="repairFilter('21')">Заменить</button>
                 <span class="repairButton1" id="repairText21">Чиним...</span>
-                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter21" style="margin-left: 31px;" title="Фильтр">
-                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter22" style="margin-left: 31px; margin-top: 35px;" title="Фильтр">
+                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter21" style="margin-left: 31px;" title="Фильтр тонкой очистки молока. Используется для очистки сырого молока от механических частиц. Рабочий ресурс – 8 тонн.">
+                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter22" style="margin-left: 31px; margin-top: 35px;" title="Фильтр тонкой очистки молока. Используется для очистки сырого молока от механических частиц. Рабочий ресурс – 8 тонн.">
                 <button class="repairButton2" id="repairButton22" onclick="repairFilter('22')">Заменить</button>
                 <span class="repairButton2" id="repairText22">Чиним...</span>
                 <div class="fromCarPipes4" id="fromCarPipe221"></div>
                 <div class="fromCarPipes5" id="fromCarPipe222"></div>
                 <div class="fromCarPipes6" id="fromCarPipe22"></div>
             </div>
-            <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze2" title="Охладитель 3">
+            <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze2" title="Охладитель молока пластинчатого типа. Служит для быстрого охлаждения сырого молока до нужной температуры перед хранением.">
             <button class="freezeButtons" onclick="activateFreeze(2)" id="freezeButton21">Включить</button>
             <button class="freezeButtons" onclick="deactivateFreeze(2)" id="freezeButton22" style="display: none">Выключить</button>
-            <img src="/images/Separator.jpg" class="separators" id="separator2" title="Сепаратор 3">
+            <img src="/images/Separator.jpg" class="separators" id="separator2" title="Сепаратор-очиститель. Используется для окончательной очистки молока от примесей, а также от лейкоцитов и частиц казеина во избежание появления осадка и развития микробов во время хранения молока.">
         </div>
         <div id="devices3" class="devicesLine">
             <div class="filtersBlock" id="filterBlock3">
@@ -155,55 +156,55 @@
                 <div class="fromCarPipes3" id="fromCarPipe312"></div>
                 <button class="repairButton1" id="repairButton31" onclick="repairFilter('31')">Заменить</button>
                 <span class="repairButton1" id="repairText31">Чиним...</span>
-                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter31" style="margin-left: 31px;" title="Фильтр">
-                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter32" style="margin-left: 31px; margin-top: 35px;" title="Фильтр">
+                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter31" style="margin-left: 31px;" title="Фильтр тонкой очистки молока. Используется для очистки сырого молока от механических частиц. Рабочий ресурс – 8 тонн.">
+                <img src="/images/Filtr_rabochiy.jpg" class="filters" id="filter32" style="margin-left: 31px; margin-top: 35px;" title="Фильтр тонкой очистки молока. Используется для очистки сырого молока от механических частиц. Рабочий ресурс – 8 тонн.">
                 <button class="repairButton2" id="repairButton32" onclick="repairFilter('32')">Заменить</button>
                 <span class="repairButton2" id="repairText32">Чиним...</span>
                 <div class="fromCarPipes4" id="fromCarPipe321"></div>
                 <div class="fromCarPipes5" id="fromCarPipe322"></div>
                 <div class="fromCarPipes6" id="fromCarPipe32"></div>
             </div>
-            <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze3" title="Охладитель 4">
+            <img src="/images/Okhladitel_vyklyuchen.jpg" class="freeze" id="freeze3" title="Охладитель молока пластинчатого типа. Служит для быстрого охлаждения сырого молока до нужной температуры перед хранением.">
             <button class="freezeButtons" onclick="activateFreeze(3)" id="freezeButton31">Включить</button>
             <button class="freezeButtons" onclick="deactivateFreeze(3)" id="freezeButton32" style="display: none">Выключить</button>
-            <img src="/images/Separator.jpg" class="separators" id="separator3" title="Сепаратор 4">
+            <img src="/images/Separator.jpg" class="separators" id="separator3" title="Сепаратор-очиститель. Используется для окончательной очистки молока от примесей, а также от лейкоцитов и частиц казеина во избежание появления осадка и развития микробов во время хранения молока.">
         </div>
     </div>
     <div id="pipes">
         <div class="toBarrelsPipesBlock">
             <div class="toBarrelPipes" style="margin-left: 93px;">
-                <div class="iconDiv" onclick="activatePoint(0)" id="point0"></div>
+                <div class="iconDiv" onclick="activatePoint(0)" id="point0" title="Запорные клапаны. Обеспечивают изоляцию и перекрытие доступа в / из танков длительного хранения по любым технологическим причинам (включая нарушение целостности конструкции)."></div>
                 <div class="toBarrelPipesInt" id="pipe04"></div>
             </div>
             <div class="toBarrelPipes" style="margin-left: 115px;">
-                <div class="iconDiv" onclick="activatePoint(1)" id="point1"></div>
+                <div class="iconDiv" onclick="activatePoint(1)" id="point1" title="Запорные клапаны. Обеспечивают изоляцию и перекрытие доступа в / из танков длительного хранения по любым технологическим причинам (включая нарушение целостности конструкции)."></div>
                 <div class="toBarrelPipesInt" id="pipe15"></div>
             </div>
             <div class="toBarrelPipes" style="margin-left: 115px;">
-                <div class="iconDiv" onclick="activatePoint(2)" id="point2"></div>
+                <div class="iconDiv" onclick="activatePoint(2)" id="point2" title="Запорные клапаны. Обеспечивают изоляцию и перекрытие доступа в / из танков длительного хранения по любым технологическим причинам (включая нарушение целостности конструкции)."></div>
                 <div class="toBarrelPipesInt" id="pipe26"></div>
             </div>
             <div class="toBarrelPipes" style="margin-left: 115px;">
-                <div class="iconDiv" onclick="activatePoint(3)" id="point3"></div>
+                <div class="iconDiv" onclick="activatePoint(3)" id="point3" title="Запорные клапаны. Обеспечивают изоляцию и перекрытие доступа в / из танков длительного хранения по любым технологическим причинам (включая нарушение целостности конструкции)."></div>
                 <div class="toBarrelPipesInt" id="pipe37"></div>
             </div>
         </div>
         <div class="highPipesBlock">
             <div class="highPipes" style="margin-left: 0; width: 123px">
                 <div class="highPipesInt" style="width: 93px" id="pipe4"></div>
-                <div class="iconDiv" onclick="activatePoint(4)" style="float: right;" id="point4"></div>
+                <div class="iconDiv" onclick="activatePoint(4)" style="float: right;" id="point4" title="Асептический противосмесительный клапан. Клапаны, соединенные в клапанную сборку, обеспечивают обособленные пути для движения молока от каждой машины к каждому танку длительного хранения."></div>
             </div>
             <div class="highPipes">
                 <div class="highPipesInt" style="width: 119px" id="pipe45"></div>
-                <div class="iconDiv" onclick="activatePoint(5)" style="float: right;" id="point5"></div>
+                <div class="iconDiv" onclick="activatePoint(5)" style="float: right;" id="point5" title="Асептический противосмесительный клапан. Клапаны, соединенные в клапанную сборку, обеспечивают обособленные пути для движения молока от каждой машины к каждому танку длительного хранения."></div>
             </div>
             <div class="highPipes">
                 <div class="highPipesInt" style="width: 119px" id="pipe56"></div>
-                <div class="iconDiv" onclick="activatePoint(6)" style="float: right;" id="point6"></div>
+                <div class="iconDiv" onclick="activatePoint(6)" style="float: right;" id="point6" title="Асептический противосмесительный клапан. Клапаны, соединенные в клапанную сборку, обеспечивают обособленные пути для движения молока от каждой машины к каждому танку длительного хранения."></div>
             </div>
             <div class="highPipes">
                 <div class="highPipesInt" style="width: 119px" id="pipe67"></div>
-                <div class="iconDiv" onclick="activatePoint(7)" style="float: right;" id="point7"></div>
+                <div class="iconDiv" onclick="activatePoint(7)" style="float: right;" id="point7" title="Асептический противосмесительный клапан. Клапаны, соединенные в клапанную сборку, обеспечивают обособленные пути для движения молока от каждой машины к каждому танку длительного хранения."></div>
             </div>
         </div>
         <div class="middlePipesBlock">
@@ -215,19 +216,19 @@
         <div class="lowPipesBlock">
             <div class="lowPipes" style="margin-left: 0; width: 123px">
                 <div class="lowPipesInt" style="width: 93px" id="pipe8"></div>
-                <div class="iconDiv" onclick="activatePoint(8)" style="float: right;" id="point8"></div>
+                <div class="iconDiv" onclick="activatePoint(8)" style="float: right;" id="point8" title="Асептический противосмесительный клапан. Клапаны, соединенные в клапанную сборку, обеспечивают обособленные пути для движения молока от каждой машины к каждому танку длительного хранения."></div>
             </div>
             <div class="lowPipes">
                 <div class="lowPipesInt" style="width: 119px" id="pipe89"></div>
-                <div class="iconDiv" onclick="activatePoint(9)" style="float: right;" id="point9"></div>
+                <div class="iconDiv" onclick="activatePoint(9)" style="float: right;" id="point9" title="Асептический противосмесительный клапан. Клапаны, соединенные в клапанную сборку, обеспечивают обособленные пути для движения молока от каждой машины к каждому танку длительного хранения."></div>
             </div>
             <div class="lowPipes">
                 <div class="lowPipesInt" style="width: 119px" id="pipe910"></div>
-                <div class="iconDiv" onclick="activatePoint(10)" style="float: right;" id="point10"></div>
+                <div class="iconDiv" onclick="activatePoint(10)" style="float: right;" id="point10" title="Асептический противосмесительный клапан. Клапаны, соединенные в клапанную сборку, обеспечивают обособленные пути для движения молока от каждой машины к каждому танку длительного хранения."></div>
             </div>
             <div class="lowPipes">
                 <div class="lowPipesInt" style="width: 119px" id="pipe1011"></div>
-                <div class="iconDiv" onclick="activatePoint(11)" style="float: right;" id="point11"></div>
+                <div class="iconDiv" onclick="activatePoint(11)" style="float: right;" id="point11" title="Асептический противосмесительный клапан. Клапаны, соединенные в клапанную сборку, обеспечивают обособленные пути для движения молока от каждой машины к каждому танку длительного хранения."></div>
             </div>
         </div>
         <div class="middlePipesBlock">
@@ -239,19 +240,19 @@
         <div class="lowPipesBlock">
             <div class="lowPipes" style="margin-left: 0; width: 123px">
                 <div class="lowPipesInt" style="width: 93px" id="pipe12"></div>
-                <div class="iconDiv" onclick="activatePoint(12)" style="float: right;" id="point12"></div>
+                <div class="iconDiv" onclick="activatePoint(12)" style="float: right;" id="point12" title="Асептический противосмесительный клапан. Клапаны, соединенные в клапанную сборку, обеспечивают обособленные пути для движения молока от каждой машины к каждому танку длительного хранения."></div>
             </div>
             <div class="lowPipes">
                 <div class="lowPipesInt" style="width: 119px" id="pipe1213"></div>
-                <div class="iconDiv" onclick="activatePoint(13)" style="float: right;" id="point13"></div>
+                <div class="iconDiv" onclick="activatePoint(13)" style="float: right;" id="point13" title="Асептический противосмесительный клапан. Клапаны, соединенные в клапанную сборку, обеспечивают обособленные пути для движения молока от каждой машины к каждому танку длительного хранения."></div>
             </div>
             <div class="lowPipes">
                 <div class="lowPipesInt" style="width: 119px" id="pipe1314"></div>
-                <div class="iconDiv" onclick="activatePoint(14)" style="float: right;" id="point14"></div>
+                <div class="iconDiv" onclick="activatePoint(14)" style="float: right;" id="point14" title="Асептический противосмесительный клапан. Клапаны, соединенные в клапанную сборку, обеспечивают обособленные пути для движения молока от каждой машины к каждому танку длительного хранения."></div>
             </div>
             <div class="lowPipes">
                 <div class="lowPipesInt" style="width: 119px" id="pipe1415"></div>
-                <div class="iconDiv" onclick="activatePoint(15)" style="float: right;" id="point15"></div>
+                <div class="iconDiv" onclick="activatePoint(15)" style="float: right;" id="point15" title="Асептический противосмесительный клапан. Клапаны, соединенные в клапанную сборку, обеспечивают обособленные пути для движения молока от каждой машины к каждому танку длительного хранения."></div>
             </div>
         </div>
         <div class="middlePipesBlock">
@@ -263,19 +264,19 @@
         <div class="lowPipesBlock">
             <div class="lowPipes" style="margin-left: 0; width: 123px">
                 <div class="lowPipesInt" style="width: 93px" id="pipe16"></div>
-                <div class="iconDiv" onclick="activatePoint(16)" style="float: right;" id="point16"></div>
+                <div class="iconDiv" onclick="activatePoint(16)" style="float: right;" id="point16" title="Асептический противосмесительный клапан. Клапаны, соединенные в клапанную сборку, обеспечивают обособленные пути для движения молока от каждой машины к каждому танку длительного хранения."></div>
             </div>
             <div class="lowPipes">
                 <div class="lowPipesInt" style="width: 119px" id="pipe1617"></div>
-                <div class="iconDiv" onclick="activatePoint(17)" style="float: right;" id="point17"></div>
+                <div class="iconDiv" onclick="activatePoint(17)" style="float: right;" id="point17" title="Асептический противосмесительный клапан. Клапаны, соединенные в клапанную сборку, обеспечивают обособленные пути для движения молока от каждой машины к каждому танку длительного хранения."></div>
             </div>
             <div class="lowPipes">
                 <div class="lowPipesInt" style="width: 119px" id="pipe1718"></div>
-                <div class="iconDiv" onclick="activatePoint(18)" style="float: right;" id="point18"></div>
+                <div class="iconDiv" onclick="activatePoint(18)" style="float: right;" id="point18" title="Асептический противосмесительный клапан. Клапаны, соединенные в клапанную сборку, обеспечивают обособленные пути для движения молока от каждой машины к каждому танку длительного хранения."></div>
             </div>
             <div class="lowPipes">
                 <div class="lowPipesInt" style="width: 119px" id="pipe1819"></div>
-                <div class="iconDiv" onclick="activatePoint(19)" style="float: right;" id="point19"></div>
+                <div class="iconDiv" onclick="activatePoint(19)" style="float: right;" id="point19" title="Асептический противосмесительный клапан. Клапаны, соединенные в клапанную сборку, обеспечивают обособленные пути для движения молока от каждой машины к каждому танку длительного хранения."></div>
             </div>
         </div>
     </div>

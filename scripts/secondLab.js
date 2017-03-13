@@ -517,7 +517,7 @@ function finishLab2() {
 function tankInfo1() {
     if(!appIsStart)
         return;
-    alert('Температура: '+mainTemplate.enterTemper+'\nЖирность: '+mainTemplate.enterJir+'\n\nНеобходимо получить\n\nТемпература: 4±2 °С\nЖирность: '+mainTemplate.vihodJir);
+    alert('Дано:\n\nТемпература: '+mainTemplate.enterTemper+'\nЖирность: '+mainTemplate.enterJir+'\n\nНеобходимо получить:\n\nТемпература: 4±2 °С\nЖирность: '+mainTemplate.vihodJir);
 }
 
 function createError(msg) {
