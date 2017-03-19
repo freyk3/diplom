@@ -24,81 +24,87 @@ body
 {
     width: 130px;
     margin-left: 998px;
-    margin-top: 303px;
+    margin-top: 317px;
 }
 
 #slivki
 {
     width: 90px;
-    margin-top: 573px;
-    margin-left: 772px;
+    margin-top: 583px;
+    margin-left: 842px;
 }
 #separator
 {
     width: 150px;
-    margin-left: 517px;
+    margin-left: 587px;
     margin-top: 594px;
 }
 #kirpich
 {
     width: 30px;
-    margin-left: 551px;
+    margin-left: 621px;
     margin-top: 564px;
 }
 #gomo
 {
-    width: 170px;
-    margin-top: 210px;
-    margin-left: 525px;
+    width: 176px;
+    margin-top: 206px;
+    margin-left: 587px;
 }
 #pou1
 {
     width: 80px;
-    margin-left: 447px;
+    margin-left: 517px;
     margin-top: 372px;
 }
 #pou2
 {
     width: 80px;
-    margin-left: 526px;
+    margin-left: 596px;
     margin-top: 372px;
 }
 #pou3
 {
     width: 80px;
-    margin-left: 605px;
+    margin-left: 675px;
     margin-top: 372px;
 }
 #pou4
 {
     width: 80px;
-    margin-left: 368px;
+    margin-left: 438px;
     margin-top: 372px;
 }
 #viderj
 {
     width: 65px;
-    margin-top: 405px;
-    margin-left: 729px;
+    margin-top: 399px;
+    margin-left: 799px;
 }
 #nasos
 {
-    width: 60px;
-    margin-top: 282px;
-    margin-left: 150px;
+    width: 49px;
+    margin-top: 480px;
+    margin-left: 79px;;
 }
 #nasos2
 {
-    width: 60px;
-    margin-top: 282px;
-    margin-left: 457px;
+    width: 49px;
+    margin-top: 480px;
+    margin-left: 351px;
 }
 #buffer_tank
 {
     width: 120px;
     height: 105px;
-    margin-top: 237px;
-    margin-left: 254px;
+    margin-top: 429px;
+    margin-left: 181px;
+}
+#kran
+{
+    width: 35px;
+    margin-top: 495px;
+    margin-left: 815px;
 }
 .outerPipesVert
 {
@@ -129,7 +135,7 @@ body
 #buttons
 {
     position: absolute;
-    margin-top: 500px;
+    margin-top: 700px;
 
 }
 #startButton

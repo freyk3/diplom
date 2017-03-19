@@ -62,9 +62,19 @@ var reportObj = {};
 reportObj.errors = [];
 reportObj.log = [];
 reportObj.user = user;
+var kran = {
+    elem : document.getElementById('kran'),
+    isRight : true,
+    changeRightImg: function () {
+        this.elem.src = '/images/secondApp/kran_vpravo.jpg';
+    },
+    changeLeftImg: function () {
+        this.elem.src = '/images/secondApp/kran_vlevo.jpg';
+    }
+};
 
 var mainPipes;
-for(var i=1; i<14; i++)
+for(var i=1; i<17; i++)
 {
     vertPipes[i] = document.getElementById('vertPipe'+i);
 }
@@ -72,14 +82,17 @@ for(var j=1; j<13; j++)
 {
     horzPipes[j] = document.getElementById('horzPipe'+j);
 }
-var correctPipes = [vertPipes[1],
-    horzPipes[1],
+var correctPipes = [
+    vertPipes[1],
     vertPipes[2],
     horzPipes[2],
     vertPipes[3],
     rashirTankDelay,
+    vertPipes[15],
+    horzPipes[1],
+    vertPipes[14],
+    vertPipes[16],
     horzPipes[3],
-    horzPipes[4],
     vertPipes[5],
     vertPipes[9],
     horzPipes[9],
@@ -98,14 +111,17 @@ var correctPipes = [vertPipes[1],
     horzPipes[12],
     vertPipes[13]
 ];
-var inCorrectPipes = [vertPipes[1],
-    horzPipes[1],
+var inCorrectPipes = [
+    vertPipes[1],
     vertPipes[2],
     horzPipes[2],
     vertPipes[3],
     rashirTankDelay,
+    vertPipes[15],
+    horzPipes[1],
+    vertPipes[14],
+    vertPipes[16],
     horzPipes[3],
-    horzPipes[4],
     vertPipes[5],
     vertPipes[9],
     horzPipes[9],
@@ -126,8 +142,11 @@ var inCorrectPipes = [vertPipes[1],
 
 ];
 var againCorrectPipes = [
+    vertPipes[15],
+    horzPipes[1],
+    vertPipes[14],
+    vertPipes[16],
     horzPipes[3],
-    horzPipes[4],
     vertPipes[5],
     vertPipes[9],
     horzPipes[9],
@@ -176,6 +195,11 @@ function pipeAnimation() {
     var internalPipe = pipe.firstElementChild;
     var lenght = internalPipe.getAttribute('data-lenght');
     var isVertical = internalPipe.className == "innerPipesVert";
+
+    if(mainPipes[iterator].id == 'horzPipe8')
+        kran.changeRightImg();
+    if(mainPipes[iterator].id == 'horzPipe6')
+        kran.changeLeftImg();
 
     var id = setInterval(frame, animationSpeed);
 
@@ -249,6 +273,8 @@ function clearPipes() {
     var internalPipe;
     for(var v = 1; v < vertPipes.length; v++)
     {
+        if(vertPipes[v] == null)
+            continue;
         pipe = vertPipes[v];
         internalPipe = pipe.firstElementChild;
         internalPipe.style.height = '0px';
@@ -256,6 +282,8 @@ function clearPipes() {
     }
     for(var h = 1; h < horzPipes.length; h++)
     {
+        if(horzPipes[h] == null)
+            continue;
         pipe = horzPipes[h];
         internalPipe = pipe.firstElementChild;
         internalPipe.style.width = '0px';
