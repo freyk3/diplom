@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторная работа №3</title>
+    <link href="/css/secondApp.css" rel="stylesheet">
+    <script type="text/javascript" src="/scripts/jquery-3.1.1.js"></script>
+    <link href="/css/tooltips/tooltipster.bundle.min.css" rel="stylesheet">
+    <link href="/css/tooltips/tooltipster-follower.min.css" rel="stylesheet">
+    <link href="/css/tooltips/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css" rel="stylesheet">
+    <script type="text/javascript" src="/scripts/tooltips/tooltipster.bundle.min.js"></script>
+    <script type="text/javascript" src="/scripts/tooltips/tooltipster-follower.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.abs').tooltipster({
+                theme: 'tooltipster-shadow',
+                animation: 'fade',
+                delay: [2500,0],
+                plugins: ['follower']
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="appBlock">
+    <div class="myProgress" style="margin-left: 946px; margin-top: 612px;">
+        <div class="myBar" id="barIndicator0"></div>
+    </div>
+    <div class="myProgress" style="margin-left: 1144px; margin-top: 414px;">
+        <div class="myBar" id="barIndicator1"></div>
+    </div>
+    <button onclick="tankInfo1()" id="tankInfo1">Задание</button>
+    <div id="tankInfo2">
+        <span>Температура: </span><span id="temperatura2"></span><br/>
+        <span>Жирность: </span><span id="jirnost2"></span>
+    </div>
+    <img class="abs" id="tank" src="/images/secondApp/Tank.jpg" title="Танк c молоком">
+    <img class="abs" id="nasos" title="Насос" src="/images/secondApp/Nasos.jpg">
+    <img class="abs" id="buffer_tank" title="Расширительный бак" src="/images/secondApp/buferny_bak.jpg">
+    <img class="abs" id="nasos2" title="Насос" src="/images/secondApp/Nasos.jpg">
+    <img class="abs" id="gomo" onclick="chooseGomog()" title="Гомогенизатор" src="/images/secondApp/gomogena.jpg">
+    <img class="abs" id="pou1" onclick="chooseSec1()" title="ПОУ1" src="/images/secondApp/1.jpg">
+    <img class="abs" id="pou2" onclick="chooseSec2()" title="ПОУ2" src="/images/secondApp/2.jpg">
+    <img class="abs" id="pou3" onclick="chooseSec3()" title="ПОУ3" src="/images/secondApp/3.jpg">
+    <img class="abs" id="pou4" onclick="chooseSec4()" title="ПОУ4" src="/images/secondApp/4.jpg">
+    <img class="abs" id="viderj" title="Выдерживатель" src="/images/secondApp/vyderzhivatel.jpg">
+    <img class="abs" id="kirpich" title="Сепаратор" src="/images/secondApp/blok_podklyuchenia_separatora.jpg">
+    <img class="abs" id="separator" title="Сепаратор" src="/images/secondApp/Separator_2.jpg">
+    <img class="abs" id="slivki" title="Танк со сливками" src="/images/secondApp/bak_dlya_slivok.jpg">
+    <img class="abs" id="tank2" title="Танк с готовым продуктом" src="/images/secondApp/bak_s_produktom.jpg">
+    <img class="abs" id="kran" title="Кран" src="/images/secondApp/kran_vlevo.jpg">
+    <!-- Pipes -->
+    <!-- Вертикальные -->
+    <div class="outerPipesVert" id="vertPipe1" style="height: 232px; margin-top: 286px; margin-left: 62px;">
+        <div class="innerPipesVert" data-lenght="215"></div>
+    </div>
+    <div class="outerPipesVert" id="vertPipe2" style="height: 69px; margin-top: 411px; margin-left: 98px; -webkit-transform: rotate(-180deg);">
+        <div class="innerPipesVert" data-lenght="69"></div>
+    </div>
+    <div class="outerPipesVert" id="vertPipe3" style="height: 35px; margin-top: 394px; margin-left: 195px;">
+        <div class="innerPipesVert" data-lenght="18" style="margin-top: 17px;"></div>
+    </div>
+    <div class="outerPipesVert" id="vertPipe4" style="height: 272px; margin-top: 157px; margin-left: 234px;">
+        <div class="innerPipesVert" data-lenght="255" style="margin-top: 17px;"></div>
+    </div>
+    <div class="outerPipesVert" id="vertPipe5" style="height: 30px; margin-top: 342px; margin-left: 549px;">
+        <div class="innerPipesVert" data-lenght="30"></div>
+    </div>
+    <div class="outerPipesVert" id="vertPipe6" style="height: 30px; margin-top: 342px; margin-left: 628px; -webkit-transform: rotate(-180deg);">
+        <div class="innerPipesVert" data-lenght="30"></div>
+    </div>
+    <div class="outerPipesVert" id="vertPipe7" style="height: 30px; margin-top: 342px; margin-left: 706px;">
+        <div class="innerPipesVert" data-lenght="30"></div>
+    </div>
+    <div class="outerPipesVert" id="vertPipe8" style="height: 349px; margin-top: 174px; margin-left: 915px; -webkit-transform: rotate(-180deg);">
+        <div class="innerPipesVert" data-lenght="332" style="margin-top: 17px;"></div>
+    </div>
+    <div class="outerPipesVert" id="vertPipe9" style="height: 38px; margin-top: 534px; margin-left: 549px;">
+        <div class="innerPipesVert" data-lenght="38"></div>
+    </div>
+    <div class="outerPipesVert" id="vertPipe10" style="height: 30px; margin-top: 534px; margin-left: 628px; -webkit-transform: rotate(-180deg);">
+        <div class="innerPipesVert" data-lenght="30"></div>
+    </div>
+    <div class="outerPipesVert" id="vertPipe11" style="height: 161px; margin-top: 589px; margin-left: 780px;">
+        <div class="innerPipesVert" data-lenght="144"></div>
+    </div>
+    <div class="outerPipesVert" id="vertPipe12" style="height: 248px; margin-top: 534px; margin-left: 469px;">
+        <div class="innerPipesVert" data-lenght="231"></div>
+    </div>
+    <div class="outerPipesVert" id="vertPipe13" style="height: 231px; margin-top: 534px; margin-left: 1056px; -webkit-transform: rotate(-180deg);">
+        <div class="innerPipesVert" data-lenght="231"></div>
+    </div>
+    <div class="outerPipesVert" id="vertPipe14" style="height: 124px; margin-top: 394px; margin-left: 334px;">
+        <div class="innerPipesVert" data-lenght="90" style="margin-top: 17px;"></div>
+    </div>
+    <div class="outerPipesVert" id="vertPipe15" style="height: 35px; margin-top: 394px; margin-left: 271px; -webkit-transform: rotate(-180deg);">
+        <div class="innerPipesVert" data-lenght="18"></div>
+    </div>
+    <div class="outerPipesVert" id="vertPipe16" style="height: 155px; margin-top: 325px; margin-left: 370px; -webkit-transform: rotate(-180deg);">
+        <div class="innerPipesVert" data-lenght="138"></div>
+    </div>
+    <!-- Горизонтальные -->
+    <div class="outerPipesHorz" id="horzPipe1" style="margin-top: 394px; margin-left: 288px; width: 46px;">
+        <div class="innerPipesHorz" data-lenght="46"></div>
+    </div>
+    <div class="outerPipesHorz" id="horzPipe2" style="margin-top: 394px; margin-left: 98px; width: 97px;">
+        <div class="innerPipesHorz" data-lenght="82" style="margin-left: 17px;"></div>
+    </div>
+    <div class="outerPipesHorz" id="horzPipe3" style="margin-top: 325px; margin-left: 387px; width: 179px;">
+        <div class="innerPipesHorz" data-lenght="162"></div>
+    </div>
+    <!--<div class="outerPipesHorz" id="horzPipe4" style="margin-top: 304px; margin-left: 407px; width: 50px;">
+        <div class="innerPipesHorz" data-lenght="33" style="margin-left: 17px;"></div>
+    </div>-->
+    <div class="outerPipesHorz" id="horzPipe5" style="margin-top: 382px; margin-left: 755px; width: 90px;">
+        <div class="innerPipesHorz" data-lenght="89"></div>
+    </div>
+    <div class="outerPipesHorz" id="horzPipe6" style="margin-top: 506px; margin-left: 755px; width: 60px; text-align: -webkit-right;">
+        <div class="innerPipesHorz" data-lenght="60"></div>
+    </div>
+    <div class="outerPipesHorz" id="horzPipe7" style="margin-top: 157px; margin-left: 251px; width: 681px; text-align: -webkit-right;">
+        <div class="innerPipesHorz" data-lenght="664" style="margin-right: 17px;"></div>
+    </div>
+    <div class="outerPipesHorz" id="horzPipe8" style="margin-top: 506px; margin-left: 850px; width: 65px;">
+        <div class="innerPipesHorz" data-lenght="65"></div>
+    </div>
+    <div class="outerPipesHorz" id="horzPipe9" style="margin-top: 572px; margin-left: 549px; width: 72px;">
+        <div class="innerPipesHorz" data-lenght="55" style="margin-left: 17px;"></div>
+    </div>
+    <div class="outerPipesHorz" id="horzPipe10" style="margin-top: 572px; margin-left: 651px; width: 146px;">
+        <div class="innerPipesHorz" data-lenght="128"></div>
+    </div>
+    <div class="outerPipesHorz" id="horzPipe11" style="margin-top: 733px; margin-left: 797px; width: 98px;">
+        <div class="innerPipesHorz" data-lenght="97"></div>
+    </div>
+    <div class="outerPipesHorz" id="horzPipe12" style="margin-top: 765px; margin-left: 486px; width: 587px;">
+        <div class="innerPipesHorz" data-lenght="570"></div>
+    </div>
+    <div id="buttons">
+        <button id="playButton" onclick="startApp()">Начать выполнение работы</button>
+        <button id="startButton" onclick="checkAll()" style="display: none">Запуск</button>
+        <div id="timerDiv"><span id="timer"></span></div>
+    </div>
+    <div id="info">
+        <span>Введенные данные:</span><br><br>
+        <table border="1">
+            <tr>
+                <td>I</td>
+                <td><span>t1 = </span></td>
+                <td><span id="tempInfo1"></span></td>
+            </tr>
+            <tr>
+                <td>II</td>
+                <td><span>t2 = </span></td>
+                <td><span id="tempInfo2"></span></td>
+            </tr>
+            <tr>
+                <td rowspan="2">III</td>
+                <td><span>t3 = </span></td>
+                <td><span id="tempInfo3"></span></td>
+            </tr>
+            <tr>
+                <td><span>T = </span></td>
+                <td><span id="timeInfo"></span></td>
+            </tr>
+            <tr>
+                <td>G</td>
+                <td><span>p = </span></td>
+                <td><span id="davlInfo"></span></td>
+            </tr>
+            <tr>
+                <td>IV</td>
+                <td><span>t4 = </span></td>
+                <td><span id="tempInfo4"></span></td>
+            </tr>
+        </table>
+        <!--<span>t1 = </span><span id="tempInfo1"></span><br>
+        <span>t2 = </span><span id="tempInfo2"></span><br>
+        <span>t3 = </span><span id="tempInfo3"></span><br>
+        <span>T = </span><span id="timeInfo"></span><br>
+        <span>p = </span><span id="davlInfo"></span><br>
+        <span>t4 = </span><span id="tempInfo4"></span><br>-->
+    </div>
+</div>
+<script src="/scripts/templatesLab3.js"></script>
+<script src="/scripts/thirdLab.js"></script>
+</body>
+</html>

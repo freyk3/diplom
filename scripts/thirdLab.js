@@ -1,5 +1,5 @@
 /**
- * Created by Freyk on 28.02.2017.
+ * Created by Freyk on 20.03.2017.
  */
 
 //Базовые установки
@@ -181,7 +181,7 @@ function startAgain() {
 
 var templateNumb = randomInteger(0,3);
 mainTemplate = templates[templateNumb];
-console.log('Номер шаблона: '+(templateNumb+1));
+console.log('Номер шаблона: '+(templateNumb+5));
 var errorNumb = randomInteger(0,3);
 if(errorNumb == 0) //для обеспечения 1 к 4 появление ошибки
     errorExist = true;
@@ -254,7 +254,7 @@ function pipeAnimation() {
                     internalPipe.style.height = value + 'px';
                 }
             }
-            else 
+            else
             {
                 if(value == '')
                     internalPipe.style.width = 1 + 'px';
@@ -264,7 +264,7 @@ function pipeAnimation() {
                     internalPipe.style.width = value + 'px';
                 }
             }
-                
+
         }
     }
 }
@@ -412,11 +412,11 @@ function chooseSec3() {
         createError('Неверно выбрана температура в секции 3: '+temp+'°С');
     }
 
-    var time = prompt('Введите время выдерживания в секундах:','');
+    var time = prompt('Введите время выдерживания в минутах:','');
     if(time == '' || time == null)
         return;
-    document.getElementById('timeInfo').innerHTML = time+' сек';
-    if(time == mainTemplate.viderjTime)
+    document.getElementById('timeInfo').innerHTML = time+' мин';
+    if(time >= mainTemplate.viderjTimeMin && time <= mainTemplate.viderjTimeMax)
     {
         viderjTimeIsCorrect = true;
         viderjTime = time;
@@ -558,7 +558,7 @@ function finishLab2() {
 function tankInfo1() {
     if(!appIsStart)
         return;
-    alert('Дано:\n\nТемпература: '+mainTemplate.enterTemper+'\nЖирность: '+mainTemplate.enterJir+'\n\nНеобходимо получить:\n\nПродукт: Пастеризованное молоко\nТемпература: 4±2 °С\nЖирность: '+mainTemplate.vihodJir);
+    alert('Дано:\n\nТемпература: '+mainTemplate.enterTemper+'\nЖирность: '+mainTemplate.enterJir+'\n\nНеобходимо получить:\n\nПродукт: '+mainTemplate.name+'\nТемпература: 4±2 °С\nЖирность: '+mainTemplate.vihodJir);
 }
 
 function createError(msg) {
@@ -575,7 +575,7 @@ function createLog(msg) {
 }
 
 function createReport() {
-    var content = fs.readFileSync("files/report_template_lab2.docx", "binary");
+    var content = fs.readFileSync("files/report_template_lab3.docx", "binary");
     var zip = new JSZip(content);
     var doc= new Docxtemplater().loadZip(zip);
 
@@ -603,6 +603,7 @@ function createReport() {
         "tempSec4": tempSec4,
         "viderjTime": viderjTime,
         "gomoDavlen": gomoDavlen,
+        "product": mainTemplate.name,
 
         "report_date": nowDate,
 
@@ -618,7 +619,7 @@ function createReport() {
     var dirPath = pathToStorage.join(nw.App.dataPath, 'userReports/');
     if(!fs.existsSync(dirPath))
         fs.mkdirSync(dirPath);
-    var fileName = 'Lab№2 '+reportObj.user.surname+' '+nowDate+' '+date.getTime()+'.docx';
+    var fileName = 'Lab№3 '+reportObj.user.surname+' '+nowDate+' '+date.getTime()+'.docx';
     var reportFile = 'userReports/'+fileName;
     var newReportPath = pathToStorage.join(nw.App.dataPath, reportFile);
 

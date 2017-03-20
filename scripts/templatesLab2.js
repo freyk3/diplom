@@ -4,7 +4,7 @@
 
 var template0 = {
     enterTemper : '4±2 °С',
-    enterJir : '3,8 %',
+    enterJir : '2,1 %',
     temperSec1Min : 33,
     temperSec1Max : 37,
     temperSec2Min : 63,
@@ -20,7 +20,7 @@ var template0 = {
 };
 var template1 = {
     enterTemper : '4±2 °С',
-    enterJir : '4,3 %',
+    enterJir : '3,4 %',
     temperSec1Min : 33,
     temperSec1Max : 37,
     temperSec2Min : 63,
@@ -36,7 +36,7 @@ var template1 = {
 };
 var template2 = {
     enterTemper : '4±2 °С',
-    enterJir : '6,0 %',
+    enterJir : '4,6 %',
     temperSec1Min : 33,
     temperSec1Max : 37,
     temperSec2Min : 63,
