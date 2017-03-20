@@ -6,6 +6,7 @@ body
     display: flex;
     justify-content: center;
 }
+
 #appBlock
 {
     width: 1200px;
@@ -135,8 +136,12 @@ body
 #buttons
 {
     position: absolute;
-    margin-top: 700px;
-
+    margin-top: 75px;
+    margin-left: 980px;
+}
+#info
+{
+    margin-top: 600px;
 }
 #startButton
 {

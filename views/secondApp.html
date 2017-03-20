@@ -138,9 +138,49 @@
         <div class="innerPipesHorz" data-lenght="570"></div>
     </div>
     <div id="buttons">
-        <button id="playButton" onclick="startApp()">Начать выполнение работы</button><br/>
-        <div id="timerDiv"><span id="timer"></span></div>
+        <button id="playButton" onclick="startApp()">Начать выполнение работы</button>
         <button id="startButton" onclick="checkAll()" style="display: none">Запуск</button>
+        <div id="timerDiv"><span id="timer"></span></div>
+    </div>
+    <div id="info">
+        <span>Введенные данные:</span><br><br>
+        <table border="1">
+            <tr>
+                <td>I</td>
+                <td><span>t1 = </span></td>
+                <td><span id="tempInfo1"></span></td>
+            </tr>
+            <tr>
+                <td>II</td>
+                <td><span>t2 = </span></td>
+                <td><span id="tempInfo2"></span></td>
+            </tr>
+            <tr>
+                <td rowspan="2">III</td>
+                <td><span>t3 = </span></td>
+                <td><span id="tempInfo3"></span></td>
+            </tr>
+            <tr>
+                <td><span>T = </span></td>
+                <td><span id="timeInfo"></span></td>
+            </tr>
+            <tr>
+                <td>G</td>
+                <td><span>p = </span></td>
+                <td><span id="davlInfo"></span></td>
+            </tr>
+            <tr>
+                <td>IV</td>
+                <td><span>t4 = </span></td>
+                <td><span id="tempInfo4"></span></td>
+            </tr>
+        </table>
+        <!--<span>t1 = </span><span id="tempInfo1"></span><br>
+        <span>t2 = </span><span id="tempInfo2"></span><br>
+        <span>t3 = </span><span id="tempInfo3"></span><br>
+        <span>T = </span><span id="timeInfo"></span><br>
+        <span>p = </span><span id="davlInfo"></span><br>
+        <span>t4 = </span><span id="tempInfo4"></span><br>-->
     </div>
 </div>
 <script src="/scripts/templatesLab2.js"></script>

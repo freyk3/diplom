@@ -354,7 +354,7 @@ function chooseSec1() {
     var temp = prompt('Введите температуру в °С:','');
     if(temp == '')
         return;
-
+    document.getElementById('tempInfo1').innerHTML = temp+' °С';
     if(temp >= mainTemplate.temperSec1Min && temp <= mainTemplate.temperSec1Max)
     {
         secTempIsCorrect1 = true;
@@ -373,7 +373,7 @@ function chooseSec2() {
     var temp = prompt('Введите температуру в °С','');
     if(temp == '')
         return;
-
+    document.getElementById('tempInfo2').innerHTML = temp+' °С';
     if(temp >= mainTemplate.temperSec2Min && temp <= mainTemplate.temperSec2Max)
     {
         secTempIsCorrect2 = true;
@@ -392,7 +392,7 @@ function chooseSec3() {
     var temp = prompt('Введите температуру в °С:','');
     if(temp == '')
         return;
-
+    document.getElementById('tempInfo3').innerHTML = temp+' °С';
     if(temp >= mainTemplate.temperSec3Min && temp <= mainTemplate.temperSec3Max)
     {
         secTempIsCorrect3 = true;
@@ -408,7 +408,7 @@ function chooseSec3() {
     var time = prompt('Введите время выдерживания в секундах:','');
     if(time == '')
         return;
-
+    document.getElementById('timeInfo').innerHTML = time+' сек';
     if(time == mainTemplate.viderjTime)
     {
         viderjTimeIsCorrect = true;
@@ -428,6 +428,7 @@ function chooseSec4() {
     if(temp == '')
         return;
     finishTemp = temp;
+    document.getElementById('tempInfo4').innerHTML = temp+' °С';
     if(temp >= mainTemplate.temperSec4Min && temp <= mainTemplate.temperSec4Max)
     {
         secTempIsCorrect4 = true;
@@ -446,7 +447,7 @@ function chooseGomog() {
     var davlen = prompt('Введите давление в МПа:','');
     if(davlen == '')
         return;
-
+    document.getElementById('davlInfo').innerHTML = davlen+' МПа';
     if(davlen >= mainTemplate.gomoDavlenMin && davlen <= mainTemplate.gomoDavlenMax)
     {
         gomoDavlenIsCorrect = true;
