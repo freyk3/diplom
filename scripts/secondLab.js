@@ -198,7 +198,10 @@ function pipeAnimation() {
     var isVertical = internalPipe.className == "innerPipesVert";
 
     if(mainPipes[iterator].id == 'horzPipe8')
+    {
         kran.changeRightImg();
+        alert('III секция ПОУ не вышла на рабочий режим по температуре');
+    }
     if(mainPipes[iterator].id == 'horzPipe6')
         kran.changeLeftImg();
 
@@ -238,7 +241,7 @@ function pipeAnimation() {
                 {
                     clearPipes();
                     appIsFinished = true;
-                    alert('Пастеризатор не догрел молоко до необходимой температуры. Просто запустите ещё раз.');
+                    //alert('Пастеризатор не догрел молоко до необходимой температуры. Просто запустите ещё раз.');
                 }
             }
 

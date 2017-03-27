@@ -126,11 +126,13 @@ function launch(numb) {
 
 function moveBar(numb) {
     var elem = document.getElementById("myBar");
+    elem.style.backgroundColor = '#f3dd48';
     var width = 1;
     isFilling = true;
     var id = setInterval(frame, 50);
     function frame() {
         if (width >= 100) {
+            elem.style.backgroundColor = 'green';
             isFilling = false;
             clearInterval(id);
             if(numb == 4)

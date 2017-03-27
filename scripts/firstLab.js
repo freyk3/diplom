@@ -165,7 +165,7 @@ function Barrel(progressNumb) {
     this.progressBar = document.getElementById('barIndicator'+progressNumb);
     this.addMilk = function (litres,numbOfCar) {
         var percentStep = 200; //это шаг изменения 1 процента. 100% - 20000кг, следовательно 1% - 200
-        var animationSpeed = 12; //примерная скорость чтобы 10000 2мин заливалось
+        var animationSpeed = 10; //примерная скорость чтобы 10000 2мин заливалось
         var elem = this.progressBar;
         var tempValue = this.value;
         var newValue = tempValue + +litres;

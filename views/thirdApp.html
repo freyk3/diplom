@@ -22,7 +22,11 @@
     </script>
 </head>
 <body>
-
+<style>
+    :root {
+        --border-radius: 10px;
+    }
+</style>
 <div id="appBlock">
     <div class="myProgress" style="margin-left: 946px; margin-top: 612px;">
         <div class="myBar" id="barIndicator0"></div>
@@ -52,16 +56,16 @@
     <img class="abs" id="kran" title="Кран" src="/images/secondApp/kran_vlevo.jpg">
     <!-- Pipes -->
     <!-- Вертикальные -->
-    <div class="outerPipesVert" id="vertPipe1" style="height: 232px; margin-top: 286px; margin-left: 62px;">
+    <div class="outerPipesVert" id="vertPipe1" style="height: 232px; margin-top: 286px; margin-left: 62px;border-bottom-left-radius: var(--border-radius);">
         <div class="innerPipesVert" data-lenght="215"></div>
     </div>
     <div class="outerPipesVert" id="vertPipe2" style="height: 69px; margin-top: 411px; margin-left: 98px; -webkit-transform: rotate(-180deg);">
         <div class="innerPipesVert" data-lenght="69"></div>
     </div>
-    <div class="outerPipesVert" id="vertPipe3" style="height: 35px; margin-top: 394px; margin-left: 195px;">
+    <div class="outerPipesVert" id="vertPipe3" style="height: 35px; margin-top: 394px; margin-left: 195px; border-top-right-radius: var(--border-radius);">
         <div class="innerPipesVert" data-lenght="18" style="margin-top: 17px;"></div>
     </div>
-    <div class="outerPipesVert" id="vertPipe4" style="height: 272px; margin-top: 157px; margin-left: 234px;">
+    <div class="outerPipesVert" id="vertPipe4" style="height: 272px; margin-top: 157px; margin-left: 234px; border-top-left-radius: var(--border-radius);">
         <div class="innerPipesVert" data-lenght="255" style="margin-top: 17px;"></div>
     </div>
     <div class="outerPipesVert" id="vertPipe5" style="height: 30px; margin-top: 342px; margin-left: 549px;">
@@ -73,7 +77,7 @@
     <div class="outerPipesVert" id="vertPipe7" style="height: 30px; margin-top: 342px; margin-left: 706px;">
         <div class="innerPipesVert" data-lenght="30"></div>
     </div>
-    <div class="outerPipesVert" id="vertPipe8" style="height: 349px; margin-top: 174px; margin-left: 915px; -webkit-transform: rotate(-180deg);">
+    <div class="outerPipesVert" id="vertPipe8" style="height: 349px; margin-top: 174px; margin-left: 915px; -webkit-transform: rotate(-180deg); border-top-left-radius: var(--border-radius);">
         <div class="innerPipesVert" data-lenght="332" style="margin-top: 17px;"></div>
     </div>
     <div class="outerPipesVert" id="vertPipe9" style="height: 38px; margin-top: 534px; margin-left: 549px;">
@@ -82,59 +86,59 @@
     <div class="outerPipesVert" id="vertPipe10" style="height: 30px; margin-top: 534px; margin-left: 628px; -webkit-transform: rotate(-180deg);">
         <div class="innerPipesVert" data-lenght="30"></div>
     </div>
-    <div class="outerPipesVert" id="vertPipe11" style="height: 161px; margin-top: 589px; margin-left: 780px;">
+    <div class="outerPipesVert" id="vertPipe11" style="height: 161px; margin-top: 589px; margin-left: 780px; border-bottom-left-radius: var(--border-radius);">
         <div class="innerPipesVert" data-lenght="144"></div>
     </div>
-    <div class="outerPipesVert" id="vertPipe12" style="height: 248px; margin-top: 534px; margin-left: 469px;">
+    <div class="outerPipesVert" id="vertPipe12" style="height: 248px; margin-top: 534px; margin-left: 469px; border-bottom-left-radius: var(--border-radius);">
         <div class="innerPipesVert" data-lenght="231"></div>
     </div>
     <div class="outerPipesVert" id="vertPipe13" style="height: 231px; margin-top: 534px; margin-left: 1056px; -webkit-transform: rotate(-180deg);">
         <div class="innerPipesVert" data-lenght="231"></div>
     </div>
-    <div class="outerPipesVert" id="vertPipe14" style="height: 124px; margin-top: 394px; margin-left: 334px;">
+    <div class="outerPipesVert" id="vertPipe14" style="height: 124px; margin-top: 394px; margin-left: 334px; border-top-right-radius: var(--border-radius); border-bottom-left-radius: var(--border-radius);">
         <div class="innerPipesVert" data-lenght="90" style="margin-top: 17px;"></div>
     </div>
-    <div class="outerPipesVert" id="vertPipe15" style="height: 35px; margin-top: 394px; margin-left: 271px; -webkit-transform: rotate(-180deg);">
+    <div class="outerPipesVert" id="vertPipe15" style="height: 35px; margin-top: 394px; margin-left: 271px; -webkit-transform: rotate(-180deg); border-bottom-right-radius: var(--border-radius);">
         <div class="innerPipesVert" data-lenght="18"></div>
     </div>
-    <div class="outerPipesVert" id="vertPipe16" style="height: 155px; margin-top: 325px; margin-left: 370px; -webkit-transform: rotate(-180deg);">
+    <div class="outerPipesVert" id="vertPipe16" style="height: 155px; margin-top: 325px; margin-left: 370px; -webkit-transform: rotate(-180deg); border-bottom-right-radius: var(--border-radius);">
         <div class="innerPipesVert" data-lenght="138"></div>
     </div>
     <!-- Горизонтальные -->
     <div class="outerPipesHorz" id="horzPipe1" style="margin-top: 394px; margin-left: 288px; width: 46px;">
         <div class="innerPipesHorz" data-lenght="46"></div>
     </div>
-    <div class="outerPipesHorz" id="horzPipe2" style="margin-top: 394px; margin-left: 98px; width: 97px;">
+    <div class="outerPipesHorz" id="horzPipe2" style="margin-top: 394px; margin-left: 98px; width: 97px; border-top-left-radius: var(--border-radius);">
         <div class="innerPipesHorz" data-lenght="82" style="margin-left: 17px;"></div>
     </div>
-    <div class="outerPipesHorz" id="horzPipe3" style="margin-top: 325px; margin-left: 387px; width: 179px;">
+    <div class="outerPipesHorz" id="horzPipe3" style="margin-top: 325px; margin-left: 387px; width: 179px; border-top-right-radius: var(--border-radius);">
         <div class="innerPipesHorz" data-lenght="162"></div>
     </div>
     <!--<div class="outerPipesHorz" id="horzPipe4" style="margin-top: 304px; margin-left: 407px; width: 50px;">
         <div class="innerPipesHorz" data-lenght="33" style="margin-left: 17px;"></div>
     </div>-->
-    <div class="outerPipesHorz" id="horzPipe5" style="margin-top: 382px; margin-left: 755px; width: 90px;">
-        <div class="innerPipesHorz" data-lenght="89"></div>
+    <div class="outerPipesHorz" id="horzPipe5" style="margin-top: 382px; margin-left: 755px; width: 90px; border-top-right-radius: var(--border-radius);">
+        <div class="innerPipesHorz" data-lenght="72"></div>
     </div>
     <div class="outerPipesHorz" id="horzPipe6" style="margin-top: 506px; margin-left: 755px; width: 60px; text-align: -webkit-right;">
         <div class="innerPipesHorz" data-lenght="60"></div>
     </div>
-    <div class="outerPipesHorz" id="horzPipe7" style="margin-top: 157px; margin-left: 251px; width: 681px; text-align: -webkit-right;">
+    <div class="outerPipesHorz" id="horzPipe7" style="margin-top: 157px; margin-left: 251px; width: 681px; text-align: -webkit-right; border-top-right-radius: var(--border-radius);">
         <div class="innerPipesHorz" data-lenght="664" style="margin-right: 17px;"></div>
     </div>
     <div class="outerPipesHorz" id="horzPipe8" style="margin-top: 506px; margin-left: 850px; width: 65px;">
         <div class="innerPipesHorz" data-lenght="65"></div>
     </div>
-    <div class="outerPipesHorz" id="horzPipe9" style="margin-top: 572px; margin-left: 549px; width: 72px;">
+    <div class="outerPipesHorz" id="horzPipe9" style="margin-top: 572px; margin-left: 549px; width: 72px; border-bottom-left-radius: var(--border-radius);">
         <div class="innerPipesHorz" data-lenght="55" style="margin-left: 17px;"></div>
     </div>
-    <div class="outerPipesHorz" id="horzPipe10" style="margin-top: 572px; margin-left: 651px; width: 146px;">
+    <div class="outerPipesHorz" id="horzPipe10" style="margin-top: 572px; margin-left: 651px; width: 146px; border-top-right-radius: var(--border-radius);">
         <div class="innerPipesHorz" data-lenght="128"></div>
     </div>
-    <div class="outerPipesHorz" id="horzPipe11" style="margin-top: 733px; margin-left: 797px; width: 98px;">
-        <div class="innerPipesHorz" data-lenght="97"></div>
+    <div class="outerPipesHorz" id="horzPipe11" style="margin-top: 733px; margin-left: 797px; width: 98px; border-bottom-right-radius: var(--border-radius);">
+        <div class="innerPipesHorz" data-lenght="80"></div>
     </div>
-    <div class="outerPipesHorz" id="horzPipe12" style="margin-top: 765px; margin-left: 486px; width: 587px;">
+    <div class="outerPipesHorz" id="horzPipe12" style="margin-top: 765px; margin-left: 486px; width: 587px; border-bottom-right-radius: var(--border-radius);">
         <div class="innerPipesHorz" data-lenght="570"></div>
     </div>
     <div id="buttons">
