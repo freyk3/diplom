@@ -133,12 +133,6 @@ body
     height: 15px;
     background-color: white;
 }
-#buttons
-{
-    position: absolute;
-    margin-top: 75px;
-    margin-left: 980px;
-}
 #info
 {
     margin-top: 570px;
@@ -147,24 +141,33 @@ body
 {
     height: 40px;
     width: 150px;
+    position: absolute;
+    margin-top: 573px;
+    margin-left: 240px;
 }
 #playButton
 {
     height: 40px;
     width: 150px;
+    position: absolute;
+    margin-top: 52px;
+    margin-left: 150px;
 }
 #timerDiv
 {
     height: 40px;
     width: 150px;
     display: none;
+    position: absolute;
+    margin-top: 52px;
+    margin-left: 150px;
 }
 
 #tankInfo1
 {
     position: absolute;
     margin-left: 150px;
-    margin-top: 75px;
+    margin-top: 109px;
 }
 #tankInfo2
 {
