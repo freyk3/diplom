@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Лабораторная работа №2</title>
+    <title>Лабораторная работа №2 - Производство пастеризованного молока</title>
     <link href="/css/secondApp.css" rel="stylesheet">
     <script type="text/javascript" src="/scripts/jquery-3.1.1.js"></script>
     <link href="/css/tooltips/tooltipster.bundle.min.css" rel="stylesheet">
@@ -16,7 +16,8 @@
                 theme: 'tooltipster-shadow',
                 animation: 'fade',
                 delay: [2500,0],
-                plugins: ['follower']
+                plugins: ['follower'],
+                maxWidth: 250
             });
         });
     </script>
@@ -39,21 +40,21 @@
         <span>Температура: </span><span id="temperatura2"></span><br/>
         <span>Жирность: </span><span id="jirnost2"></span>
     </div>
-    <img class="abs" id="tank" src="/images/secondApp/Tank.jpg" title="Танк c молоком">
-    <img class="abs" id="nasos" title="Насос" src="/images/secondApp/Nasos.jpg">
-    <img class="abs" id="buffer_tank" title="Расширительный бак" src="/images/secondApp/buferny_bak.jpg">
-    <img class="abs" id="nasos2" title="Насос" src="/images/secondApp/Nasos.jpg">
-    <img class="abs" id="gomo" onclick="chooseGomog()" title="Гомогенизатор" src="/images/secondApp/gomogena.jpg">
-    <img class="abs" id="pou1" onclick="chooseSec1()" title="ПОУ1" src="/images/secondApp/1.jpg">
-    <img class="abs" id="pou2" onclick="chooseSec2()" title="ПОУ2" src="/images/secondApp/2.jpg">
-    <img class="abs" id="pou3" onclick="chooseSec3()" title="ПОУ3" src="/images/secondApp/3.jpg">
-    <img class="abs" id="pou4" onclick="chooseSec4()" title="ПОУ4" src="/images/secondApp/4.jpg">
-    <img class="abs" id="viderj" title="Выдерживатель" src="/images/secondApp/vyderzhivatel.jpg">
-    <img class="abs" id="kirpich" title="Сепаратор" src="/images/secondApp/blok_podklyuchenia_separatora.jpg">
-    <img class="abs" id="separator" title="Сепаратор" src="/images/secondApp/Separator_2.jpg">
-    <img class="abs" id="slivki" title="Танк со сливками" src="/images/secondApp/bak_dlya_slivok.jpg">
-    <img class="abs" id="tank2" title="Танк с готовым продуктом" src="/images/secondApp/bak_s_produktom.jpg">
-    <img class="abs" id="kran" title="Кран" src="/images/secondApp/kran_vlevo.jpg">
+    <img class="abs" id="tank" src="/images/secondApp/Tank.jpg" title="Резервуар (танк) для длительного хранения молока. Термоизолированная емкость. Эти емкости позволяют отложить срок необходимой переработки молока на период времени до 12 часов.">
+    <img class="abs" id="nasos" title="Насос центробежный. Служит для перекачивания молока." src="/images/secondApp/Nasos.jpg">
+    <img class="abs" id="buffer_tank" title="Уравнительный бак. Емкость, обеспечивающая стабильность уровня молока, необходимую для бесперебойной работы центробежных насосов." src="/images/secondApp/buferny_bak.jpg">
+    <img class="abs" id="nasos2" title="Насос центробежный. Служит для перекачивания молока." src="/images/secondApp/Nasos.jpg">
+    <img class="abs" id="gomo" onclick="chooseGomog()" title="Гомогенизатор. Используется для дробления жировых шариков с целью предотвращения отстоя жира." src="/images/secondApp/gomogena.jpg">
+    <img class="abs" id="pou1" onclick="chooseSec1()" title="Секция регенерации №1 ПОУ. В данной секции сырое молоко подогревается встречным потоком остывающего пастеризованного продукта." src="/images/secondApp/1.jpg">
+    <img class="abs" id="pou2" onclick="chooseSec2()" title="Секция регенерации №2 ПОУ. В данной секции подогретое молоко, прошедшее первую секцию подготавливается к процессу пастеризации." src="/images/secondApp/2.jpg">
+    <img class="abs" id="pou3" onclick="chooseSec3()" title="Секция пастеризации ПОУ. В данной секции происходит процесс термической обработки молока." src="/images/secondApp/3.jpg">
+    <img class="abs" id="pou4" onclick="chooseSec4()" title="Секция охлаждения молока ПОУ. Служит для охлаждения пастеризованного молока до требуемой температуры перед розливом." src="/images/secondApp/4.jpg">
+    <img class="abs" id="viderj" title="Емкость со змеевиковым выдерживателем. Служит для поддержания необходимой температуры пастеризации в течение заданного промежутка времени." src="/images/secondApp/vyderzhivatel.jpg">
+    <img class="abs" id="kirpich" title="Сепаратор-сливкоотделитель. Используется для фракционного разделения молока." src="/images/secondApp/blok_podklyuchenia_separatora.jpg">
+    <img class="abs" id="separator" title="Сепаратор-сливкоотделитель. Используется для фракционного разделения молока." src="/images/secondApp/Separator_2.jpg">
+    <img class="abs" id="slivki" title="Резервуар (танк) длительного хранения с терморубашкой. Служит для хранения отделенных сливок." src="/images/secondApp/bak_dlya_slivok.jpg">
+    <img class="abs" id="tank2" title="Резервуар (танк) длительного хранения с терморубашкой. Служит для хранения готового продукта перед его розливом." src="/images/secondApp/bak_s_produktom.jpg">
+    <img class="abs" id="kran" title="Клапан возвратной линии. Служит для переключения направления движения потока молока, если режим пастеризации молока был нарушен." src="/images/secondApp/kran_vlevo.jpg">
         <!-- Pipes -->
     <!-- Вертикальные -->
     <div class="outerPipesVert" id="vertPipe1" style="height: 232px; margin-top: 286px; margin-left: 62px;border-bottom-left-radius: var(--border-radius);">

@@ -19,7 +19,8 @@
     "min_width": 1600,
     "position": "center",
     "kiosk_emulation": false,
-    "fullscreen": false
+    "fullscreen": false,
+    "icon": "/logo_bez_fona.png"
   },
   "additional_trust_anchors": [],
   "main": "views/login.html",
